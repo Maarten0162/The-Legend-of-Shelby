@@ -11,10 +11,19 @@ config_version=5
 [application]
 
 config/name="The-Legend-of-Shelby"
+run/main_scene="res://scenes/Enemy.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 <<<<<<<Updatedupstreamrun/main_scene="res://scenes/main.tscn"
 
+[autoload]
+
+GlobalFunc="*res://scripts/GlobalFunc.cs"
+
 [dotnet]
 
 project/assembly_name="The-Legend-of-Shelby"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

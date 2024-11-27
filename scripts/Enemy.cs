@@ -8,40 +8,47 @@ public partial class Enemy : Node2D
 	{
 		EHealth = Healthinput;
 		EDamage = Damageinput;
-		Etype = Typeinput;
-
+		etype = Typeinput;
+	}
+	public Enemy()
+	{
+		EHealth = 100;
+		EDamage = 10;
+		etype = "mob";
 	}
 
-	private int Ehealth;
+	[Export]	private int ehealth;
+	
 	public int EHealth
 	{
 		get
 		{
-			return Ehealth;
+			return ehealth;
 		}
 		set
 		{
-			Ehealth = value;
+			ehealth = value;
 		}
 	}
-	private int Edamage;
+	[Export]	private int edamage;
+	
 	public int EDamage
 	{
 		get
 		{
-			return Edamage;
+			return edamage;
 		}
 		set
 		{
-			Edamage = value;
+			edamage = value;
 		}
 	}
-	private string Etype;
+	private string etype;
 	public string EType
 	{
 		get
 		{
-			return Etype;
+			return etype;
 		}
 	}
 }
