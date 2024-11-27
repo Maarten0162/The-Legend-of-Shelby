@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://chv7r8rh0ei5o"]
+
+[ext_resource type="Script" path="res://scenes/scripts/Playerclass.cs" id="1_yl4or"]
+[ext_resource type="Script" path="res://scenes/scripts/Playermove.cs" id="2_j53dp"]
+[ext_resource type="Texture2D" uid="uid://c5hhceoandirx" path="res://assets/LOZ remake/Link/Link_anim.png" id="3_2egby"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_136kr"]
+atlas = ExtResource("3_2egby")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t6c8x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_136kr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_641qm"]
+size = Vector2(15, 16)
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_yl4or")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+scale = Vector2(5, 5)
+script = ExtResource("2_j53dp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_t6c8x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_641qm")

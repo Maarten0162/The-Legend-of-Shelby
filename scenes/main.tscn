@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://bqnh5r3fe08fa"]
+[gd_scene load_steps=3 format=3 uid="uid://bqnh5r3fe08fa"]
+
+[ext_resource type="Script" path="res://scenes/Main.cs" id="1_equrb"]
+[ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="2_4wpqj"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_equrb")
+
+[node name="Player" parent="." instance=ExtResource("2_4wpqj")]
