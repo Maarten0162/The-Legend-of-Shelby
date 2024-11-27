@@ -73,7 +73,7 @@ script = ExtResource("1_jag5l")
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 scale = Vector2(5, 5)
 script = ExtResource("2_qkxw4")
-Speed = 1
+Speed = 100
 Waittime = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]

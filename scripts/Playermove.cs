@@ -1,17 +1,18 @@
 using Godot;
 using System;
 using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
 
 public partial class Playermove : CharacterBody2D
 {
 	Vector2 playerVelocity;
-	int movementSpeed = 500;
+	[Export]    int movementSpeed = 500;
 
-	public override void _PhysicsProcess(double delta)
+	public override async void _PhysicsProcess(double delta)
     {
         HandleInput();
         Velocity = playerVelocity;
-        GD.Print(playerVelocity);
+        //GD.Print(playerVelocity);
         MoveAndSlide();
     }
 

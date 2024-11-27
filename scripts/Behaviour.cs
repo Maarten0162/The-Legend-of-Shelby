@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 public partial class Behaviour : CharacterBody2D
 {
-	[Export]	private int Speed;
+	[Export] private int Speed;
 	[Export] private float Waittime = 2f;	
 	AnimatedSprite2D animatedSprite2D;
 
@@ -13,73 +13,82 @@ public partial class Behaviour : CharacterBody2D
 	Vector2 left;
 	Vector2 right;
 	Vector2 enemyVelocity;
-		public override void _Ready(){
+		public override async void _Ready(){
+
 			animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");		
-			up = new Vector2(0,1000 * Speed);
-			down = new Vector2(0,-1000 * Speed);
-			left = new Vector2(-1000,0 * Speed);
-			right = new Vector2(1000,0 * Speed);
+			up = new Vector2(0, 1 * Speed);
+			down = new Vector2(0, -1 * Speed);
+			left = new Vector2(-1 * Speed ,0);
+			right = new Vector2(1 * Speed ,0);
+			while(1==1){
+				enemyVelocity = Vector2.Zero;
+				await Movement();
+			}
+
+			
 		}
 
 	public override void _PhysicsProcess(double delta)
-	{	Movement();
+	{	
 		Velocity = enemyVelocity;
-		Sprite();
-		
-		
+
+		GD.Print(Velocity);
 		MoveAndSlide();
 	
-		
-		
 	}
-	private void Movement()
+	private async Task Movement()
 	{	
-		// enemyVelocity = Vector2.Zero;
 		Random rnd = new Random();
 		int whatway = rnd.Next(0,4);
+
 		switch(whatway)
 		{
 			case 0:
-				enemyVelocity = up *= Speed; 
+					enemyVelocity = up;
 				break;
 			case 1:
-				enemyVelocity = down *= Speed; 
+				enemyVelocity = down; 
 				break;
 			case 2:
-				enemyVelocity = left *= Speed; 
+				enemyVelocity = left; 
 				break;
 			case 3:
-				enemyVelocity = right *= Speed; 
+				enemyVelocity = right; 
 				break;
 		}
+		Sprite();
+
+		for (int i = 0; i < 1; i++)
+        {
+            Velocity = enemyVelocity;
+            await GlobalFunc.Instance.WaitForSeconds(1); 
+        }
 	}
 	
 
-	async void Sprite()
+	private void Sprite()
 	{
-	if(enemyVelocity.X > 0)
+	if(enemyVelocity.X < 0)
 		{
+			animatedSprite2D.FlipH = true;
 			animatedSprite2D.Play("walk_sideways");
 		}
-		else if(enemyVelocity.Y > 0)
-		{
-			animatedSprite2D.Play("walk_up");
-		}	
-		else if(enemyVelocity.X < 0)
-		{	animatedSprite2D.FlipH = true;
-			animatedSprite2D.Play("walk_sideways");
-			animatedSprite2D.FlipH = false;
-		}	
 		else if(enemyVelocity.Y < 0)
 		{
+			animatedSprite2D.FlipH = false;
+			animatedSprite2D.Play("walk_up");
+		}	
+		else if(enemyVelocity.X > 0)
+		{	
+			animatedSprite2D.FlipH = false;
+			animatedSprite2D.Play("walk_sideways");
+		}	
+		else if(enemyVelocity.Y > 0)
+		{
+			animatedSprite2D.FlipH = false;
 			animatedSprite2D.Play("walk_down");
 		}	
-		await WaitForSeconds(2);
+		
 	}
-	private async Task WaitForSeconds(float seconds)
-    {
-        GD.Print("in waitforseconds");
-        await ToSignal(GetTree().CreateTimer(seconds), "timeout");
-        GD.Print("na waitforseconds");
-    }
+
 }

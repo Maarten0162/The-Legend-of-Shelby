@@ -25,5 +25,6 @@ public partial class GlobalFunc : Node
 	public async Task WaitForSeconds(float count)
 	{	GD.Print("in waitforseconds");
 		await ToSignal(GetTree().CreateTimer(count), "timeout");
+		GD.Print("uit");
 	}
 }
