@@ -58,10 +58,10 @@ public partial class Behaviour : CharacterBody2D
 		}
 		Sprite();
 
-		for (int i = 0; i < 1; i++)
+		for (int i = 0; i < 3; i++)
         {
             Velocity = enemyVelocity;
-            await GlobalFunc.Instance.WaitForSeconds(1); 
+            await GlobalFunc.Instance.WaitForSeconds(0.5f); 
         }
 	}
 	
