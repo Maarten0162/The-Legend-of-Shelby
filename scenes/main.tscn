@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_equrb"]
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="2_4wpqj"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_lgsja"]
-[ext_resource type="PackedScene" uid="uid://rasgk71na1vk" path="res://scenes/Enemy.tscn" id="4_ly727"]
+[ext_resource type="PackedScene" uid="uid://xsxva781yuoq" path="res://scenes/Enemy2.tscn" id="4_ifbk0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xqdat"]
 texture = ExtResource("2_lgsja")
@@ -78,7 +78,7 @@ tile_set = SubResource("TileSet_53cae")
 [node name="Player" parent="." instance=ExtResource("2_4wpqj")]
 script = null
 
-[node name="Enemy" parent="." instance=ExtResource("4_ly727")]
-position = Vector2(-250, -40)
-Speed = 100
-Waittime = 0.5
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_ifbk0")]
+position = Vector2(-155, 114)
+Speed = 10
+Waittime = 10.0

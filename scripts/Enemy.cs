@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Dynamic;
 
-public partial class Enemy : Node2D
+public partial class Enemy : CharacterBody2D
 {	
 	public Enemy(int Healthinput, int Damageinput, string Typeinput)
 	{

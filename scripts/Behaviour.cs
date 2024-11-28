@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class Behaviour : CharacterBody2D
+public partial class Behaviour : Enemy
 {
 	[Export] public int Speed;
 	[Export] public float Waittime;	

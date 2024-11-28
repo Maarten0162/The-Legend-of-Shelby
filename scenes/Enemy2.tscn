@@ -71,9 +71,9 @@ position = Vector2(3.99998, -2.99998)
 scale = Vector2(5, 5)
 script = ExtResource("1_wbixx")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lhhrq")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_21a8m")
 animation = &"walk_up"
