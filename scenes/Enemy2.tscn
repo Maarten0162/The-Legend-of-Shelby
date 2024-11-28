@@ -1,36 +1,36 @@
-[gd_scene load_steps=11 format=3 uid="uid://rasgk71na1vk"]
+[gd_scene load_steps=11 format=3 uid="uid://xsxva781yuoq"]
 
-[ext_resource type="Script" path="res://scripts/Behaviour.cs" id="2_qkxw4"]
-[ext_resource type="Texture2D" uid="uid://4yruhrt5jvds" path="res://assets/LOZ remake/Monsters/Moblin.png" id="3_vlgdi"]
+[ext_resource type="Script" path="res://scripts/Behaviour.cs" id="1_wbixx"]
+[ext_resource type="Texture2D" uid="uid://4yruhrt5jvds" path="res://assets/LOZ remake/Monsters/Moblin.png" id="2_vn3wg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gfdg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhhrq"]
 size = Vector2(14, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s76qc"]
-atlas = ExtResource("3_vlgdi")
+atlas = ExtResource("2_vn3wg")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fps3k"]
-atlas = ExtResource("3_vlgdi")
+atlas = ExtResource("2_vn3wg")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t1nti"]
-atlas = ExtResource("3_vlgdi")
+atlas = ExtResource("2_vn3wg")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2g2nn"]
-atlas = ExtResource("3_vlgdi")
+atlas = ExtResource("2_vn3wg")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4jlq"]
-atlas = ExtResource("3_vlgdi")
+atlas = ExtResource("2_vn3wg")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_570np"]
-atlas = ExtResource("3_vlgdi")
+atlas = ExtResource("2_vn3wg")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ntkit"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_21a8m"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -66,19 +66,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Enemy" type="Node2D"]
-script = ExtResource("2_qkxw4")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(3.99998, -2.99998)
 scale = Vector2(5, 5)
+script = ExtResource("1_wbixx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_4gfdg")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lhhrq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-sprite_frames = SubResource("SpriteFrames_ntkit")
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_21a8m")
 animation = &"walk_up"
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)

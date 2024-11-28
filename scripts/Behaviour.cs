@@ -4,17 +4,21 @@ using System.Threading.Tasks;
 
 public partial class Behaviour : CharacterBody2D
 {
-	[Export] private int Speed;
-	[Export] private float Waittime = 2f;	
+	[Export] public int Speed;
+	[Export] public float Waittime;	
 	AnimatedSprite2D animatedSprite2D;
+	Enemy enemy1;
 
 	Vector2 up;
 	Vector2 down;
 	Vector2 left;
 	Vector2 right;
 	Vector2 enemyVelocity;
-		public override async void _Ready(){
-
+	
+		public override async void _Ready(){			
+			enemy1 = new Enemy();
+			enemy1 = GetNode<Enemy>(".");
+			
 			animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");		
 			up = new Vector2(0, 1 * Speed);
 			down = new Vector2(0, -1 * Speed);
@@ -59,10 +63,10 @@ public partial class Behaviour : CharacterBody2D
 		Sprite();
 
 		for (int i = 0; i < 3; i++)
-        {
-            Velocity = enemyVelocity;
-            await GlobalFunc.Instance.WaitForSeconds(0.5f); 
-        }
+		{
+			Velocity = enemyVelocity;
+			await GlobalFunc.Instance.WaitForSeconds(Waittime); 
+		}
 	}
 	
 

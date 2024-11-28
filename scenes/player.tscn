@@ -46,7 +46,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_641qm"]
-size = Vector2(15, 16)
+size = Vector2(12, 15.2)
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_hgleo")
@@ -62,7 +62,10 @@ frame = 2
 frame_progress = 0.912163
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-0.5, 0)
+position = Vector2(-1.43051e-07, 0.399999)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_641qm")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 
 [node name="Timer" type="Timer" parent="."]
