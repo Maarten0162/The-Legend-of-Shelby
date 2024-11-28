@@ -1,8 +1,9 @@
 using Godot;
 using System;
 using System.Dynamic;
+using System.Threading.Tasks;
 
-public partial class Enemy : CharacterBody2D
+public abstract partial class Enemy : CharacterBody2D
 {	
 	public Enemy(int Healthinput, int Damageinput, string Typeinput)
 	{
@@ -16,6 +17,7 @@ public partial class Enemy : CharacterBody2D
 		EDamage = 10;
 		etype = "mob";
 	}
+	public abstract Task Movement();
 
 	[Export]	private int ehealth;
 	

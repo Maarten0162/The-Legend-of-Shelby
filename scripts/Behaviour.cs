@@ -16,8 +16,7 @@ public partial class Behaviour : Enemy
 	Vector2 enemyVelocity;
 	
 		public override async void _Ready(){			
-			enemy1 = new Enemy();
-			enemy1 = GetNode<Enemy>(".");
+			
 			
 			animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");		
 			up = new Vector2(0, 1 * Speed);
@@ -40,7 +39,7 @@ public partial class Behaviour : Enemy
 		MoveAndSlide();
 	
 	}
-	private async Task Movement()
+	public override async Task Movement()
 	{	
 		Random rnd = new Random();
 		int whatway = rnd.Next(0,4);
