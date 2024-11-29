@@ -61,11 +61,10 @@ public partial class Behaviour : Enemy
 		}
 		Sprite();
 
-		for (int i = 0; i < 3; i++)
-		{
+		
 			Velocity = enemyVelocity;
 			await GlobalFunc.Instance.WaitForSeconds(Waittime); 
-		}
+		
 	}
 	
 
