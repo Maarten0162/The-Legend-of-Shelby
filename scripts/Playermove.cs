@@ -25,7 +25,22 @@ public partial class Playermove : CharacterBody2D
 
     private void HandleInput()
     {
-        playerVelocity = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+        
+
+        if (Input.IsActionPressed("ui_up")) 
+        {
+            playerVelocity = new Vector2(0, -1);
+        } else if (Input.IsActionPressed("ui_down")) 
+        {
+           playerVelocity = new Vector2(0, 1); 
+        } else if (Input.IsActionPressed("ui_left")) 
+        {
+            playerVelocity = new Vector2(-1, 0);
+        } else if (Input.IsActionPressed("ui_right"))
+        {
+            playerVelocity = new Vector2(1, 0);
+        } else playerVelocity = Vector2.Zero; 
+
 		playerVelocity = playerVelocity *= movementSpeed;
         Sprite();
     }
