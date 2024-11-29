@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://chv7r8rh0ei5o"]
+[gd_scene load_steps=16 format=3 uid="uid://chv7r8rh0ei5o"]
 
 [ext_resource type="Script" path="res://scripts/Playerclass.cs" id="1_hgleo"]
 [ext_resource type="Script" path="res://scripts/Playermove.cs" id="2_uu6yg"]
@@ -19,6 +19,30 @@ region = Rect2(128, 48, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_136kr"]
 atlas = ExtResource("3_2egby")
 region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfw1b"]
+atlas = ExtResource("3_2egby")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sncgc"]
+atlas = ExtResource("3_2egby")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55cf2"]
+atlas = ExtResource("3_2egby")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_206tk"]
+atlas = ExtResource("3_2egby")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iir2y"]
+atlas = ExtResource("3_2egby")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0twf"]
+atlas = ExtResource("3_2egby")
+region = Rect2(80, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t6c8x"]
 animations = [{
@@ -43,6 +67,39 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfw1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sncgc")
+}],
+"loop": true,
+"name": &"move_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55cf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_206tk")
+}],
+"loop": true,
+"name": &"move_sideways",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iir2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0twf")
+}],
+"loop": true,
+"name": &"move_up",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_641qm"]
@@ -57,9 +114,8 @@ script = ExtResource("2_uu6yg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_t6c8x")
-animation = &"attack"
-frame = 2
-frame_progress = 0.912163
+animation = &"move_down"
+frame_progress = 0.296122
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-1.43051e-07, 0.399999)

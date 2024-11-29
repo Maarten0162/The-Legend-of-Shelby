@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_equrb"]
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="2_4wpqj"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_lgsja"]
-[ext_resource type="PackedScene" uid="uid://cgwj7v4ve1pso" path="res://scenes/Moblin.tscn" id="4_eouqn"]
+[ext_resource type="PackedScene" path="res://scenes/Moblin.tscn" id="4_eouqn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xqdat"]
 texture = ExtResource("2_lgsja")
