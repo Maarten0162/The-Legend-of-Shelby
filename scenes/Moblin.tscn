@@ -67,8 +67,11 @@ animations = [{
 }]
 
 [node name="Moblin" type="CharacterBody2D"]
+z_index = 1
 scale = Vector2(5, 5)
 script = ExtResource("1_047tk")
+Speed = 100
+Waittime = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ht2ng")

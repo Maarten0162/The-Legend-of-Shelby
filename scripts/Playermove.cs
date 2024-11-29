@@ -20,7 +20,7 @@ public partial class Playermove : CharacterBody2D
         HandleInput();
         Velocity = playerVelocity;
      
-        MoveAndSlide();
+        MoveAndCollide(Velocity * (float)delta);
     }
 
     private void HandleInput()
