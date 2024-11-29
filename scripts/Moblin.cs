@@ -2,18 +2,18 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class Behaviour : Enemy
+public partial class Moblin : Enemy
 {
 	[Export] public int Speed;
 	[Export] public float Waittime;	
-	AnimatedSprite2D animatedSprite2D;
-	Enemy enemy1;
+	[Export] public int Health = 100;	
+	[Export] public int Damage = 1;	
+	
+	
+		
 
-	Vector2 up;
-	Vector2 down;
-	Vector2 left;
-	Vector2 right;
-	Vector2 enemyVelocity;
+
+
 	
 		public override async void _Ready(){			
 			
@@ -68,7 +68,7 @@ public partial class Behaviour : Enemy
 	}
 	
 
-	private void Sprite()
+	public override void Sprite()
 	{
 	if(enemyVelocity.X < 0)
 		{

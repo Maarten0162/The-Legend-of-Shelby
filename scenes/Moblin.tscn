@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cgwj7v4ve1pso"]
 
-[ext_resource type="Script" path="res://scripts/Behaviour.cs" id="1_1pwex"]
+[ext_resource type="Script" path="res://scripts/Moblin.cs" id="1_047tk"]
 [ext_resource type="Texture2D" uid="uid://4yruhrt5jvds" path="res://assets/LOZ remake/Monsters/Moblin.png" id="2_oc2x1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ht2ng"]
@@ -67,11 +67,12 @@ animations = [{
 }]
 
 [node name="Moblin" type="CharacterBody2D"]
-script = ExtResource("1_1pwex")
+scale = Vector2(5, 5)
+script = ExtResource("1_047tk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ht2ng")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kbqik")
-animation = &"walk_up"
+animation = &"walk_down"

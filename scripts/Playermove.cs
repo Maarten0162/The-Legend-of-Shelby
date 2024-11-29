@@ -15,11 +15,11 @@ public partial class Playermove : CharacterBody2D
 
     }
 
-    public override async void _PhysicsProcess(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         HandleInput();
         Velocity = playerVelocity;
-        //GD.Print(playerVelocity);
+     
         MoveAndSlide();
     }
 
