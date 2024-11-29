@@ -3,106 +3,70 @@ using System;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
-public partial class Player : CharacterBody2D
+public partial class Playermove : CharacterBody2D
 {
-
-    
-    Vector2 playerVelocity;
+	Vector2 playerVelocity;
     AnimatedSprite2D animatedSprite2D;
-    [Export] int movementSpeed = 500;
-    [Export] int Health = 6;
 
     CollisionShape2D weapon;
     Sprite2D weaponSprite;
 
     FacingDirection facing;
 
-
     enum FacingDirection {up, down, left, right}
 
+	[Export]    int movementSpeed = 500;
 
     public override void _Ready()
     {
-        animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedPlayer");
-        weapon = GetNode<CollisionShape2D>("weapon/CollisionShape2D");
-        weaponSprite = GetNode<Sprite2D>("weapon/Sprite2D");
+        animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        weapon = GetNode<CollisionShape2D>("sword/CollisionShape2D");
+        weaponSprite = GetNode<Sprite2D>("sword/Sprite2D");
 
         weaponSprite.Hide();
         weapon.Disabled = true;
-      
+
 
     }
 
     public override void _PhysicsProcess(double delta)
-    {  
+    {
         HandleInput();
         Velocity = playerVelocity;
-
-        var collision = MoveAndCollide(Velocity * (float)delta);
-        if (collision != null)
-        {
-            // Get the collider object
-            Node collider = (Node)collision.GetCollider();
-
-            if (collider is PhysicsBody2D body)
-            {
-                // Retrieve the collider's layer
-                int collisionLayer = (int)body.CollisionLayer;
-
-
-                if ((collisionLayer & (1 << 1)) != 0) // Layer 2 corresponds to bit 1 Dit is een Enemy
-                {
-                    TakeDamage();
-                }
-                else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 corresponds to bit 2 Dit is
-                {
-                    GD.Print("Collided with something on Layer 3!");
-                }
-            }
-        }
+     
+        MoveAndCollide(Velocity * (float)delta);
     }
 
-    private async Task HandleInput()
+    private async void HandleInput()
     {
+        
         if (Input.IsActionJustPressed("Attack"))
         {
-            playerVelocity = Vector2.Zero;
+
             animatedSprite2D.Play("attack");
             await Attack(facing);
             weaponSprite.Hide();
             animatedSprite2D.Play("default");
 
-        }else if (Input.IsActionPressed("ui_up"))
+        }
+        if (Input.IsActionPressed("ui_up")) 
         {
             playerVelocity = new Vector2(0, -1);
-             facing = ChangeDirections();
-        }
-        else if (Input.IsActionPressed("ui_down"))
+        } else if (Input.IsActionPressed("ui_down")) 
         {
-            playerVelocity = new Vector2(0, 1);
-             facing = ChangeDirections();
-        }
-        else if (Input.IsActionPressed("ui_left"))
+           playerVelocity = new Vector2(0, 1); 
+        } else if (Input.IsActionPressed("ui_left")) 
         {
             playerVelocity = new Vector2(-1, 0);
-
-        }
-        else if (Input.IsActionPressed("ui_right"))
+        } else if (Input.IsActionPressed("ui_right"))
         {
             playerVelocity = new Vector2(1, 0);
+        } else playerVelocity = Vector2.Zero; 
 
-        }
-        else playerVelocity = Vector2.Zero;
-
-        playerVelocity = playerVelocity *= movementSpeed;
-        facing = ChangeDirections();
+		playerVelocity = playerVelocity *= movementSpeed;
+        
+        facing= ChangeDirections();
     }
-    public void TakeDamage()
-    {
-        Health -= 1;
-        GD.Print(Health);
-    }
-
     private FacingDirection ChangeDirections()
 	{
         if(playerVelocity.X < 0)
@@ -115,7 +79,6 @@ public partial class Player : CharacterBody2D
             {
                 animatedSprite2D.FlipH = false;
                 animatedSprite2D.Play("move_up");
-                GD.Print("select up");
                 return FacingDirection.up;
             }	
             else if(playerVelocity.X > 0)
@@ -131,7 +94,6 @@ public partial class Player : CharacterBody2D
                 return FacingDirection.down;
             }
             else animatedSprite2D.Pause();
-            
             return FacingDirection.up;
 		
 	}
@@ -150,7 +112,7 @@ public partial class Player : CharacterBody2D
                 weaponSprite.Show();
                 weapon.Disabled = false;
 			    animatedSprite2D.Play("attack_sideways");
-                await GlobalFunc.Instance.WaitForSeconds(0.5f);
+                await GlobalFunc.Instance.WaitForSeconds(1f);
                 weapon.Disabled = true;
                 weaponSprite.Hide();
                 break;
@@ -160,13 +122,33 @@ public partial class Player : CharacterBody2D
 			    animatedSprite2D.FlipH = false;
                 weaponSprite.Show();
 			    animatedSprite2D.Play("attack_sideways");
-                await GlobalFunc.Instance.WaitForSeconds(0.5f);
+                await GlobalFunc.Instance.WaitForSeconds(1f);
                 break;
             case FacingDirection.up:
                 break;
             case FacingDirection.down:
                 break;
         }
+       if(facing == FacingDirection.left)
+		{
+            
+
+		}
+		else if(facing == FacingDirection.right)
+		{
+			animatedSprite2D.FlipH = false;
+			//animatedSprite2D.Play("move_up");
+		}	
+		else if(facing == FacingDirection.up)
+		{	
+			animatedSprite2D.FlipH = false;
+			//animatedSprite2D.Play("move_sideways");
+		}	
+		else if(facing == FacingDirection.down)
+		{
+			animatedSprite2D.FlipH = false;
+			//animatedSprite2D.Play("move_down");
+		}
     }
 
 }
