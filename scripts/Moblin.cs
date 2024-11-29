@@ -25,7 +25,7 @@ public partial class Moblin : Enemy
 	public override async void _Ready()
 	{
 
-		
+
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedEnemy");
 		up = new Vector2(0, 1 * Speed);
 		down = new Vector2(0, -1 * Speed);
@@ -45,11 +45,25 @@ public partial class Moblin : Enemy
 	{
 
 
-		
-		var collision = MoveAndCollide(Velocity * (float)delta);
-		if(collision != null)
-		{
 
+		var collision = MoveAndCollide(Velocity * (float)delta);
+		if (collision != null)
+		{
+			// Get the collider object
+			Node collider = (Node)collision.GetCollider();
+
+			if (collider is PhysicsBody2D body)
+			{
+				// Retrieve the collider's layer
+				int collisionLayer = (int)body.CollisionLayer;
+
+
+				if ((collisionLayer & (1 << 3)) != 0) // Layer 4 is een wapen
+				{
+					TakeDamage();
+				}
+
+			}
 		}
 
 	}
@@ -107,6 +121,17 @@ public partial class Moblin : Enemy
 		}
 
 	}
-	
+	private void TakeDamage()
+	{
+		// Health -= Player.weapon.damage;
+		Health -= 100;
+		if (Health <= 0)
+		{
+			Death();
+		}
+	}
+	private void Death(){
+		QueueFree();
+	}
 
 }
