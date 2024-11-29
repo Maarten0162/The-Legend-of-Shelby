@@ -69,13 +69,15 @@ animations = [{
 [node name="Moblin" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(5, 5)
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_047tk")
 Speed = 100
 Waittime = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionEnemy" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ht2ng")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedEnemy" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kbqik")
 animation = &"walk_down"
