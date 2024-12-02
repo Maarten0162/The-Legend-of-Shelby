@@ -48,7 +48,7 @@ public partial class Moblin : Enemy
 
 	public override void _PhysicsProcess(double delta)
 	{
-		GD.Print("in loop");
+		
     if (isdead) return; // Skip everything if the mob is dead
 	CollisionCheck(delta);
     

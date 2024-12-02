@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=4 uid="uid://bqnh5r3fe08fa"]
+[gd_scene load_steps=13 format=4 uid="uid://bqnh5r3fe08fa"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_equrb"]
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="2_4wpqj"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_lgsja"]
 [ext_resource type="Texture2D" uid="uid://b6xgp3cyjuvyk" path="res://assets/LOZ remake/Tileset/tileset_layer2.png" id="3_nq57o"]
 [ext_resource type="PackedScene" uid="uid://cgwj7v4ve1pso" path="res://scenes/Moblin.tscn" id="4_eouqn"]
+[ext_resource type="Texture2D" uid="uid://vwxawogfv7om" path="res://assets/LOZ remake/Tileset/TreeStump.png" id="4_ilpp7"]
+[ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="7_ma5jn"]
+[ext_resource type="Script" path="res://scenes/HealthUi.cs" id="8_mpeh6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t5lkg"]
 texture = ExtResource("2_lgsja")
@@ -60,13 +63,24 @@ texture = ExtResource("3_nq57o")
 2:0/0 = 0
 3:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_it2uf"]
+texture = ExtResource("4_ilpp7")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_1g467"]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_t5lkg")
 sources/1 = SubResource("TileSetAtlasSource_cc5co")
+sources/2 = SubResource("TileSetAtlasSource_it2uf")
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(572, 357)
 script = ExtResource("1_equrb")
 
 [node name="BackgroundLayer" type="Node2D" parent="."]
@@ -82,6 +96,7 @@ y_sort_enabled = true
 [node name="Player" parent="Y-Sort" instance=ExtResource("2_4wpqj")]
 z_index = 0
 position = Vector2(-2, 2)
+KnockbackStrength = 500.0
 
 [node name="Moblin" parent="Y-Sort" instance=ExtResource("4_eouqn")]
 z_index = 0
@@ -90,7 +105,7 @@ Health = 0
 
 [node name="Trees" type="TileMapLayer" parent="Y-Sort"]
 scale = Vector2(6, 6)
-tile_map_data = PackedByteArray("AAD9//7/AQABAAAAAAD9/wAAAQABAAAAAAABAP7/AQABAAAAAAABAAAAAQABAAAAAAD9/wIAAQABAAAAAAD7/wAAAQABAAAAAAACAP//AAACAAMAAAACAAAAAAACAAQAAAA=")
+tile_map_data = PackedByteArray("AAD9//7/AQABAAAAAAD9/wAAAQABAAAAAAABAP7/AQABAAAAAAABAAAAAQABAAAAAAD9/wIAAQABAAAAAAD7/wAAAQABAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAEAAAADAP//AgABAAAAAAADAAAAAgABAAEAAAAEAP//AgACAAAAAAAEAAAAAgACAAEAAAA=")
 tile_set = SubResource("TileSet_1g467")
 
 [node name="Moblin2" parent="Y-Sort" instance=ExtResource("4_eouqn")]
@@ -98,3 +113,15 @@ position = Vector2(-116, -260)
 
 [node name="Moblin3" parent="Y-Sort" instance=ExtResource("4_eouqn")]
 position = Vector2(145, -302)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" type="TextureRect" parent="CanvasLayer"]
+offset_left = 452.0
+offset_top = 555.0
+offset_right = 554.0
+offset_bottom = 635.0
+scale = Vector2(2.4, 1)
+texture = ExtResource("7_ma5jn")
+script = ExtResource("8_mpeh6")
+metadata/_edit_use_anchors_ = true
