@@ -85,10 +85,16 @@ position = Vector2(-2, 2)
 
 [node name="Moblin" parent="Y-Sort" instance=ExtResource("4_eouqn")]
 z_index = 0
-position = Vector2(-439, 198)
+position = Vector2(135, -46)
 Health = 0
 
 [node name="Trees" type="TileMapLayer" parent="Y-Sort"]
 scale = Vector2(6, 6)
 tile_map_data = PackedByteArray("AAD9//7/AQABAAAAAAD9/wAAAQABAAAAAAABAP7/AQABAAAAAAABAAAAAQABAAAAAAD9/wIAAQABAAAAAAD7/wAAAQABAAAAAAACAP//AAACAAMAAAACAAAAAAACAAQAAAA=")
 tile_set = SubResource("TileSet_1g467")
+
+[node name="Moblin2" parent="Y-Sort" instance=ExtResource("4_eouqn")]
+position = Vector2(-116, -260)
+
+[node name="Moblin3" parent="Y-Sort" instance=ExtResource("4_eouqn")]
+position = Vector2(145, -302)

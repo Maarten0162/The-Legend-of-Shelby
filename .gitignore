@@ -3,3 +3,5 @@
 /android/
 
 .fake
+.vscode/launch.json
+.vscode/launch.json

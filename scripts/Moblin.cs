@@ -9,6 +9,7 @@ public partial class Moblin : Enemy
 	[Export] public float Waittime;
 	[Export] public int Health = 100;
 	[Export] private int damage = 1;
+	public bool isdead = false;
 	public int Damage
 	{
 		get
@@ -16,6 +17,8 @@ public partial class Moblin : Enemy
 			return damage;
 		}
 	}
+
+	
 
 
 
@@ -31,10 +34,12 @@ public partial class Moblin : Enemy
 		down = new Vector2(0, -1 * Speed);
 		left = new Vector2(-1 * Speed, 0);
 		right = new Vector2(1 * Speed, 0);
-		while (1 == 1)
+		while (1 == 1 && !isdead)
 		{
 			enemyVelocity = Vector2.Zero;
-			await Movement();
+			
+				await Movement();
+			
 		}
 
 
@@ -43,32 +48,33 @@ public partial class Moblin : Enemy
 
 	public override void _PhysicsProcess(double delta)
 	{
-
-
-
-		var collision = MoveAndCollide(Velocity * (float)delta);
-		if (collision != null)
-		{
-			// Get the collider object
-			Node collider = (Node)collision.GetCollider();
-
-			if (collider is PhysicsBody2D body)
-			{
-				// Retrieve the collider's layer
-				int collisionLayer = (int)body.CollisionLayer;
-
-
-				if ((collisionLayer & (1 << 3)) != 0) // Layer 4 is een wapen
-				{
-					TakeDamage();
-				}
-
-			}
-		}
+		GD.Print("in loop");
+    if (isdead) return; // Skip everything if the mob is dead
+	CollisionCheck(delta);
+    
 
 	}
-	public override async Task Movement()
-	{
+
+    public override void CollisionCheck(double Delta)
+    {
+         var collision = MoveAndCollide(Velocity * (float)Delta);
+    if (collision != null)
+    {
+        Node collider = (Node)collision.GetCollider();
+
+        if (collider is PhysicsBody2D body)
+        {
+            int collisionLayer = (int)body.CollisionLayer;
+
+            if ((collisionLayer & (1 << 3)) != 0) // Check if it's a weapon (Layer 4)
+            {
+                TakeDamage();
+            }
+        }
+    }
+    }
+    public override async Task Movement() //randomised movement
+	{	if(isdead) return;
 		Random rnd = new Random();
 		int whatway = rnd.Next(0, 4);
 
@@ -90,14 +96,17 @@ public partial class Moblin : Enemy
 		Sprite();
 		Velocity = enemyVelocity;
 		await GlobalFunc.Instance.WaitForSeconds(Waittime);
+		if(isdead) return;
 		Velocity = Vector2.Zero;
 		animatedSprite2D.Pause();
 		await GlobalFunc.Instance.WaitForSeconds(0.5f);
+		if(isdead) return;
+	
 
 	}
 
 
-	public override void Sprite()
+	public override void Sprite() //sprite update
 	{
 		if (enemyVelocity.X < 0)
 		{
@@ -130,8 +139,13 @@ public partial class Moblin : Enemy
 			Death();
 		}
 	}
-	private void Death(){
+	public override void Death()
+	{	if(isdead) return;
+		isdead = true;
+		
 		QueueFree();
+
 	}
+	
 
 }

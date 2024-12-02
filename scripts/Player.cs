@@ -115,7 +115,7 @@ public partial class Player : CharacterBody2D
             {
                 animatedSprite2D.FlipH = false;
                 animatedSprite2D.Play("move_up");
-                GD.Print("select up");
+              
                 return FacingDirection.up;
             }	
             else if(playerVelocity.X > 0)
@@ -150,7 +150,7 @@ public partial class Player : CharacterBody2D
                 weaponSprite.Show();
                 weapon.Disabled = false;
 			    animatedSprite2D.Play("attack_sideways");
-                await GlobalFunc.Instance.WaitForSeconds(0.5f);
+                await GlobalFunc.Instance.WaitForSeconds(2f);
                 weapon.Disabled = true;
                 weaponSprite.Hide();
                 break;
@@ -159,8 +159,11 @@ public partial class Player : CharacterBody2D
                 Velocity = Vector2.Zero;
 			    animatedSprite2D.FlipH = false;
                 weaponSprite.Show();
+                weapon.Disabled = false;
 			    animatedSprite2D.Play("attack_sideways");
-                await GlobalFunc.Instance.WaitForSeconds(0.5f);
+                await GlobalFunc.Instance.WaitForSeconds(2f);
+                weapon.Disabled = true;
+                weaponSprite.Hide();
                 break;
             case FacingDirection.up:
                 break;

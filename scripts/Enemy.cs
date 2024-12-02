@@ -7,6 +7,8 @@ public abstract partial class Enemy : CharacterBody2D
 {
 	public abstract void Sprite();
 	public abstract Task Movement();
+	public abstract void Death();
+	public abstract void CollisionCheck(double Delta);
 
 	private int Health;
 	private int Damage;
