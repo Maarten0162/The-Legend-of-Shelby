@@ -69,7 +69,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_57lf0")
 }],
 "loop": false,
-"name": &"attack",
+"name": &"attack_down",
 "speed": 5.0
 }, {
 "frames": [{
@@ -142,7 +142,7 @@ script = ExtResource("1_n1fb5")
 
 [node name="AnimatedPlayer" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kp4tc")
-animation = &"move_sideways"
+animation = &"attack_sideways"
 
 [node name="CollisionPlayer" type="CollisionShape2D" parent="."]
 z_index = 1
