@@ -34,6 +34,7 @@ public partial class Player : CharacterBody2D
     //velocity fix??? miss Velocity ook naar zero zetten. 
 
     public override void _Ready()
+    
     {
         animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedPlayer");
         weaponCollision = GetNode<CollisionShape2D>("weapon/CollisionShape2D");
@@ -148,22 +149,22 @@ public partial class Player : CharacterBody2D
             animatedSprite2D.Play("default");
 
         }
-        else if (Input.IsActionPressed("ui_up"))
+        else if (Input.IsActionPressed("D_up"))
         {
             playerVelocity = new Vector2(0, -1);
             facing = ChangeDirections();
         }
-        else if (Input.IsActionPressed("ui_down"))
+        else if (Input.IsActionPressed("D_down"))
         {
             playerVelocity = new Vector2(0, 1);
             facing = ChangeDirections();
         }
-        else if (Input.IsActionPressed("ui_left"))
+        else if (Input.IsActionPressed("D_left"))
         {
             playerVelocity = new Vector2(-1, 0);
 
         }
-        else if (Input.IsActionPressed("ui_right"))
+        else if (Input.IsActionPressed("D_right"))
         {
             playerVelocity = new Vector2(1, 0);
 
@@ -177,6 +178,10 @@ public partial class Player : CharacterBody2D
     {
         GlobalVar.Instance.playerHealth -= 1;
         GD.Print(GlobalVar.Instance.playerHealth);
+        if (GlobalVar.Instance.playerHealth <= 0)
+        {
+            GetTree().ChangeSceneToFile("res://scenes/death_screen.tscn");
+        }
     }
 
     private FacingDirection ChangeDirections()

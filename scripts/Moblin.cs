@@ -17,6 +17,7 @@ public partial class Moblin : Enemy
 			return damage;
 		}
 	}
+	Moblin moblin;
 
 	
 
@@ -28,7 +29,7 @@ public partial class Moblin : Enemy
 	public override async void _Ready()
 	{
 
-
+		Moblin moblin = GetNodeOrNull<Moblin>(".");
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedEnemy");
 		up = new Vector2(0, 1 * Speed);
 		down = new Vector2(0, -1 * Speed);
@@ -74,7 +75,7 @@ public partial class Moblin : Enemy
     }
     }
     public override async Task Movement() //randomised movement
-	{	if(isdead) return;
+	{	if(isdead || !IsInstanceValid(this)) return;
 		Random rnd = new Random();
 		int whatway = rnd.Next(0, 4);
 
@@ -95,12 +96,16 @@ public partial class Moblin : Enemy
 		}
 		Sprite();
 		Velocity = enemyVelocity;
+		
 		await GlobalFunc.Instance.WaitForSeconds(Waittime);
-		if(isdead) return;
+		if(isdead || !IsInstanceValid(this)) return;
 		Velocity = Vector2.Zero;
 		animatedSprite2D.Pause();
 		await GlobalFunc.Instance.WaitForSeconds(0.5f);
-		if(isdead) return;
+		if(isdead|| !IsInstanceValid(this)) return;
+
+		
+		
 	
 
 	}
@@ -146,6 +151,7 @@ public partial class Moblin : Enemy
 		QueueFree();
 
 	}
+	
 	
 
 }
