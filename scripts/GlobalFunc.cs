@@ -26,17 +26,7 @@ public partial class GlobalFunc : Node
 
     public override void _Process(double delta)
     {
-        // Press the "testsave" action to save game
-        if (Input.IsActionJustPressed("testsave"))
-        {
-            SaveGame();
-        }
-
-        // Press the "testload" action to load game
-        if (Input.IsActionJustPressed("testload"))
-        {
-            LoadGame();
-        }
+        
     }
 
 	
@@ -74,6 +64,8 @@ public partial class GlobalFunc : Node
         else
         {
             GD.Print("No save file exists");
+			GlobalVar.Instance.playerHealth = 6;
+			GlobalVar.Instance.playerPos = Vector2.Zero;
 			return Vector2.Zero;
         }
     }

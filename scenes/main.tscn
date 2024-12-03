@@ -97,6 +97,8 @@ y_sort_enabled = true
 z_index = 0
 position = Vector2(-2, 2)
 
+[node name="Camera2D3" type="Camera2D" parent="Y-Sort/Player"]
+
 [node name="Moblin" parent="Y-Sort" instance=ExtResource("4_eouqn")]
 z_index = 0
 position = Vector2(135, -46)
@@ -116,11 +118,11 @@ position = Vector2(145, -302)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthUI" type="TextureRect" parent="CanvasLayer"]
-offset_left = 452.0
-offset_top = 555.0
-offset_right = 554.0
-offset_bottom = 635.0
-scale = Vector2(2.4, 1)
+offset_left = 4.00003
+offset_top = -1.99994
+offset_right = 106.0
+offset_bottom = 78.0001
+scale = Vector2(2.10867, 0.878613)
 texture = ExtResource("7_ma5jn")
 script = ExtResource("8_mpeh6")
 metadata/_edit_use_anchors_ = true

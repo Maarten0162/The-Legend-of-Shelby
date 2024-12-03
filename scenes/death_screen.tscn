@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl8pjylppvmhu"]
+[gd_scene load_steps=3 format=3 uid="uid://b6d2tuo41iccu"]
 
 [ext_resource type="Script" path="res://scripts/DeathScreen.cs" id="1_4748d"]
 [ext_resource type="Texture2D" uid="uid://3hjntipr8rx1" path="res://assets/FullScreens/GameOverScreen.png" id="2_ronxf"]
@@ -7,6 +7,6 @@
 script = ExtResource("1_4748d")
 
 [node name="GameOverScreen" type="Sprite2D" parent="."]
-position = Vector2(582, 289)
-scale = Vector2(0.546212, 0.546212)
+position = Vector2(955, 488)
+scale = Vector2(0.898106, 0.898106)
 texture = ExtResource("2_ronxf")
