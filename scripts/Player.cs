@@ -242,14 +242,7 @@ public partial class Player : CharacterBody2D
         }
         isAttacking = false;
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="x"> new x pos for weapon</param>
-    /// <param name="y"> new y pos for weapon</param>
-    /// <param name="Rotation"> new rotation for weapon</param>
-    /// <returns></returns>
+    
     async Task changeSwordPosition(float x, float y, float Rotation)
     {
         weaponBody.Position = new Vector2(x, y);
