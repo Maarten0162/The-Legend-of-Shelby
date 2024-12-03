@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://cgwj7v4ve1pso"]
+
+[ext_resource type="Script" path="res://scripts/Moblin.cs" id="1_047tk"]
+[ext_resource type="Texture2D" uid="uid://4yruhrt5jvds" path="res://assets/LOZ remake/Monsters/Moblin.png" id="2_oc2x1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ht2ng"]
+size = Vector2(14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s76qc"]
+atlas = ExtResource("2_oc2x1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fps3k"]
+atlas = ExtResource("2_oc2x1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1nti"]
+atlas = ExtResource("2_oc2x1")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g2nn"]
+atlas = ExtResource("2_oc2x1")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4jlq"]
+atlas = ExtResource("2_oc2x1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_570np"]
+atlas = ExtResource("2_oc2x1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kbqik"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s76qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fps3k")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1nti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g2nn")
+}],
+"loop": true,
+"name": &"walk_sideways",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4jlq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_570np")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[node name="Moblin" type="CharacterBody2D"]
+z_index = 1
+position = Vector2(-1, 0)
+scale = Vector2(5, 5)
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_047tk")
+Speed = 100
+Waittime = 1.0
+
+[node name="CollisionEnemy" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ht2ng")
+
+[node name="AnimatedEnemy" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kbqik")
+animation = &"walk_down"

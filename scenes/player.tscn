@@ -1,0 +1,165 @@
+[gd_scene load_steps=20 format=3 uid="uid://chv7r8rh0ei5o"]
+
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_n1fb5"]
+[ext_resource type="Texture2D" uid="uid://c5hhceoandirx" path="res://assets/LOZ remake/Link/Link_anim.png" id="3_2egby"]
+[ext_resource type="Texture2D" uid="uid://barcu57qkn3c3" path="res://assets/weapons/sword.png" id="4_ahjaa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64dem"]
+atlas = ExtResource("3_2egby")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q7dm"]
+atlas = ExtResource("3_2egby")
+region = Rect2(112, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57lf0"]
+atlas = ExtResource("3_2egby")
+region = Rect2(128, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d6yj"]
+atlas = ExtResource("3_2egby")
+region = Rect2(144, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eueu"]
+atlas = ExtResource("3_2egby")
+region = Rect2(160, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1l56"]
+atlas = ExtResource("3_2egby")
+region = Rect2(176, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_136kr"]
+atlas = ExtResource("3_2egby")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfw1b"]
+atlas = ExtResource("3_2egby")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sncgc"]
+atlas = ExtResource("3_2egby")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55cf2"]
+atlas = ExtResource("3_2egby")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_206tk"]
+atlas = ExtResource("3_2egby")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iir2y"]
+atlas = ExtResource("3_2egby")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0twf"]
+atlas = ExtResource("3_2egby")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kp4tc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64dem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q7dm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57lf0")
+}],
+"loop": false,
+"name": &"attack_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d6yj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eueu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1l56")
+}],
+"loop": true,
+"name": &"attack_sideways",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_136kr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfw1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sncgc")
+}],
+"loop": true,
+"name": &"move_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55cf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_206tk")
+}],
+"loop": true,
+"name": &"move_sideways",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iir2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0twf")
+}],
+"loop": true,
+"name": &"move_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlmeh"]
+size = Vector2(12, 13.4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43dxv"]
+size = Vector2(5, 16.2)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 2
+scale = Vector2(5, 5)
+collision_mask = 6
+script = ExtResource("1_n1fb5")
+
+[node name="AnimatedPlayer" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kp4tc")
+animation = &"attack_sideways"
+
+[node name="CollisionPlayer" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(-1.43051e-07, -0.500001)
+shape = SubResource("RectangleShape2D_qlmeh")
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+
+[node name="weapon" type="CharacterBody2D" parent="."]
+position = Vector2(7.8, 2)
+rotation = 1.5708
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="weapon"]
+texture = ExtResource("4_ahjaa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon"]
+position = Vector2(-0.0999998, -0.0999999)
+shape = SubResource("RectangleShape2D_43dxv")
