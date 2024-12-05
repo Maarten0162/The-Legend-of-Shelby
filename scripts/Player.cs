@@ -61,15 +61,28 @@ public partial class Player : CharacterBody2D
         // Press the "testsave" action to save game
         if (Input.IsActionJustPressed("testsave"))
         {
-            GlobalFunc.Instance.SaveGame();
+            await GlobalFunc.Instance.SaveGameLocally();
+            await GlobalFunc.Instance.SaveGameToServer();
         }
 
         // Press the "testload" action to load game
         if (Input.IsActionJustPressed("testload"))
         {
             LoadSaveFromServer.Instance.StartDownload();
-            //GlobalPosition = GlobalFunc.Instance.LoadGame();
-        }        
+            for (int i = 3; i >= 0; i--)
+            {
+                GD.Print($"loading save in {i} seconds");
+                await GlobalFunc.Instance.WaitForSeconds(1);
+            }
+            GlobalPosition = GlobalFunc.Instance.LoadGame();
+            
+        }
+         if (Input.IsActionJustPressed("Kill"))
+        {
+            Health -=5;
+            TakeDamage();
+        }
+
         if (_knockbackTimeRemaining > 0)
         {
             // Apply knockback force

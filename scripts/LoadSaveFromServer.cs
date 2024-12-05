@@ -8,14 +8,12 @@ public partial class LoadSaveFromServer : Node
 
 
     private HttpRequest httpRequest;
-    private string url = "http://192.168.128.149/nextcloud/remote.php/dav/files/admin/savefile.save"; // URL of the file to download
-    private string savePath = "user://downloaded2_file.txt"; // Path to save the file locally
-
+    
 	public static LoadSaveFromServer Instance { get; private set; }
     public override void _Ready()
     {
 
-		 if (Instance == null)
+		if (Instance == null)
         {
             Instance = this;
         }
@@ -32,12 +30,12 @@ public partial class LoadSaveFromServer : Node
         // Create the headers for the request (if needed)
         string[] headers = new string[]
         {
-            "Authorization: Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes("admin:Welkom123!")) // Basic auth
+            "Authorization: Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{GlobalVar.Instance.username}:{GlobalVar.Instance.password}")) // Basic auth
         };
 
         // Send the HTTP GET request
-        Error err = httpRequest.Request(url, headers, HttpClient.Method.Get);
-
+        Error err = httpRequest.Request(ProjectSettings.GlobalizePath(GlobalVar.Instance.davSavePath), headers, HttpClient.Method.Get);
+		
         if (err != Error.Ok)
         {
             GD.Print("Error sending request: " + err);
@@ -56,16 +54,16 @@ public partial class LoadSaveFromServer : Node
             GD.Print("Download successful!");
 
             // Save the file locally using FileAccess
-            var file = FileAccess.Open(savePath, FileAccess.ModeFlags.Write);
+            var file = FileAccess.Open(GlobalVar.Instance.savePath, FileAccess.ModeFlags.Write);
             if (file != null)
             {
                 file.StoreBuffer(responseBody);
                 file.Close();
-                GD.Print("File saved locally to: " + savePath);
+                GD.Print("File saved locally to: " + GlobalVar.Instance.savePath);
             }
             else
             {
-                GD.Print("Failed to open file for writing: " + savePath);
+                GD.Print("Failed to open file for writing: " + GlobalVar.Instance.savePath);
             }
         }
         else
