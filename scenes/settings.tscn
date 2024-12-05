@@ -108,6 +108,7 @@ offset_bottom = 74.0
 text = "Yes"
 
 [node name="button_no" type="Button" parent="Control/Label"]
+layout_mode = 0
 offset_left = 179.0
 offset_top = 43.0
 offset_right = 207.0

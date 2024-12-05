@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 public partial class Player : CharacterBody2D
 {
-    
-    
+
+
     Vector2 playerVelocity;
     AnimatedSprite2D animatedSprite2D;
     [Export] int movementSpeed = 500;
@@ -34,14 +34,14 @@ public partial class Player : CharacterBody2D
     //velocity fix??? miss Velocity ook naar zero zetten. 
 
     public override void _Ready()
-    
+
     {
         animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedPlayer");
         weaponCollision = GetNode<CollisionShape2D>("weapon/CollisionShape2D");
         weaponSprite = GetNode<Sprite2D>("weapon/Sprite2D");
         weaponBody = GetNode<CharacterBody2D>("weapon/");
 
-        
+
 
         weaponSprite.Hide();
         weaponCollision.Disabled = true;
@@ -59,14 +59,14 @@ public partial class Player : CharacterBody2D
         // Press the "testsave" action to save game
         if (Input.IsActionJustPressed("testsave"))
         {
-            GlobalFunc.Instance.SaveGame();
+            GlobalFunc.Instance.SaveGameToServer();
         }
 
         // Press the "testload" action to load game
         if (Input.IsActionJustPressed("testload"))
         {
-            
-            GlobalPosition = GlobalFunc.Instance.LoadGame();
+            GlobalFunc.Instance.LoadGameFromServer();
+            //GlobalPosition = GlobalFunc.Instance.LoadGame();
         }
 
         if (_knockbackTimeRemaining > 0)
@@ -78,56 +78,42 @@ public partial class Player : CharacterBody2D
         else await HandleInput();
         if (isAttacking)//als het een while is crasht de game
         {
-            switch (facing)
-            {
-                case FacingDirection.left:
-                    playerVelocity = Vector2.Zero;
-                    animatedSprite2D.FlipH = true;
-                    animatedSprite2D.Play("attack_sideways");
-                    break;
-                case FacingDirection.right:
-                    playerVelocity = Vector2.Zero;
-                    animatedSprite2D.Play("attack_sideways");
-                    break;
-                case FacingDirection.up:
-                    playerVelocity = Vector2.Zero;
-
-                    break;
-                case FacingDirection.down:
-                    playerVelocity = Vector2.Zero;
-                    animatedSprite2D.Play("attack_down");
-                    break;
-
-            }
+            playerVelocity = Vector2.Zero;
+            Velocity = Vector2.Zero;
         }
 
         Velocity = playerVelocity;
 
 
-            var collision = MoveAndCollide(Velocity * (float)delta);
-            if (collision != null)
+        var collision = MoveAndCollide(Velocity * (float)delta);
+        if (collision != null)
+        {
+            // Get the collider object
+            Node collider = (Node)collision.GetCollider();
+
+            if (collider is PhysicsBody2D body)
             {
-                // Get the collider object
-                Node collider = (Node)collision.GetCollider();
+                // Retrieve the collider's layer
+                int collisionLayer = (int)body.CollisionLayer;
 
-                if (collider is PhysicsBody2D body)
+
+                if ((collisionLayer & (1 << 1)) != 0) // Layer 2 corresponds to bit 1 Dit is een Enemy
                 {
-                    // Retrieve the collider's layer
-                    int collisionLayer = (int)body.CollisionLayer;
-
-
-                    if ((collisionLayer & (1 << 1)) != 0) // Layer 2 corresponds to bit 1 Dit is een Enemy
-                    {
-                        TakeDamage();
-                        KnockBack(collision.GetPosition());
-                    }
-                    else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 corresponds to bit 2 Dit is
-                    {
-                        GD.Print("Collided with something on Layer 3!");
-                    }
+                    TakeDamage();
+                    KnockBack(collision.GetPosition());
+                }
+                else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 corresponds to bit 2 Dit is
+                {
+                    GD.Print("Collided with something on Layer 3!");
                 }
             }
         }
+
+        if (Velocity == Vector2.Zero)
+        {
+            animatedSprite2D.Pause();
+        }
+    }
 
 
     private void KnockBack(Vector2 EnemyPosition)
@@ -139,41 +125,52 @@ public partial class Player : CharacterBody2D
 
 
     }
+
+    // Movement handling
+
     private async Task HandleInput()
     {
+        if (isAttacking)
+        {
+            playerVelocity = Vector2.Zero;
+            return;
+        }
+
+        // Handle attack input
         if (Input.IsActionJustPressed("Attack"))
         {
-
-            await Attack(facing);
+            await Attack(facing); // Use the last known facing direction
             weaponSprite.Hide();
-            animatedSprite2D.Play("default");
-
+            return;
         }
-        else if (Input.IsActionPressed("D_up"))
+
+        // Handle movement input
+        Vector2 inputVelocity = Vector2.Zero;
+        if (Input.IsActionPressed("D_up"))
         {
-            playerVelocity = new Vector2(0, -1);
-            facing = ChangeDirections();
+            inputVelocity = new Vector2(0, -1);
         }
         else if (Input.IsActionPressed("D_down"))
         {
-            playerVelocity = new Vector2(0, 1);
-            facing = ChangeDirections();
+            inputVelocity = new Vector2(0, 1);
         }
         else if (Input.IsActionPressed("D_left"))
         {
-            playerVelocity = new Vector2(-1, 0);
-
+            inputVelocity = new Vector2(-1, 0);
         }
         else if (Input.IsActionPressed("D_right"))
         {
-            playerVelocity = new Vector2(1, 0);
+            inputVelocity = new Vector2(1, 0);
+        }
 
+        if (inputVelocity != Vector2.Zero)
+        {
+            playerVelocity = inputVelocity.Normalized() * movementSpeed;
+            facing = ChangeDirections();
         }
         else playerVelocity = Vector2.Zero;
-
-        playerVelocity = playerVelocity *= movementSpeed;
-        facing = ChangeDirections();
     }
+
     public void TakeDamage()
     {
         GlobalVar.Instance.playerHealth -= 1;
@@ -219,35 +216,65 @@ public partial class Player : CharacterBody2D
 
     async Task Attack(FacingDirection direction)
     {
-
         isAttacking = true;
 
-        GD.Print("in attack ");
+        GD.Print("in attack");
+
+        // Stop movement
+        playerVelocity = Vector2.Zero;
+        Velocity = Vector2.Zero;
 
         switch (direction)
         {
             case FacingDirection.left:
-                playerVelocity = Vector2.Zero;
                 animatedSprite2D.Play("attack_sideways");
                 await changeSwordPosition(-8f, 2f, -90);
                 break;
             case FacingDirection.right:
-                playerVelocity = Vector2.Zero;
                 animatedSprite2D.Play("attack_sideways");
                 await changeSwordPosition(8f, 2f, 90);
                 break;
             case FacingDirection.up:
-                playerVelocity = Vector2.Zero;
-
+                animatedSprite2D.Play("attack_up");
+                await changeSwordPosition(0f, -12f, 0);
                 break;
             case FacingDirection.down:
                 animatedSprite2D.Play("attack_down");
                 await changeSwordPosition(0f, 12f, 180);
                 break;
         }
+        while (animatedSprite2D.IsPlaying())
+        {
+            await Task.Delay(50); // This checks every 50ms if the animation is still playing
+        }
+
+        if (facing == FacingDirection.left)
+        {
+            animatedSprite2D.FlipH = true;
+            animatedSprite2D.Play("move_sideways");
+        }
+        else if (facing == FacingDirection.up)
+        {
+            animatedSprite2D.FlipH = false;
+            animatedSprite2D.Play("move_up");
+        }
+        else if (facing == FacingDirection.right)
+        {
+            animatedSprite2D.FlipH = false;
+            animatedSprite2D.Play("move_sideways");
+        }
+        else if (facing == FacingDirection.down)
+        {
+            animatedSprite2D.FlipH = false;
+            animatedSprite2D.Play("move_down");
+        }
+
+
+        animatedSprite2D.Frame = 0;
+        animatedSprite2D.Pause();
         isAttacking = false;
     }
-    
+
     async Task changeSwordPosition(float x, float y, float Rotation)
     {
         weaponBody.Position = new Vector2(x, y);

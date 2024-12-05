@@ -120,3 +120,12 @@ scale = Vector2(2.10867, 0.878613)
 texture = ExtResource("7_ma5jn")
 script = ExtResource("8_mpeh6")
 metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 879.0
+offset_top = -2.0
+offset_right = 947.0
+offset_bottom = 21.0
+scale = Vector2(2, 2)
+text = "position:
+"
