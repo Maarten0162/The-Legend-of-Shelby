@@ -60,8 +60,8 @@ text = "Resolution"
 
 [node name="Resolution" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
-selected = 3
-item_count = 5
+selected = 0
+item_count = 6
 popup/item_0/text = "3840 x 2160"
 popup/item_0/id = 1
 popup/item_1/text = "2560 x 1440"
@@ -72,6 +72,8 @@ popup/item_3/text = "1600 x 900"
 popup/item_3/id = 4
 popup/item_4/text = "1280x720"
 popup/item_4/id = 5
+popup/item_5/text = "Test"
+popup/item_5/id = 5
 
 [node name="VolumeLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2

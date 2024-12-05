@@ -15,6 +15,7 @@ public partial class HealthUi : TextureRect
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{Player player = GetNode<Player>("/root/Node2D/Y-Sort/Player");
+	
 		switch(GlobalVar.Instance.playerHealth){
 			case 6:
 			HealthBar.Texture = (Texture2D)GD.Load("res://assets/Hearts/PNG/basic/Full Health.png");

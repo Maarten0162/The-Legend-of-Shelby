@@ -15,6 +15,7 @@ public partial class Player : CharacterBody2D
     private float _knockbackTimeRemaining = 0;
     [Export] public float KnockbackStrength = 200; // Adjust strength
     [Export] public float KnockbackDuration = 0.2f; // Duration in seconds
+    public PackedScene DeathScreen = (PackedScene)ResourceLoader.Load("res://scenes/death_screen.tscn");
 
 
     CharacterBody2D weaponBody;
@@ -47,12 +48,13 @@ public partial class Player : CharacterBody2D
         weaponCollision.Disabled = true;
 
         GlobalVar.Instance.playerHealth = Health;
+        
 
 
     }
 
     public override async void _PhysicsProcess(double delta)
-    {
+    {   
         GlobalVar.Instance.playerPos = GlobalPosition;
 
 
@@ -67,6 +69,11 @@ public partial class Player : CharacterBody2D
         {
             GlobalFunc.Instance.LoadGameFromServer();
             //GlobalPosition = GlobalFunc.Instance.LoadGame();
+        }
+         if (Input.IsActionJustPressed("Kill"))
+        {
+            Health -=5;
+            TakeDamage();
         }
 
         if (_knockbackTimeRemaining > 0)
@@ -84,7 +91,7 @@ public partial class Player : CharacterBody2D
 
         Velocity = playerVelocity;
 
-
+        if(!IsInstanceValid(this)){
         var collision = MoveAndCollide(Velocity * (float)delta);
         if (collision != null)
         {
@@ -98,9 +105,9 @@ public partial class Player : CharacterBody2D
 
 
                 if ((collisionLayer & (1 << 1)) != 0) // Layer 2 corresponds to bit 1 Dit is een Enemy
-                {
+                {   KnockBack(collision.GetPosition());
                     TakeDamage();
-                    KnockBack(collision.GetPosition());
+                    
                 }
                 else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 corresponds to bit 2 Dit is
                 {
@@ -108,11 +115,13 @@ public partial class Player : CharacterBody2D
                 }
             }
         }
+        }
 
         if (Velocity == Vector2.Zero)
         {
             animatedSprite2D.Pause();
         }
+        GD.Print("uit loop");
     }
 
 
@@ -164,22 +173,28 @@ public partial class Player : CharacterBody2D
         }
 
         if (inputVelocity != Vector2.Zero)
-        {
+        {  
             playerVelocity = inputVelocity.Normalized() * movementSpeed;
             facing = ChangeDirections();
         }
         else playerVelocity = Vector2.Zero;
+        GD.Print("uit hndleinput");
     }
 
     public void TakeDamage()
-    {
-        GlobalVar.Instance.playerHealth -= 1;
+    {   Health -=1;
+        GlobalVar.Instance.playerHealth = Health;
         GD.Print(GlobalVar.Instance.playerHealth);
-        if (GlobalVar.Instance.playerHealth <= 0)
-        {
-            GetTree().ChangeSceneToFile("res://scenes/death_screen.tscn");
+        if(Health <= 0){
+                   
+            GD.Print("player died, switching to deathscreen");            
+            GetTree().ChangeSceneToPacked(DeathScreen);
         }
+        GD.Print("uit takedamage");
+  
     }
+    
+
 
     private FacingDirection ChangeDirections()
     {
@@ -215,7 +230,7 @@ public partial class Player : CharacterBody2D
     }
 
     async Task Attack(FacingDirection direction)
-    {
+    {   
         isAttacking = true;
 
         GD.Print("in attack");
@@ -273,6 +288,7 @@ public partial class Player : CharacterBody2D
         animatedSprite2D.Frame = 0;
         animatedSprite2D.Pause();
         isAttacking = false;
+        GD.Print("in Attack");
     }
 
     async Task changeSwordPosition(float x, float y, float Rotation)

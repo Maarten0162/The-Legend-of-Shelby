@@ -14,7 +14,7 @@ public partial class MainMenu : Control
 	}
 	private void StartButtonPressed()
 	{
-		GetTree().ChangeSceneToFile("res://scenes/main.tscn");
+		GetTree().ChangeSceneToFile("res://scenes/death_screen.tscn");
 
 	}
 	private void SettingsButtonPressed()

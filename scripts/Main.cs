@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 public partial class Main : Node2D
 {
 	Player player;
+	
+
 	Label posLabel;
 	public override  void _Ready()
 	{
@@ -15,8 +17,8 @@ public partial class Main : Node2D
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{	
-		posLabel.Text = "position: " + player.GlobalPosition;
+	{				posLabel.Text = "position: " + player.GlobalPosition;
+	GD.Print("main loop");
 
 	}
 

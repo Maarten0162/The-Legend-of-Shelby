@@ -99,11 +99,6 @@ position = Vector2(-2, 2)
 
 [node name="Camera2D3" type="Camera2D" parent="Y-Sort/Player"]
 
-[node name="Moblin" parent="Y-Sort" instance=ExtResource("4_eouqn")]
-z_index = 0
-position = Vector2(135, -46)
-Health = 0
-
 [node name="Trees" type="TileMapLayer" parent="Y-Sort"]
 scale = Vector2(6, 6)
 tile_map_data = PackedByteArray("AAD9//7/AQABAAAAAAD9/wAAAQABAAAAAAABAP7/AQABAAAAAAABAAAAAQABAAAAAAD9/wIAAQABAAAAAAD7/wAAAQABAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAEAAAADAP//AgABAAAAAAADAAAAAgABAAEAAAAEAP//AgACAAAAAAAEAAAAAgACAAEAAAA=")
@@ -129,3 +124,6 @@ offset_bottom = 21.0
 scale = Vector2(2, 2)
 text = "position:
 "
+
+[node name="Moblin" parent="." instance=ExtResource("4_eouqn")]
+position = Vector2(-66, -161)

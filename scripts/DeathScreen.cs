@@ -1,40 +1,70 @@
 using Godot;
 using System;
+using System.Collections;
 
 public partial class DeathScreen : Node2D
 {
 
-	private PackedScene mainScene = (PackedScene)ResourceLoader.Load("res://scenes/main.tscn");
-	private PackedScene mainMenuScene = (PackedScene)ResourceLoader.Load("res://scenes/Main Menu.tscn");
+	
+	int i = 0;
+	private bool isSceneChanging = false;
 
-	// Called when the node enters the scene tree for the first time.
+    private PackedScene mainScene;
+    private PackedScene mainMenuScene;
+    private const string MainScenePath = "res://scenes/main.tscn";
+    private const string MainMenuScenePath = "res://scenes/Main Menu.tscn";
+    private int frameCounter = 0;
 
-	public override void _Ready()
-	{
-		GD.Print("in Deatchscreen");
-		GD.Print(InputMap.HasAction("Yes")); // Should print "True"
-		GD.Print(InputMap.HasAction("No"));  // Should print "True"
-		SetProcessInput(true);
+    public override void _Ready()
+    {      GetTree().Paused = true;
+        GD.Print("DeathScreen initialized.");
 
+        // Ensure scenes exist before loading
+        if (ResourceLoader.Exists(MainScenePath))
+        {
+            mainScene = (PackedScene)ResourceLoader.Load(MainScenePath);
+            GD.Print("Main scene loaded successfully.");
+        }
+        else
+        {
+            GD.PrintErr($"Main scene not found at {MainScenePath}!");
+        }
 
-	}
+        if (ResourceLoader.Exists(MainMenuScenePath))
+        {
+            mainMenuScene = (PackedScene)ResourceLoader.Load(MainMenuScenePath);
+            GD.Print("Main menu scene loaded successfully.");
+        }
+        else
+        {
+            GD.PrintErr($"Main menu scene not found at {MainMenuScenePath}!");
+        }
+        GetTree().Paused = false;
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{	
-	}
-	public override void _Input(InputEvent @event)
-{
-    if (@event.IsActionPressed("Yes"))
+{   GD.Print("in loop" + i);
+
+
+    if (Input.IsActionJustPressed("Yes"))
     {
-        GD.Print("Unhandled Input: Yes action detected");
-		GetTree().ChangeSceneToPacked(mainScene);
+        GD.Print("Yes pressed - Changing to main scene...");
+        isSceneChanging = true;
+        GetTree().ChangeSceneToPacked(mainScene);
     }
-    else if (@event.IsActionPressed("No"))
+    else if (Input.IsActionJustPressed("No"))
     {
-        GD.Print("Unhandled Input: No action detected");
-		GetTree().ChangeSceneToPacked(mainMenuScene);
+        GD.Print("No pressed - Changing to main menu scene...");
+        isSceneChanging = true;
+       
+        GetTree().ChangeSceneToPacked(mainMenuScene);
     }
+    i++;
+ 
 }
+
+
+	
 
 }
