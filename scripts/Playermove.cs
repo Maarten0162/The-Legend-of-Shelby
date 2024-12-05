@@ -30,7 +30,7 @@ public partial class Playermove : CharacterBody2D
     }
 
     public override void _PhysicsProcess(double delta)
-    {
+    {   GD.Print("playermove loop");
         HandleInput();
         Velocity = playerVelocity;
      

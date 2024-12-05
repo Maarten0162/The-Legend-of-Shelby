@@ -18,6 +18,8 @@ public partial class Moblin : Enemy
 		}
 	}
 	Moblin moblin;
+	string initialScenePath;
+	
 
 	
 
@@ -27,7 +29,9 @@ public partial class Moblin : Enemy
 
 
 	public override async void _Ready()
-	{
+	{	AddToGroup("enemies");
+		initialScenePath = GetTree().CurrentScene.Name;
+
 
 		Moblin moblin = GetNodeOrNull<Moblin>(".");
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedEnemy");
@@ -35,22 +39,15 @@ public partial class Moblin : Enemy
 		down = new Vector2(0, -1 * Speed);
 		left = new Vector2(-1 * Speed, 0);
 		right = new Vector2(1 * Speed, 0);
-		while (1 == 1 && !isdead)
-		{
-			enemyVelocity = Vector2.Zero;
-			
-				await Movement();
-			
-		}
+		enemyVelocity = Vector2.Zero;
 
-
+			await Movement();
 
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		
-    if (isdead) return; // Skip everything if the mob is dead
+	
 	CollisionCheck(delta);
     
 
@@ -76,11 +73,12 @@ public partial class Moblin : Enemy
     }
     public override async Task Movement() //randomised movement
 	{	if(isdead || !IsInstanceValid(this)) return;
+	GD.Print("in movement");
 		Random rnd = new Random();
 		int whatway = rnd.Next(0, 4);
 
 		switch (whatway)
-		{
+		{	
 			case 0:
 				enemyVelocity = up;
 				break;
@@ -98,13 +96,16 @@ public partial class Moblin : Enemy
 		Velocity = enemyVelocity;
 		
 		await GlobalFunc.Instance.WaitForSeconds(Waittime);
+		GD.Print("na movementchoose");
 		if(isdead || !IsInstanceValid(this)) return;
+		GD.Print("na dead check");
 		Velocity = Vector2.Zero;
 		animatedSprite2D.Pause();
 		await GlobalFunc.Instance.WaitForSeconds(0.5f);
 		if(isdead|| !IsInstanceValid(this)) return;
+		GD.Print("gaat uit movement");
 
-		
+		await Movement();
 		
 	
 
@@ -112,7 +113,7 @@ public partial class Moblin : Enemy
 
 
 	public override void Sprite() //sprite update
-	{
+	{	GD.Print("in sprite");
 		if (enemyVelocity.X < 0)
 		{
 			animatedSprite2D.FlipH = true;
@@ -147,7 +148,7 @@ public partial class Moblin : Enemy
 	public override void Death()
 	{	if(isdead) return;
 		isdead = true;
-		
+		GD.Print("in death");
 		QueueFree();
 
 	}

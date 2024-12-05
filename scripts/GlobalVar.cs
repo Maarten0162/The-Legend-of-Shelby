@@ -32,9 +32,9 @@ public partial class GlobalVar : Node
         }
 
 		Volume = 100;
-		Resolution = new Vector2I(1920, 1080);//settings get saved with the otherstuff, make a separate file
-		DisplayServer.WindowSetSize(Resolution);
-		//DisplayServer.WindowSetSize(new Vector2I(1152, 648));
+		// Resolution = new Vector2I(1920, 1080);//settings get saved with the otherstuff, make a separate file
+		// DisplayServer.WindowSetSize(Resolution);
+		DisplayServer.WindowSetSize(new Vector2I(1152, 648));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
