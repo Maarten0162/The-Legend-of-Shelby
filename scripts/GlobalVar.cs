@@ -14,6 +14,15 @@ public partial class GlobalVar : Node
 	public int Volume{ get; set; }
 	public Vector2I Resolution{ get; set; }
 
+	public string savePath = "user://saves/savefile.save";  // Local file path (you can keep this to create the file)
+    public string encryptionCode = "AKLE69";
+
+  	public string webDavUrl = "http://192.168.128.149/nextcloud/remote.php/dav/files/admin/GameSaves/";
+
+	public string davSavePath = "http://192.168.128.149/nextcloud/remote.php/dav/files/admin/GameSaves/savefile.save";
+   	public string username = "admin";
+   	public string password = "Welkom123!";
+
 
 	public override void _Ready()
 	{

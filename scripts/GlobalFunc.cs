@@ -7,12 +7,6 @@ using System.Threading.Tasks;
 public partial class GlobalFunc : Node
 {
     // Declare variables
-    public string savePath = "user://saves/savefile.save";  // Local file path (you can keep this to create the file)
-    private string encryptionCode = "AKLE69";
-
-    private string webDavUrl = "http://192.168.128.149/nextcloud/remote.php/dav/files/admin/GameSaves/";
-    private string username = "admin";
-    private string password = "Welkom123!";
 
     public static GlobalFunc Instance { get; private set; }
 
@@ -33,7 +27,16 @@ public partial class GlobalFunc : Node
     {
     }
 
-    public async void SaveGame()
+
+    //
+    //
+    //make a enum saved way, so it will display either local or external, as a good way to differenciate where the file is from.
+    //
+    //
+    //
+
+    // Function to save the game locally
+    public async Task SaveGameLocally()
     {
         string directoryPath = "user://saves";
 
@@ -43,8 +46,8 @@ public partial class GlobalFunc : Node
             Directory.CreateDirectory(ProjectSettings.GlobalizePath(directoryPath));
         }
 
-        // Write save data to the file locally first
-        var file = Godot.FileAccess.OpenEncryptedWithPass(savePath, Godot.FileAccess.ModeFlags.Write, encryptionCode);
+        // Write save data to the file locally
+        var file = Godot.FileAccess.Open(GlobalVar.Instance.savePath, Godot.FileAccess.ModeFlags.Write);
 
         Godot.Collections.Dictionary saveData = new Godot.Collections.Dictionary
         {
@@ -55,24 +58,28 @@ public partial class GlobalFunc : Node
         file.StoreVar(saveData);
         file.Close();
 
-        // Now upload the save file to Nextcloud via WebDAV
-        HttpRequest httpRequest = new HttpRequest();  // Corrected to HttpRequest
+        GD.Print("Game saved locally!");
+    }
+
+    // Function to upload the saved game to the server
+    public async Task SaveGameToServer()
+    {
+        HttpRequest httpRequest = new HttpRequest();  // Create an HttpRequest to upload the file
         AddChild(httpRequest);
 
-        string authHeader = "Basic " + System.Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
+        string authHeader = "Basic " + System.Convert.ToBase64String(Encoding.UTF8.GetBytes($"{GlobalVar.Instance.username}:{GlobalVar.Instance.password}"));
         string[] headers =
         {
             "Authorization: " + authHeader
         };
 
         // Read the saved file into a byte array
-        byte[] saveFileBytes = File.ReadAllBytes(ProjectSettings.GlobalizePath(savePath));
+        byte[] saveFileBytes = File.ReadAllBytes(ProjectSettings.GlobalizePath(GlobalVar.Instance.savePath));
 
         string fileName = "savefile.save";  // Keep the same file name or change if needed
 
         // Perform PUT request (upload the file to WebDAV)
-        // Use RequestRaw instead of Request to send the byte[] directly
-        Error err = httpRequest.RequestRaw(webDavUrl + fileName, headers, HttpClient.Method.Put, saveFileBytes);
+        Error err = httpRequest.RequestRaw(GlobalVar.Instance.webDavUrl + fileName, headers, HttpClient.Method.Put, saveFileBytes);
 
         if (err != Error.Ok)
         {
@@ -84,5 +91,31 @@ public partial class GlobalFunc : Node
         await ToSignal(httpRequest, "request_completed");
 
         GD.Print("Game saved to Nextcloud!");
+    }
+
+    public Vector2 LoadGame()
+    {
+        if (Godot.FileAccess.FileExists(GlobalVar.Instance.savePath))
+        {
+            var file = Godot.FileAccess.Open(GlobalVar.Instance.savePath, Godot.FileAccess.ModeFlags.Read);
+            Godot.Collections.Dictionary loadedData = (Godot.Collections.Dictionary)file.GetVar();
+            file.Close();
+
+            GlobalVar.Instance.playerHealth = (int)loadedData["health"];
+            GlobalVar.Instance.playerPos = (Vector2)loadedData["playerPosition"];
+
+            GD.Print("Game loaded!");
+            GD.Print("health: " + GlobalVar.Instance.playerHealth);
+            GD.Print("playerPosition: " + GlobalVar.Instance.playerPos);
+
+            return GlobalVar.Instance.playerPos;
+        }
+        else
+        {
+            GD.Print("No save file exists");
+            GlobalVar.Instance.playerHealth = 6;
+            GlobalVar.Instance.playerPos = Vector2.Zero;
+            return Vector2.Zero;
+        }
     }
 }
