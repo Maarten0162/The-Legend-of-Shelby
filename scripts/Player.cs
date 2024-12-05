@@ -59,13 +59,13 @@ public partial class Player : CharacterBody2D
         // Press the "testsave" action to save game
         if (Input.IsActionJustPressed("testsave"))
         {
-            GlobalFunc.Instance.SaveGameToServer();
+            GlobalFunc.Instance.SaveGame();
         }
 
         // Press the "testload" action to load game
         if (Input.IsActionJustPressed("testload"))
         {
-            GlobalFunc.Instance.LoadGameFromServer();
+            LoadSaveFromServer.Instance.StartDownload();
             //GlobalPosition = GlobalFunc.Instance.LoadGame();
         }
 
