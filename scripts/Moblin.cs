@@ -96,14 +96,11 @@ public partial class Moblin : Enemy
 		Velocity = enemyVelocity;
 		
 		await GlobalFunc.Instance.WaitForSeconds(Waittime);
-		GD.Print("na movementchoose");
 		if(isdead || !IsInstanceValid(this)) return;
-		GD.Print("na dead check");
 		Velocity = Vector2.Zero;
 		animatedSprite2D.Pause();
 		await GlobalFunc.Instance.WaitForSeconds(0.5f);
 		if(isdead|| !IsInstanceValid(this)) return;
-		GD.Print("gaat uit movement");
 
 		await Movement();
 		
@@ -113,7 +110,7 @@ public partial class Moblin : Enemy
 
 
 	public override void Sprite() //sprite update
-	{	GD.Print("in sprite");
+	{	
 		if (enemyVelocity.X < 0)
 		{
 			animatedSprite2D.FlipH = true;

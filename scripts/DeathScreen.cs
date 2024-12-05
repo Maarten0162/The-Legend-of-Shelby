@@ -16,8 +16,8 @@ public partial class DeathScreen : Node2D
     private int frameCounter = 0;
 
     public override void _Ready()
-    {      GetTree().Paused = true;
-        GD.Print("DeathScreen initialized.");
+    {      
+       
 
         // Ensure scenes exist before loading
         if (ResourceLoader.Exists(MainScenePath))
@@ -39,7 +39,7 @@ public partial class DeathScreen : Node2D
         {
             GD.PrintErr($"Main menu scene not found at {MainMenuScenePath}!");
         }
-        GetTree().Paused = false;
+       
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

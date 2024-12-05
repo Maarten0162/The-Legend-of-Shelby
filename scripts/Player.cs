@@ -54,7 +54,7 @@ public partial class Player : CharacterBody2D
     }
 
     public override async void _PhysicsProcess(double delta)
-    {   
+    {   if(IsInstanceValid(this)){
         GlobalVar.Instance.playerPos = GlobalPosition;
 
 
@@ -69,13 +69,7 @@ public partial class Player : CharacterBody2D
         {
             LoadSaveFromServer.Instance.StartDownload();
             //GlobalPosition = GlobalFunc.Instance.LoadGame();
-        }
-         if (Input.IsActionJustPressed("Kill"))
-        {
-            Health -=5;
-            TakeDamage();
-        }
-
+        }        
         if (_knockbackTimeRemaining > 0)
         {
             // Apply knockback force
@@ -91,7 +85,7 @@ public partial class Player : CharacterBody2D
 
         Velocity = playerVelocity;
 
-        if(!IsInstanceValid(this)){
+        
         var collision = MoveAndCollide(Velocity * (float)delta);
         if (collision != null)
         {
@@ -115,13 +109,13 @@ public partial class Player : CharacterBody2D
                 }
             }
         }
-        }
+        
 
         if (Velocity == Vector2.Zero)
         {
             animatedSprite2D.Pause();
         }
-        GD.Print("uit loop");
+        }
     }
 
 
@@ -178,7 +172,6 @@ public partial class Player : CharacterBody2D
             facing = ChangeDirections();
         }
         else playerVelocity = Vector2.Zero;
-        GD.Print("uit hndleinput");
     }
 
     public void TakeDamage()
@@ -190,7 +183,6 @@ public partial class Player : CharacterBody2D
             GD.Print("player died, switching to deathscreen");            
             GetTree().ChangeSceneToPacked(DeathScreen);
         }
-        GD.Print("uit takedamage");
   
     }
     
@@ -233,7 +225,6 @@ public partial class Player : CharacterBody2D
     {   
         isAttacking = true;
 
-        GD.Print("in attack");
 
         // Stop movement
         playerVelocity = Vector2.Zero;
