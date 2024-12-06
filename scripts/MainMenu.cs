@@ -14,12 +14,12 @@ public partial class MainMenu : Control
 	}
 	private void StartButtonPressed()
 	{
-		GetTree().ChangeSceneToFile("res://scenes/Room_01.tscn");
+		GetTree().ChangeSceneToFile("res://scenes/rooms/Room_01.tscn");
 
 	}
 	private void SettingsButtonPressed()
 	{
-		GetTree().ChangeSceneToFile("res://scenes/settings.tscn");
+		GetTree().ChangeSceneToFile("res://scenes/menus/settings.tscn");
 	}
 	
 	private void ExitButtonPressed() 

@@ -154,11 +154,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlmeh"]
-size = Vector2(12, 13.4)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hvg8a"]
+radius = 5.8
+height = 14.4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43dxv"]
-size = Vector2(5, 16.2)
+size = Vector2(5, 15)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
@@ -171,10 +172,8 @@ sprite_frames = SubResource("SpriteFrames_kp4tc")
 
 [node name="CollisionPlayer" type="CollisionShape2D" parent="."]
 z_index = 1
-position = Vector2(-1.43051e-07, -0.500001)
-shape = SubResource("RectangleShape2D_qlmeh")
-
-[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(0, -0.2)
+shape = SubResource("CapsuleShape2D_hvg8a")
 
 [node name="weapon" type="CharacterBody2D" parent="."]
 position = Vector2(7.8, 2)
@@ -186,5 +185,5 @@ collision_mask = 0
 texture = ExtResource("4_ahjaa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="weapon"]
-position = Vector2(-0.0999998, -0.0999999)
+position = Vector2(-0.0999998, 0.5)
 shape = SubResource("RectangleShape2D_43dxv")

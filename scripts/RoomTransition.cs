@@ -3,10 +3,11 @@ using System;
 
 public partial class RoomTransition : Node
 {
-	[Export] public string TargetScenePath = ""; // Path to the next room/scene
+	[Export] public string Target; // Path to the next room/scene
+	string exit;
 	public override void _Ready()
 	{
-		GD.Print("room transition ready");
+		
 
 	}
 
@@ -24,8 +25,10 @@ public partial class RoomTransition : Node
 
 
 	private void ChangeScene()
-	{
-		GetTree().ChangeSceneToFile(TargetScenePath); // Change to the target scene
+	{	exit = GetNode<RoomTransition>(".").Name;
+	GD.Print(exit + " was the exit used");
+		GetTree().ChangeSceneToFile($"res://scenes/rooms/{Target}.tscn"); // Change to the target scene
+		
 	}
 }
 

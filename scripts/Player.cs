@@ -15,7 +15,7 @@ public partial class Player : CharacterBody2D
     private float _knockbackTimeRemaining = 0;
     [Export] public float KnockbackStrength = 200; // Adjust strength
     [Export] public float KnockbackDuration = 0.2f; // Duration in seconds
-    public PackedScene DeathScreen = (PackedScene)ResourceLoader.Load("res://scenes/death_screen.tscn");
+    public PackedScene DeathScreen = (PackedScene)ResourceLoader.Load("res://scenes/menus/death_screen.tscn");
 
 
     CharacterBody2D weaponBody;

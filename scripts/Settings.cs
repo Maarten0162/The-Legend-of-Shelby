@@ -27,7 +27,7 @@ public partial class Settings : Control
 	}
 	private void ReturnToMainMenuButton()
 	{
-		GetTree().ChangeSceneToFile("res://scenes/Main Menu.tscn");
+		GetTree().ChangeSceneToFile("res://scenes/menus/Main Menu.tscn");
 		
 	}
 

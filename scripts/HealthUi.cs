@@ -11,6 +11,7 @@ public partial class HealthUi : TextureRect
 
 		
 		UpdateHealth();
+		this.Show();
 
 	}
 

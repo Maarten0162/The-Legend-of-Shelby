@@ -75,7 +75,7 @@ public partial class Moblin : Enemy
 	public override async Task Movement() //randomised movement
 	{
 		if (isdead || !IsInstanceValid(this)) return;
-		GD.Print("in movement");
+		
 		Random rnd = new Random();
 		int whatway = rnd.Next(0, 4);
 
