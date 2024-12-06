@@ -47,6 +47,7 @@ layout_mode = 2
 text = "Exit"
 
 [node name="Moblin" parent="." instance=ExtResource("3_eg02t")]
+visible = false
 position = Vector2(681, 277)
 
 [connection signal="pressed" from="BoxContainer/StartButton" to="." method="StartButtonPressed"]

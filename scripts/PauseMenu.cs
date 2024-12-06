@@ -15,27 +15,63 @@ public partial class PauseMenu : Control
 	{	
 		if (Input.IsActionJustReleased("PauseGame"))
 		{
-			pause();
+			SwitchPauseMode();
 		}
 		
 
 	}
-	async void pause()
+	async void SwitchPauseMode()
 	{
 		//pause game
 		if (!GetTree().Paused){
-			GetTree().Paused = true;
-			settingsmenu.Show();
-			GD.Print("Game paused");
-			await GlobalFunc.Instance.WaitForSeconds(0.1f);
+			pause();
 		}
 		//unpause game
 		else if (GetTree().Paused){
-			GetTree().Paused = false;
+			unpause();
+		}
+
+	}
+
+	private void ResumeButtonPressed()
+	{
+		unpause();
+	}
+
+	private void SettingsButtonPressed()
+	{
+		
+	}
+
+	private void LoadButtonPressed()
+	{
+		GlobalFunc.Instance.LoadGame();
+	}
+
+	private void SaveButtonPressed()
+	{
+		
+	}
+
+	private void QuitButtonPressed()
+	{
+		
+	}
+
+
+	private async void unpause()
+	{
+		GetTree().Paused = false;
 			settingsmenu.Hide();
 			GD.Print("Game Unpaused");
 			await GlobalFunc.Instance.WaitForSeconds(0.1f);
-		}
+	}
 
+	private async void pause()
+	{
+		GetTree().Paused = true;
+			settingsmenu.Show();
+			GD.Print("Game paused");
+			await GlobalFunc.Instance.WaitForSeconds(0.1f);
 	}
 }

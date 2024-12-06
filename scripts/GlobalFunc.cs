@@ -40,13 +40,11 @@ public partial class GlobalFunc : Node
     {
         string directoryPath = "user://saves";
 
-        // Ensure the directory exists
         if (!Directory.Exists(ProjectSettings.GlobalizePath(directoryPath)))
         {
             Directory.CreateDirectory(ProjectSettings.GlobalizePath(directoryPath));
         }
 
-        // Write save data to the file locally
         var file = Godot.FileAccess.Open(GlobalVar.Instance.savePath, Godot.FileAccess.ModeFlags.Write);
 
         Godot.Collections.Dictionary saveData = new Godot.Collections.Dictionary
