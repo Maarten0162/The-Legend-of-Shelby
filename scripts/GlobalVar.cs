@@ -8,6 +8,8 @@ public partial class GlobalVar : Node
 
 	public Vector2 playerPos{ get; set; }
 	public int? playerHealth{ get; set; }
+	public string exit{ get; set; }
+	public string entrance{ get; set; }
 
 
 	//settings

@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=4 uid="uid://c6etpkx8jh7mn"]
+[gd_scene load_steps=21 format=4 uid="uid://c6etpkx8jh7mn"]
 
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_4i4jg"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="1_pyjq4"]
 [ext_resource type="Texture2D" uid="uid://b6xgp3cyjuvyk" path="res://assets/LOZ remake/Tileset/tileset_layer2.png" id="2_7fx8y"]
 [ext_resource type="Texture2D" uid="uid://vwxawogfv7om" path="res://assets/LOZ remake/Tileset/TreeStump.png" id="3_h7wno"]
@@ -271,10 +272,11 @@ sources/2 = SubResource("TileSetAtlasSource_yjg1g")
 sources/3 = SubResource("TileSetAtlasSource_ollwp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yu1lf"]
-size = Vector2(74.5, 23)
+size = Vector2(95, 9)
 
 [node name="Room_02" type="Node2D"]
 position = Vector2(643, 487)
+script = ExtResource("1_4i4jg")
 
 [node name="BackgroundLayer" type="Node2D" parent="."]
 
@@ -311,7 +313,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Y-Sort" instance=ExtResource("7_8itka")]
 z_index = 0
-position = Vector2(48, 314)
+position = Vector2(-1088, 10.9999)
 
 [node name="Camera2D3" type="Camera2D" parent="Y-Sort/Player"]
 position = Vector2(15.4, 6.2)
@@ -327,55 +329,60 @@ tile_map_data = PackedByteArray("AAD4//v/AAAFAAEAAAD4//z/AAAFAAEAAAD4//3/AAAFAAE
 tile_set = SubResource("TileSet_w83ib")
 
 [node name="Room2south" type="Area2D" parent="."]
-position = Vector2(50, 369)
+position = Vector2(49, 334)
 collision_layer = 512
 script = ExtResource("9_aecvi")
-Target = "Room_02"
+Target = "Room_01"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room2south"]
+position = Vector2(0, 45)
 shape = SubResource("RectangleShape2D_yu1lf")
 
 [node name="Room2north" type="Area2D" parent="."]
-position = Vector2(-54, -1326)
+position = Vector2(-49, -1272)
 collision_layer = 512
 script = ExtResource("9_aecvi")
 Target = "Room_02"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room2north"]
+position = Vector2(0, -63)
 shape = SubResource("RectangleShape2D_yu1lf")
 
-[node name="Room2east" type="Area2D" parent="."]
-position = Vector2(-749, -719)
+[node name="Room2west" type="Area2D" parent="."]
+position = Vector2(-703, -721)
 rotation = 1.5708
 collision_layer = 512
 script = ExtResource("9_aecvi")
 Target = "Room_02"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2east"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2west"]
+position = Vector2(-2.99978, 60)
 shape = SubResource("RectangleShape2D_yu1lf")
 
-[node name="Room2west1" type="Area2D" parent="."]
-position = Vector2(835, -153)
+[node name="Room2east1" type="Area2D" parent="."]
+position = Vector2(781, -142)
 rotation = 1.5708
 collision_layer = 512
 script = ExtResource("9_aecvi")
 Target = "Room_02"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2west1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2east1"]
+position = Vector2(-1.0004, -78.5)
 shape = SubResource("RectangleShape2D_yu1lf")
 
-[node name="Room2west2" type="Area2D" parent="."]
-position = Vector2(848, -915)
+[node name="Room2east2" type="Area2D" parent="."]
+position = Vector2(783, -913)
 rotation = 1.5708
 collision_layer = 512
 script = ExtResource("9_aecvi")
 Target = "Room_02"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2west2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2east2"]
+position = Vector2(-0.000264259, -73)
 shape = SubResource("RectangleShape2D_yu1lf")
 
 [connection signal="body_entered" from="Room2south" to="Room2south" method="_on_body_entered"]
 [connection signal="body_entered" from="Room2north" to="Room2north" method="_on_body_entered"]
-[connection signal="body_entered" from="Room2east" to="Room2east" method="_on_body_entered"]
-[connection signal="body_entered" from="Room2west1" to="Room2west1" method="_on_body_entered"]
-[connection signal="body_entered" from="Room2west2" to="Room2west2" method="_on_body_entered"]
+[connection signal="body_entered" from="Room2west" to="Room2west" method="_on_body_entered"]
+[connection signal="body_entered" from="Room2east1" to="Room2east1" method="_on_body_entered"]
+[connection signal="body_entered" from="Room2east2" to="Room2east2" method="_on_body_entered"]

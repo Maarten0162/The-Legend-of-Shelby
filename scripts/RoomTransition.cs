@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class RoomTransition : Node
+public partial class RoomTransition : Area2D
 {
 	[Export] public string Target; // Path to the next room/scene
 	string exit;
@@ -16,7 +16,8 @@ public partial class RoomTransition : Node
 	{
 	}
 	private void _on_body_entered(Node body)
-	{
+	{	
+		GlobalVar.Instance.exit = GetNode<RoomTransition>(".").Name;
 		
 
 
@@ -25,8 +26,8 @@ public partial class RoomTransition : Node
 
 
 	private void ChangeScene()
-	{	exit = GetNode<RoomTransition>(".").Name;
-	GD.Print(exit + " was the exit used");
+	{	
+		GD.Print(GlobalVar.Instance.exit + " was the exit used");
 		GetTree().ChangeSceneToFile($"res://scenes/rooms/{Target}.tscn"); // Change to the target scene
 		
 	}
