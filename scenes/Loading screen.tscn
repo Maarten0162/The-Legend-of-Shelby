@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh81lgatwvnjm"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_n18cf"]
+script/source = "using Godot;
+using System;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+
+public partial class LoadingScreen : Node2D
+{
+
+	public override void _Ready()
+	{
+		GD.Print(\"in loadingscreen\");
+		ChangeScene();
+
+	}
+
+
+
+
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{	GD.Print(\"in loadingscreen loop\");
+	}
+	void ChangeScene(){
+		  var timer = new Timer();
+        timer.WaitTime = 1.0f; // 1 second delay before scene change
+        timer.OneShot = true;
+        timer.Timeout += () => 
+        {
+            GD.Print(\"Changing scene to death_screen.\");
+            GetTree().ChangeSceneToFile(\"res://scenes/death_screen.tscn\");
+            GD.Print(\"Scene change initiated.\");
+        };
+
+        // Add the timer to the scene tree to start it
+        AddChild(timer);
+        timer.Start();
+		
+
+
+	}
+
+}
+"
+
+[node name="LoadingScreen" type="Node2D"]
+script = SubResource("CSharpScript_n18cf")

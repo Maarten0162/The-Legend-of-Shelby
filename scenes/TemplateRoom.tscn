@@ -1,0 +1,203 @@
+[gd_scene load_steps=16 format=4 uid="uid://2vi1pmoukkvl"]
+
+[ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="1_2di6b"]
+[ext_resource type="Texture2D" uid="uid://b6xgp3cyjuvyk" path="res://assets/LOZ remake/Tileset/tileset_layer2.png" id="2_a5ycx"]
+[ext_resource type="Texture2D" uid="uid://vwxawogfv7om" path="res://assets/LOZ remake/Tileset/TreeStump.png" id="3_bcvub"]
+[ext_resource type="Texture2D" uid="uid://cslayjffpn7sp" path="res://assets/LOZ remake/Tileset/TilesetWithoutBackgrounds.png" id="4_wpemh"]
+[ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="5_njhbk"]
+[ext_resource type="PackedScene" uid="uid://dtpjvw1leac14" path="res://scripts/pause_menu.tscn" id="6_se0jk"]
+[ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="7_ta1kk"]
+[ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="8_iyf0r"]
+[ext_resource type="Script" path="res://scripts/HealthUi.cs" id="9_xg4ky"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
+texture = ExtResource("1_2di6b")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, -4.8, -8, -4.8, -8, -8)
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bcwgn"]
+texture = ExtResource("2_a5ycx")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.4, -6.4, 6.4, -6.4, 6.4, 6.4, -6.4, 6.4)
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtukm"]
+texture = ExtResource("3_bcvub")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(1.6, -8, 8, -8, 8, 8, 1.6, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, -4.8, -8, -4.8, -8, -8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ih81m"]
+texture = ExtResource("4_wpemh")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -4.8, 8, 8, -8, 8, -8, -4.8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -4.8, 8, 8, -8, 8, -8, -4.8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -4.8, 8, 8, -8, 8, -8, -4.8)
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_fy7to"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_1m36e")
+sources/1 = SubResource("TileSetAtlasSource_bcwgn")
+sources/2 = SubResource("TileSetAtlasSource_vtukm")
+sources/3 = SubResource("TileSetAtlasSource_ih81m")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5pmp"]
+size = Vector2(107, 52)
+
+[node name="TemplateRoom" type="Node2D"]
+
+[node name="BackgroundLayer" type="Node2D" parent="."]
+
+[node name="BackGroundTileMap" type="TileMapLayer" parent="BackgroundLayer"]
+scale = Vector2(6, 6)
+tile_map_data = PackedByteArray("AAAAAP//AAAAAAEAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAP7/AAAAAAEAAAD///7/AAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAAAAAACAP7/AAAAAAAAAAABAP7/AAAAAAAAAAD+//7/AAAAAAAAAAD9//7/AAAAAAAAAAD9////AAAAAAAAAAD+////AAAAAAAAAAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD7/wEAAAAAAAAAAAD7/wAAAAAAAAAAAAD7////AAAAAAAAAAD7//7/AAAAAAAAAAD8////AAAAAAAAAAD8/wAAAAAAAAAAAAD8//7/AAAAAAAAAAD8//3/AAAAAAAAAAD7//3/AAAAAAAAAAD9//3/AAAAAAAAAAD+//3/AAAAAAAAAAD///3/AAAAAAAAAAAAAP3/AAAAAAEAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAACAAAAAAAAAAAAAAD//wEAAAAAAAAAAAD7/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAP//AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAPz/AAAAAAAAAAADAPz/AAAAAAAAAAACAPz/AAAAAAAAAAABAPz/AAAAAAAAAAAAAPz/AAAAAAEAAAD///z/AAAAAAAAAAD+//z/AAAAAAAAAAD9//z/AAAAAAAAAAD8//z/AAAAAAAAAAD7//z/AAAAAAAAAAD6//z/AAAAAAAAAAD6//3/AAAAAAAAAAD6//7/AAAAAAAAAAD6////AAAAAAAAAAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD6/wIAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAP//AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAPz/AwAAAAAAAAAAAPv/AAAAAAEAAAAGAAIAAwAAAAAAAAAGAAEAAwAAAAAAAAAGAAAAAwAAAAAAAAAGAP//AwAAAAAAAAAGAP7/AwAAAAAAAAAGAP3/AwAAAAAAAAAGAPz/AwAAAAAAAAAFAPv/AwAAAAAAAAAGAPv/AwAAAAAAAAAEAPv/AwAAAAAAAAADAPv/AwAAAAAAAAACAPv/AwAAAAAAAAABAPv/AwAAAAAAAAD///v/AwAAAAAAAAD+//v/AwAAAAAAAAD9//v/AwAAAAAAAAD8//v/AwAAAAAAAAD7//v/AwAAAAAAAAD6//v/AwAAAAAAAAD5//v/AwAAAAAAAAD5//z/AwAAAAAAAAD5//3/AwAAAAAAAAD5//7/AwAAAAAAAAD5////AwAAAAAAAAD5/wAAAwAAAAAAAAD5/wEAAwAAAAAAAAD5/wIAAwAAAAAAAAD5/wMAAwAAAAAAAAD6/wMAAwAAAAAAAAD7/wMAAwAAAAAAAAD8/wMAAwAAAAAAAAD9/wMAAwAAAAAAAAD+/wMAAwAAAAAAAAD//wMAAwAAAAAAAAAAAAMAAwAAAAAAAAABAAMAAwAAAAAAAAACAAMAAwAAAAAAAAADAAMAAwAAAAAAAAAEAAMAAwAAAAAAAAAFAAMAAwAAAAAAAAAGAAMAAwAAAAAAAAA=")
+tile_set = SubResource("TileSet_fy7to")
+
+[node name="Y-Sort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="Y-Sort" instance=ExtResource("5_njhbk")]
+z_index = 0
+position = Vector2(-2, 2)
+
+[node name="Camera2D3" type="Camera2D" parent="Y-Sort/Player"]
+
+[node name="Obstacles" type="TileMapLayer" parent="Y-Sort"]
+y_sort_enabled = true
+scale = Vector2(6, 6)
+tile_set = SubResource("TileSet_fy7to")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("6_se0jk")]
+process_mode = 3
+visible = false
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 1000.0
+offset_bottom = 580.0
+
+[node name="ExitRoom" type="Area2D" parent="."]
+collision_layer = 512
+script = ExtResource("7_ta1kk")
+TargetScenePath = "res://scenes/Room_02.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitRoom"]
+position = Vector2(44, -451)
+shape = SubResource("RectangleShape2D_a5pmp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" type="TextureRect" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = -1.99994
+offset_right = 106.0
+offset_bottom = 78.0001
+scale = Vector2(2.10867, 0.878613)
+texture = ExtResource("8_iyf0r")
+script = ExtResource("9_xg4ky")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 1069.0
+offset_top = 6.0
+offset_right = 1141.0
+offset_bottom = 29.0
+scale = Vector2(3, 3)
+text = "position: "
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="ExitRoom" to="ExitRoom" method="_on_body_entered"]

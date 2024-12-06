@@ -23,7 +23,7 @@ public partial class Settings : Control
 	}
 
 	public override void _Process(double delta)
-	{
+	{GD.Print("settings loop");
 	}
 	private void ReturnToMainMenuButton()
 	{
@@ -56,7 +56,7 @@ public partial class Settings : Control
 				DisplayServer.WindowSetSize(new Vector2I(1280, 720));
 				break;
 
-			case -1:
+			case 0:
 				DisplayServer.WindowSetSize(new Vector2I(1152, 648));
 				break;
 		}
