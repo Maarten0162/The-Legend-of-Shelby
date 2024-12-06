@@ -11,7 +11,7 @@ public partial class DeathScreen : Node2D
 
     private PackedScene mainScene;
     private PackedScene mainMenuScene;
-    private const string MainScenePath = "res://scenes/main.tscn";
+    private const string MainScenePath = "res://scenes/Room_01.tscn";
     private const string MainMenuScenePath = "res://scenes/Main Menu.tscn";
     private int frameCounter = 0;
 

@@ -7,7 +7,7 @@ public partial class GlobalVar : Node
 	public static GlobalVar Instance {get; private set;}
 
 	public Vector2 playerPos{ get; set; }
-	public int playerHealth{ get; set; }
+	public int? playerHealth{ get; set; }
 
 
 	//settings

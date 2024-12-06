@@ -8,6 +8,7 @@ shader = ExtResource("1_lenyg")
 shader_parameter/lod = 0.8
 
 [node name="Control" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

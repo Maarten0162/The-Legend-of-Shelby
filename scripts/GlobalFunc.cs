@@ -49,7 +49,7 @@ public partial class GlobalFunc : Node
 
         Godot.Collections.Dictionary saveData = new Godot.Collections.Dictionary
         {
-            ["health"] = GlobalVar.Instance.playerHealth,
+            ["health"] = (int)GlobalVar.Instance.playerHealth,
             ["playerPosition"] = GlobalVar.Instance.playerPos
         };
 

@@ -14,8 +14,10 @@ public partial class RoomTransition : Node
 	public override void _Process(double delta)
 	{
 	}
-	void _on_body_entered(Node body)
+	private void _on_body_entered(Node body)
 	{
+		
+
 
 		CallDeferred(nameof(ChangeScene));
 	}

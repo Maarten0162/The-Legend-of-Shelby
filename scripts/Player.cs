@@ -10,7 +10,7 @@ public partial class Player : CharacterBody2D
     Vector2 playerVelocity;
     AnimatedSprite2D animatedSprite2D;
     [Export] int movementSpeed = 500;
-    [Export] public int Health = 6;
+    [Export] public int Health;
     private Vector2 _knockbackVelocity = Vector2.Zero;
     private float _knockbackTimeRemaining = 0;
     [Export] public float KnockbackStrength = 200; // Adjust strength
@@ -35,8 +35,13 @@ public partial class Player : CharacterBody2D
     //velocity fix??? miss Velocity ook naar zero zetten. 
 
     public override void _Ready()
-
     {
+        if (GlobalVar.Instance.playerHealth == null)
+        {
+            GlobalVar.Instance.playerHealth = Health;
+        }
+       
+
         animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedPlayer");
         weaponCollision = GetNode<CollisionShape2D>("weapon/CollisionShape2D");
         weaponSprite = GetNode<Sprite2D>("weapon/Sprite2D");
@@ -47,87 +52,90 @@ public partial class Player : CharacterBody2D
         weaponSprite.Hide();
         weaponCollision.Disabled = true;
 
-        GlobalVar.Instance.playerHealth = Health;
-        
+
+
 
 
     }
 
     public override async void _PhysicsProcess(double delta)
-    {   if(IsInstanceValid(this)){
-        GlobalVar.Instance.playerPos = GlobalPosition;
-
-
-        // Press the "testsave" action to save game
-        if (Input.IsActionJustPressed("testsave"))
+    {
+        if (IsInstanceValid(this))
         {
-            await GlobalFunc.Instance.SaveGameLocally();
-            await GlobalFunc.Instance.SaveGameToServer();
-        }
+            GlobalVar.Instance.playerPos = GlobalPosition;
 
-        // Press the "testload" action to load game
-        if (Input.IsActionJustPressed("testload"))
-        {
-            LoadSaveFromServer.Instance.StartDownload();
-            for (int i = 3; i >= 0; i--)
+
+            // Press the "testsave" action to save game
+            if (Input.IsActionJustPressed("testsave"))
             {
-                GD.Print($"loading save in {i} seconds");
-                await GlobalFunc.Instance.WaitForSeconds(1);
+                await GlobalFunc.Instance.SaveGameLocally();
+                await GlobalFunc.Instance.SaveGameToServer();
             }
-            GlobalPosition = GlobalFunc.Instance.LoadGame();
-            
-        }
-         if (Input.IsActionJustPressed("Kill"))
-        {
-            Health -=5;
-            TakeDamage();
-        }
 
-        if (_knockbackTimeRemaining > 0)
-        {
-            // Apply knockback force
-            playerVelocity = _knockbackVelocity;
-            _knockbackTimeRemaining -= (float)delta;
-        }
-        else await HandleInput();
-        if (isAttacking)//als het een while is crasht de game
-        {
-            playerVelocity = Vector2.Zero;
-            Velocity = Vector2.Zero;
-        }
-
-        Velocity = playerVelocity;
-
-        
-        var collision = MoveAndCollide(Velocity * (float)delta);
-        if (collision != null)
-        {
-            // Get the collider object
-            Node collider = (Node)collision.GetCollider();
-
-            if (collider is PhysicsBody2D body)
+            // Press the "testload" action to load game
+            if (Input.IsActionJustPressed("testload"))
             {
-                // Retrieve the collider's layer
-                int collisionLayer = (int)body.CollisionLayer;
-
-
-                if ((collisionLayer & (1 << 1)) != 0) // Layer 2 corresponds to bit 1 Dit is een Enemy
-                {   KnockBack(collision.GetPosition());
-                    TakeDamage();
-                    
-                }
-                else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 corresponds to bit 2 Dit is
+                LoadSaveFromServer.Instance.StartDownload();
+                for (int i = 3; i >= 0; i--)
                 {
-                    GD.Print("Collided with something on Layer 3!");
+                    GD.Print($"loading save in {i} seconds");
+                    await GlobalFunc.Instance.WaitForSeconds(1);
+                }
+                GlobalPosition = GlobalFunc.Instance.LoadGame();
+
+            }
+            if (Input.IsActionJustPressed("Kill"))
+            {
+                Health -= 5;
+                TakeDamage();
+            }
+
+            if (_knockbackTimeRemaining > 0)
+            {
+                // Apply knockback force
+                playerVelocity = _knockbackVelocity;
+                _knockbackTimeRemaining -= (float)delta;
+            }
+            else await HandleInput();
+            if (isAttacking)//als het een while is crasht de game
+            {
+                playerVelocity = Vector2.Zero;
+                Velocity = Vector2.Zero;
+            }
+
+            Velocity = playerVelocity;
+
+
+            var collision = MoveAndCollide(Velocity * (float)delta);
+            if (collision != null)
+            {
+                // Get the collider object
+                Node collider = (Node)collision.GetCollider();
+
+                if (collider is PhysicsBody2D body)
+                {
+                    // Retrieve the collider's layer
+                    int collisionLayer = (int)body.CollisionLayer;
+
+
+                    if ((collisionLayer & (1 << 1)) != 0) // Layer 2 corresponds to bit 1 Dit is een Enemy
+                    {
+                        KnockBack(collision.GetPosition());
+                        TakeDamage();
+
+                    }
+                    else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 corresponds to bit 2 Dit is
+                    {
+                        GD.Print("Collided with something on Layer 3!");
+                    }
                 }
             }
-        }
-        
 
-        if (Velocity == Vector2.Zero)
-        {
-            animatedSprite2D.Pause();
-        }
+
+            if (Velocity == Vector2.Zero)
+            {
+                animatedSprite2D.Pause();
+            }
         }
     }
 
@@ -180,7 +188,7 @@ public partial class Player : CharacterBody2D
         }
 
         if (inputVelocity != Vector2.Zero)
-        {  
+        {
             playerVelocity = inputVelocity.Normalized() * movementSpeed;
             facing = ChangeDirections();
         }
@@ -188,17 +196,18 @@ public partial class Player : CharacterBody2D
     }
 
     public void TakeDamage()
-    {   Health -=1;
-        GlobalVar.Instance.playerHealth = Health;
+    {
+        GlobalVar.Instance.playerHealth -= 1;
         GD.Print(GlobalVar.Instance.playerHealth);
-        if(Health <= 0){
-                   
-            GD.Print("player died, switching to deathscreen");            
+        if (GlobalVar.Instance.playerHealth <= 0)
+        {
+
+            GD.Print("player died, switching to deathscreen");
             GetTree().ChangeSceneToPacked(DeathScreen);
         }
-  
+
     }
-    
+
 
 
     private FacingDirection ChangeDirections()
@@ -235,7 +244,7 @@ public partial class Player : CharacterBody2D
     }
 
     async Task Attack(FacingDirection direction)
-    {   
+    {
         isAttacking = true;
 
 
