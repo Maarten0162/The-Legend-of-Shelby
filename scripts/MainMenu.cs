@@ -3,9 +3,13 @@ using System;
 
 public partial class MainMenu : Control
 {
+
+	Button startButton;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		startButton = GetNode<Button>("BoxContainer/StartButton");
+		startButton.GrabFocus();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,6 +18,7 @@ public partial class MainMenu : Control
 	}
 	private void StartButtonPressed()
 	{
+		GD.Print("switching scenes");
 		GetTree().ChangeSceneToFile("res://scenes/rooms/Room_01.tscn");
 
 	}

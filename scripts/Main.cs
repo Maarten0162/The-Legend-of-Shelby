@@ -13,6 +13,8 @@ public partial class Main : Node2D
 	{
 		posLabel = GetNode<Label>("CanvasLayer/Label");
 		player = GetNode<Player>("Y-Sort/Player");
+		GlobalVar.Instance.roomPath = this.SceneFilePath;
+
 
 
 

@@ -4,16 +4,20 @@ using System;
 public partial class PauseMenu : Control
 {
 	// Called when the node enters the scene tree for the first time.CanvasLayer ui;
+	string vpnIP = "";
 	Control settingsmenu;
+	Button resumeButton;
 	public override  void _Ready()
 	{
 		settingsmenu = GetNode<Control>(".");
+		resumeButton = GetNode<Button>("VBoxContainer/resume");
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{	
-		if (Input.IsActionJustReleased("PauseGame"))
+		if (Input.IsActionJustPressed("PauseGame"))
 		{
 			SwitchPauseMode();
 		}
@@ -25,6 +29,7 @@ public partial class PauseMenu : Control
 		//pause game
 		if (!GetTree().Paused){
 			pause();
+			resumeButton.GrabFocus();
 		}
 		//unpause game
 		else if (GetTree().Paused){
@@ -53,9 +58,13 @@ public partial class PauseMenu : Control
 		
 	}
 
-	private void QuitButtonPressed()
+	private async void QuitButtonPressed()
 	{
+		// GD.Print("saving the game");
+		// await GlobalFunc.Instance.SaveGameLocally();
 		
+		// GlobalFunc.Instance.SaveGameToServer();
+		GetTree().Quit();
 	}
 
 

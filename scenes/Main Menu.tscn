@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://c20iiq5fgwmf4"]
+
+[ext_resource type="Texture2D" uid="uid://bv5j7rleqbgh1" path="res://assets/FullScreens/Main Menu Background.png" id="1_4bufv"]
+[ext_resource type="Script" path="res://scripts/MainMenu.cs" id="1_eq0r5"]
+[ext_resource type="PackedScene" uid="uid://cgwj7v4ve1pso" path="res://scenes/Moblin.tscn" id="3_eg02t"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eq0r5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(980, 535)
+scale = Vector2(1.94305, 1.95885)
+texture = ExtResource("1_4bufv")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -133.0
+offset_top = -149.0
+offset_right = 103.0
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+
+[node name="StartButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Settings
+"
+
+[node name="ExitButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Moblin" parent="." instance=ExtResource("3_eg02t")]
+visible = false
+position = Vector2(681, 277)
+
+[connection signal="pressed" from="BoxContainer/StartButton" to="." method="StartButtonPressed"]
+[connection signal="pressed" from="BoxContainer/SettingsButton" to="." method="SettingsButtonPressed"]
+[connection signal="pressed" from="BoxContainer/ExitButton" to="." method="ExitButtonPressed"]

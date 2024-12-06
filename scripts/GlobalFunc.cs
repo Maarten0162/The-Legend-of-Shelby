@@ -16,6 +16,7 @@ public partial class GlobalFunc : Node
         {
             Instance = this;
         }
+        
     }
 
     public async Task WaitForSeconds(float count)
@@ -50,7 +51,10 @@ public partial class GlobalFunc : Node
         Godot.Collections.Dictionary saveData = new Godot.Collections.Dictionary
         {
             ["health"] = (int)GlobalVar.Instance.playerHealth,
-            ["playerPosition"] = GlobalVar.Instance.playerPos
+            //["playerPosition"] = GlobalVar.Instance.playerPos,
+            ["roomPath"] = GlobalVar.Instance.roomPath,
+            ["exit"] = GlobalVar.Instance.exit
+           
         };
 
         file.StoreVar(saveData);
@@ -93,6 +97,7 @@ public partial class GlobalFunc : Node
 
     public Vector2 LoadGame()
     {
+        GD.Print(GlobalVar.Instance.roomPath);
         if (Godot.FileAccess.FileExists(GlobalVar.Instance.savePath))
         {
             var file = Godot.FileAccess.Open(GlobalVar.Instance.savePath, Godot.FileAccess.ModeFlags.Read);
@@ -100,11 +105,18 @@ public partial class GlobalFunc : Node
             file.Close();
 
             GlobalVar.Instance.playerHealth = (int)loadedData["health"];
-            GlobalVar.Instance.playerPos = (Vector2)loadedData["playerPosition"];
+            //GlobalVar.Instance.playerPos = (Vector2)loadedData["playerPosition"];
+            GlobalVar.Instance.roomPath = (string)loadedData["roomPath"];
+            GlobalVar.Instance.exit = (string)loadedData["exit"];
+        
+            GetTree().ChangeSceneToFile(GlobalVar.Instance.roomPath);
+
 
             GD.Print("Game loaded!");
             GD.Print("health: " + GlobalVar.Instance.playerHealth);
             GD.Print("playerPosition: " + GlobalVar.Instance.playerPos);
+            GD.Print("Player is in room : " + GlobalVar.Instance.roomPath);
+            GD.Print("last exited room is : " + GlobalVar.Instance.exit);
 
             return GlobalVar.Instance.playerPos;
         }
@@ -115,5 +127,6 @@ public partial class GlobalFunc : Node
             GlobalVar.Instance.playerPos = Vector2.Zero;
             return Vector2.Zero;
         }
+        
     }
 }

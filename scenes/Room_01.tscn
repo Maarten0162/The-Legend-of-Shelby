@@ -1,0 +1,217 @@
+[gd_scene load_steps=18 format=4 uid="uid://calyes2q34tee"]
+
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_pjbtw"]
+[ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_vy0e3"]
+[ext_resource type="Texture2D" uid="uid://b6xgp3cyjuvyk" path="res://assets/LOZ remake/Tileset/tileset_layer2.png" id="3_2bm30"]
+[ext_resource type="Texture2D" uid="uid://vwxawogfv7om" path="res://assets/LOZ remake/Tileset/TreeStump.png" id="4_b6548"]
+[ext_resource type="Texture2D" uid="uid://cslayjffpn7sp" path="res://assets/LOZ remake/Tileset/TilesetWithoutBackgrounds.png" id="5_5j1kr"]
+[ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="6_a2o5n"]
+[ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="7_f2sac"]
+[ext_resource type="Script" path="res://scripts/HealthUi.cs" id="8_8mbju"]
+[ext_resource type="PackedScene" uid="uid://cgwj7v4ve1pso" path="res://scenes/Moblin.tscn" id="9_1i4ni"]
+[ext_resource type="PackedScene" uid="uid://ce5oab4rh5l5y" path="res://scenes/pause_menu.tscn" id="9_43lvv"]
+[ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="10_r6nqu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ipmrw"]
+texture = ExtResource("2_vy0e3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, -4.8, -8, -4.8, -8, -8)
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ablcs"]
+texture = ExtResource("3_2bm30")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.4, -6.4, 6.4, -6.4, 6.4, 6.4, -6.4, 6.4)
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v6mse"]
+texture = ExtResource("4_b6548")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(1.6, -8, 8, -8, 8, 8, 1.6, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, -4.8, -8, -4.8, -8, -8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_htecu"]
+texture = ExtResource("5_5j1kr")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -4.8, 8, 8, -8, 8, -8, -4.8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -4.8, 8, 8, -8, 8, -8, -4.8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -4.8, 8, 8, -8, 8, -8, -4.8)
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1g467"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_ipmrw")
+sources/1 = SubResource("TileSetAtlasSource_ablcs")
+sources/2 = SubResource("TileSetAtlasSource_v6mse")
+sources/3 = SubResource("TileSetAtlasSource_htecu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5mky"]
+size = Vector2(107, 52)
+
+[node name="Room_01" type="Node2D"]
+position = Vector2(572, 357)
+script = ExtResource("1_pjbtw")
+
+[node name="BackgroundLayer" type="Node2D" parent="."]
+
+[node name="BackGroundTileMap" type="TileMapLayer" parent="BackgroundLayer"]
+scale = Vector2(6, 6)
+tile_map_data = PackedByteArray("AAAAAP//AAAAAAEAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAP7/AAAAAAEAAAD///7/AAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAAAAAACAP7/AAAAAAAAAAABAP7/AAAAAAAAAAD+//7/AAAAAAAAAAD9//7/AAAAAAAAAAD9////AAAAAAAAAAD+////AAAAAAAAAAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD7/wEAAAAAAAAAAAD7/wAAAAAAAAAAAAD7////AAAAAAAAAAD7//7/AAAAAAAAAAD8////AAAAAAAAAAD8/wAAAAAAAAAAAAD8//7/AAAAAAAAAAD8//3/AAAAAAAAAAD7//3/AAAAAAAAAAD9//3/AAAAAAAAAAD+//3/AAAAAAAAAAD///3/AAAAAAAAAAAAAP3/AAAAAAEAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAACAAAAAAAAAAAAAAD//wEAAAAAAAAAAAD7/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAP//AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAPz/AAAAAAAAAAADAPz/AAAAAAAAAAACAPz/AAAAAAAAAAABAPz/AAAAAAAAAAAAAPz/AAAAAAEAAAD///z/AAAAAAAAAAD+//z/AAAAAAAAAAD9//z/AAAAAAAAAAD8//z/AAAAAAAAAAD7//z/AAAAAAAAAAD6//z/AAAAAAAAAAD6//3/AAAAAAAAAAD6//7/AAAAAAAAAAD6////AAAAAAAAAAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD6/wIAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAP//AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAPz/AwAAAAAAAAAAAPv/AAAAAAEAAAAGAAIAAwAAAAAAAAAGAAEAAwAAAAAAAAAGAAAAAwAAAAAAAAAGAP//AwAAAAAAAAAGAP7/AwAAAAAAAAAGAP3/AwAAAAAAAAAGAPz/AwAAAAAAAAAFAPv/AwAAAAAAAAAGAPv/AwAAAAAAAAAEAPv/AwAAAAAAAAADAPv/AwAAAAAAAAACAPv/AwAAAAAAAAABAPv/AwAAAAAAAAD///v/AwAAAAAAAAD+//v/AwAAAAAAAAD9//v/AwAAAAAAAAD8//v/AwAAAAAAAAD7//v/AwAAAAAAAAD6//v/AwAAAAAAAAD5//v/AwAAAAAAAAD5//z/AwAAAAAAAAD5//3/AwAAAAAAAAD5//7/AwAAAAAAAAD5////AwAAAAAAAAD5/wAAAwAAAAAAAAD5/wEAAwAAAAAAAAD5/wIAAwAAAAAAAAD5/wMAAwAAAAAAAAD6/wMAAwAAAAAAAAD7/wMAAwAAAAAAAAD8/wMAAwAAAAAAAAD9/wMAAwAAAAAAAAD+/wMAAwAAAAAAAAD//wMAAwAAAAAAAAAAAAMAAwAAAAAAAAABAAMAAwAAAAAAAAACAAMAAwAAAAAAAAADAAMAAwAAAAAAAAAEAAMAAwAAAAAAAAAFAAMAAwAAAAAAAAAGAAMAAwAAAAAAAAA=")
+tile_set = SubResource("TileSet_1g467")
+
+[node name="Y-Sort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="Y-Sort" instance=ExtResource("6_a2o5n")]
+z_index = 0
+position = Vector2(-2, 2)
+
+[node name="Camera2D3" type="Camera2D" parent="Y-Sort/Player"]
+
+[node name="Moblin" parent="Y-Sort" instance=ExtResource("9_1i4ni")]
+z_index = 0
+position = Vector2(135, -46)
+Health = 0
+
+[node name="Moblin2" parent="Y-Sort" instance=ExtResource("9_1i4ni")]
+position = Vector2(-116, -260)
+
+[node name="Moblin3" parent="Y-Sort" instance=ExtResource("9_1i4ni")]
+position = Vector2(145, -302)
+
+[node name="Obstacles" type="TileMapLayer" parent="Y-Sort"]
+y_sort_enabled = true
+scale = Vector2(6, 6)
+tile_map_data = PackedByteArray("AAD9//7/AQABAAAAAAD9/wAAAQABAAAAAAABAP7/AQABAAAAAAABAAAAAQABAAAAAAD7/wAAAQABAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAEAAAADAP//AgABAAAAAAADAAAAAgABAAEAAAAEAP//AgACAAAAAAAEAAAAAgACAAEAAAABAPv/AwACAAAAAAACAPv/AwACAAAAAAADAPv/AwACAAAAAAAEAPv/AwACAAAAAAAFAPv/AwACAAAAAAAGAPz/AwACAAAAAAAGAP3/AwACAAAAAAAGAP7/AwACAAAAAAAGAP//AwACAAAAAAAGAAAAAwACAAAAAAAGAAEAAwACAAAAAAAGAAIAAwACAAAAAAAGAAMAAwACAAAAAAAFAAMAAwACAAAAAAAEAAMAAwACAAAAAAADAAMAAwACAAAAAAACAAMAAwACAAAAAAABAAMAAwACAAAAAAAAAAMAAwACAAAAAAD//wMAAwACAAAAAAD7/wMAAwACAAAAAAD6/wMAAwACAAAAAAD8/wMAAwACAAAAAAD9/wMAAwACAAAAAAD+/wMAAwACAAAAAAD5/wIAAwACAAAAAAD5/wEAAwACAAAAAAD5/wAAAwACAAAAAAD5////AwACAAAAAAD5//7/AwACAAAAAAD5//3/AwACAAAAAAD5//z/AwACAAAAAAD5//v/AwACAAAAAAD6//v/AwACAAAAAAD7//v/AwACAAAAAAD8//v/AwACAAAAAAD9//v/AwACAAAAAAD+//v/AwACAAAAAAD///v/AwACAAAAAAA=")
+tile_set = SubResource("TileSet_1g467")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("9_43lvv")]
+visible = false
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 1000.0
+offset_bottom = 580.0
+
+[node name="ExitRoom" type="Area2D" parent="."]
+collision_layer = 512
+script = ExtResource("10_r6nqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitRoom"]
+position = Vector2(44, -451)
+shape = SubResource("RectangleShape2D_w5mky")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" type="TextureRect" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = -1.99994
+offset_right = 106.0
+offset_bottom = 78.0001
+scale = Vector2(2.10867, 0.878613)
+texture = ExtResource("7_f2sac")
+script = ExtResource("8_8mbju")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 1069.0
+offset_top = 6.0
+offset_right = 1141.0
+offset_bottom = 29.0
+scale = Vector2(3, 3)
+text = "position: "
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="ExitRoom" to="ExitRoom" method="_on_body_entered"]

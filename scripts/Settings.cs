@@ -3,12 +3,14 @@ using System;
 
 public partial class Settings : Control
 {
+
+	Button button;
 	Label volumeLabel;
 	HSlider volumeSlider;
 	Vector2I oldResolution; 
 	public override void _Ready()
 	{
-
+		button = GetNode<Button>("VBoxContainer/Button");
 		//settings stuff
 
 		//volume
@@ -20,6 +22,7 @@ public partial class Settings : Control
 		//resolution
 		Vector2I oldResolution = GlobalVar.Instance.Resolution;
 		//initialization
+		button.GrabFocus();
 	}
 
 	public override void _Process(double delta)
