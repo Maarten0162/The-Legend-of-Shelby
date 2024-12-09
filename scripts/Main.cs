@@ -1,10 +1,12 @@
 using Godot;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 public partial class Main : Node2D
 {
 	Player player;
+	string thisenemy;
 
 
 	Label posLabel;
@@ -14,7 +16,7 @@ public partial class Main : Node2D
 		posLabel = GetNode<Label>("CanvasLayer/Label");
 		player = GetNode<Player>("Y-Sort/Player");
 		GlobalVar.Instance.roomPath = this.SceneFilePath;
-
+		
 
 
 
@@ -25,20 +27,20 @@ public partial class Main : Node2D
 		{
 			if (GlobalVar.Instance.exit.Contains("north")) // switch voor zuid
 			{
+				GD.Print("in north");
 				switch (GlobalVar.Instance.exit)
 				{
 					case "Room1north":
 						player.GlobalPosition = GetNode<Area2D>("Room2south").GlobalPosition;
 						break;
-						case "Room2north":
-						player.GlobalPosition = GetNode<Area2D>("Room1Treestump").GlobalPosition;
-						break;
+
 
 				}
 
 			}
-			if (GlobalVar.Instance.exit.Contains("south")) // switch voor north
-			{
+			if (GlobalVar.Instance.exit.Contains("south"))
+			{ // switch voor north
+
 				switch (GlobalVar.Instance.exit)
 				{
 					case "Room2south":
@@ -46,34 +48,46 @@ public partial class Main : Node2D
 						break;
 
 				}
-				if (GlobalVar.Instance.exit.Contains("west")) // switch voor east
-				{
-					switch (GlobalVar.Instance.exit)
-					{
-						case "Room2west":
-							player.GlobalPosition = GetNode<Area2D>("Room2east2").GlobalPosition;
-							break;
-						
-
-					}
-
-				}
-				if (GlobalVar.Instance.exit.Contains("east")) // switch voor west
-				{
-					switch (GlobalVar.Instance.exit)
-					{
-						case "Room2east1":
-							player.GlobalPosition = GetNode<Area2D>("Room2west").GlobalPosition;
-							break;
-							case "Room2east2":
-							player.GlobalPosition = GetNode<Area2D>("Room2west").GlobalPosition;
-							break;
-
-
-					}
-
-				}
 			}
+			if (GlobalVar.Instance.exit.Contains("west")) // switch voor east
+			{
+				GD.Print("in west");
+				switch (GlobalVar.Instance.exit)
+				{
+					case "Room2west1":
+						player.GlobalPosition = GetNode<Area2D>("Room2east2").GlobalPosition;
+						break;
+						case "Room3west1":
+						player.GlobalPosition = GetNode<Area2D>("Room2east1").GlobalPosition;
+						break;
+						case "Room3west2":
+						player.GlobalPosition = GetNode<Area2D>("Room2east2").GlobalPosition;
+						break;
+
+
+				}
+
+			}
+			if (GlobalVar.Instance.exit.Contains("east")) // switch voor west
+			{
+				GD.Print("in east");
+				switch (GlobalVar.Instance.exit)
+				{
+					case "Room2east1":
+						player.GlobalPosition = GetNode<Area2D>("Room3west1").GlobalPosition;
+						GD.Print("in room2 east 1");
+						break;
+					case "Room2east2":
+						player.GlobalPosition = GetNode<Area2D>("Room3west2").GlobalPosition;
+						GD.Print("in room2 east 1");
+						break;
+
+
+				}
+
+			}
+			else GD.Print("is niks");
+
 
 
 		}

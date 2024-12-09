@@ -76,11 +76,10 @@ public partial class Player : CharacterBody2D
             if (Input.IsActionJustPressed("testload"))
             {
                 LoadSaveFromServer.Instance.StartDownload();
-                for (int i = 3; i >= 0; i--)
-                {
-                    GD.Print($"loading save in {i} seconds");
+                
+                   
                     await GlobalFunc.Instance.WaitForSeconds(1);
-                }
+                
                 GlobalPosition = GlobalFunc.Instance.LoadGame();
 
             }

@@ -17,8 +17,9 @@ public partial class Moblin : Enemy
 			return damage;
 		}
 	}
+	public string ThisEnemy;
 	Moblin moblin;
-	string initialScenePath;
+
 
 
 
@@ -29,12 +30,8 @@ public partial class Moblin : Enemy
 
 
 	public override async void _Ready()
-	{
-		AddToGroup("enemies");
-		initialScenePath = GetTree().CurrentScene.Name;
-
-
-		Moblin moblin = GetNodeOrNull<Moblin>(".");
+	{	
+		
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedEnemy");
 		up = new Vector2(0, 1 * Speed);
 		down = new Vector2(0, -1 * Speed);

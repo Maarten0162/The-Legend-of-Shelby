@@ -137,7 +137,7 @@ sources/1 = SubResource("TileSetAtlasSource_oks0f")
 sources/2 = SubResource("TileSetAtlasSource_3cw1a")
 sources/3 = SubResource("TileSetAtlasSource_kowvo")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jbdth"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lo0xy"]
 texture = ExtResource("1_pyjq4")
 0:0/0 = 0
 1:0/0 = 0
@@ -187,7 +187,7 @@ texture = ExtResource("1_pyjq4")
 5:4/0 = 0
 6:4/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5huoh"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5gf3u"]
 texture = ExtResource("2_7fx8y")
 0:0/0 = 0
 1:0/0 = 0
@@ -195,7 +195,7 @@ texture = ExtResource("2_7fx8y")
 2:0/0 = 0
 3:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yjg1g"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_01b7i"]
 texture = ExtResource("3_h7wno")
 0:0/0 = 0
 1:0/0 = 0
@@ -208,7 +208,7 @@ texture = ExtResource("3_h7wno")
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ollwp"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cdlkj"]
 texture = ExtResource("4_gptpe")
 0:0/0 = 0
 1:0/0 = 0
@@ -266,10 +266,10 @@ texture = ExtResource("4_gptpe")
 [sub_resource type="TileSet" id="TileSet_w83ib"]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_jbdth")
-sources/1 = SubResource("TileSetAtlasSource_5huoh")
-sources/2 = SubResource("TileSetAtlasSource_yjg1g")
-sources/3 = SubResource("TileSetAtlasSource_ollwp")
+sources/0 = SubResource("TileSetAtlasSource_lo0xy")
+sources/1 = SubResource("TileSetAtlasSource_5gf3u")
+sources/2 = SubResource("TileSetAtlasSource_01b7i")
+sources/3 = SubResource("TileSetAtlasSource_cdlkj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yu1lf"]
 size = Vector2(95, 9)
@@ -316,7 +316,7 @@ z_index = 0
 position = Vector2(-1088, 10.9999)
 
 [node name="Camera2D3" type="Camera2D" parent="Y-Sort/Player"]
-position = Vector2(15.4, 6.2)
+position = Vector2(0.200001, -0.599976)
 zoom = Vector2(1.18, 1.18)
 limit_left = -1
 limit_right = 1500
@@ -364,7 +364,7 @@ position = Vector2(781, -142)
 rotation = 1.5708
 collision_layer = 512
 script = ExtResource("9_aecvi")
-Target = "Room_02"
+Target = "Room_03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room2east1"]
 position = Vector2(-1.0004, -78.5)
@@ -375,7 +375,7 @@ position = Vector2(783, -913)
 rotation = 1.5708
 collision_layer = 512
 script = ExtResource("9_aecvi")
-Target = "Room_02"
+Target = "Room_03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room2east2"]
 position = Vector2(-0.000264259, -73)
