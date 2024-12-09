@@ -1,14 +1,15 @@
 using Godot;
 using System;
 
-public partial class Ui : TextureRect
+public partial class HealthUi : TextureRect
 {
-	Player player;
-	TextureRect HealthBar;
+
+	
 	public override void _Ready()
 	{		
 		UpdateHealth();
 		this.Show();
+
 
 	}
 

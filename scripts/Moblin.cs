@@ -155,7 +155,9 @@ public partial class Moblin : Enemy
 
 	}
 	private void SpawnGold(){
-	AddSibling(new Pound(this.Position, 5));
+	Random rnd = new();
+	string RuPound = GlobalVar.Instance.Rupounds[rnd.Next(0,3)];
+	AddSibling(new Pound(this.Position, RuPound));
 	}
 
 

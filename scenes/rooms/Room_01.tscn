@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bbhnm4bhnenbd"]
+[gd_scene load_steps=22 format=4 uid="uid://bbhnm4bhnenbd"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_85wpe"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_l2cgf"]
@@ -11,7 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://ubtfd4q4ugdf" path="res://scenes/menus/pause_menu.tscn" id="8_prxh4"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="9_s5nj2"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="10_jq1rh"]
-[ext_resource type="Script" path="res://scripts/Ui.cs" id="12_u16ja"]
+[ext_resource type="Script" path="res://scripts/HealthUi.cs" id="12_u16ja"]
+[ext_resource type="Script" path="res://scenes/rooms/CurrencyUi.cs" id="13_0h6yl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ipmrw"]
 texture = ExtResource("2_l2cgf")
@@ -225,8 +226,18 @@ offset_top = 6.0
 offset_right = 1141.0
 offset_bottom = 29.0
 scale = Vector2(3, 3)
-text = "position: "
+text = "
+"
 metadata/_edit_use_anchors_ = true
+
+[node name="CurrencyCount" type="Label" parent="CanvasLayer"]
+offset_left = 6.0
+offset_top = 97.0
+offset_right = 46.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 40
+text = "HIER"
+script = ExtResource("13_0h6yl")
 
 [node name="Room1Treestump" type="Area2D" parent="."]
 position = Vector2(337, 31)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://2vi1pmoukkvl"]
+[gd_scene load_steps=16 format=4 uid="uid://2vi1pmoukkvl"]
 
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="1_2di6b"]
 [ext_resource type="Texture2D" uid="uid://b6xgp3cyjuvyk" path="res://assets/LOZ remake/Tileset/tileset_layer2.png" id="2_a5ycx"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="5_njhbk"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="7_ta1kk"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="8_iyf0r"]
-[ext_resource type="Script" path="res://scripts/Ui.cs" id="9_xg4ky"]
+[ext_resource type="Script" path="res://scenes/rooms/CurrencyUi.cs" id="9_f078v"]
+[ext_resource type="Script" path="res://scripts/HealthUi.cs" id="9_xg4ky"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
 texture = ExtResource("1_2di6b")
@@ -188,5 +189,14 @@ offset_bottom = 29.0
 scale = Vector2(3, 3)
 text = "position: "
 metadata/_edit_use_anchors_ = true
+
+[node name="CurrencyCount" type="Label" parent="CanvasLayer"]
+offset_left = 6.0
+offset_top = 97.0
+offset_right = 46.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 40
+text = "HIER"
+script = ExtResource("9_f078v")
 
 [connection signal="body_entered" from="ExitRoom" to="ExitRoom" method="_on_body_entered"]

@@ -12,6 +12,7 @@ public partial class GlobalVar : Node
 	public string exit{ get; set; }
 	public string entrance{ get; set; }
 	public string roomPath{ get; set; }
+	public string[] Rupounds;
 
 
 	//settings
@@ -39,6 +40,8 @@ public partial class GlobalVar : Node
 		// Resolution = new Vector2I(1920, 1080);//settings get saved with the otherstuff, make a separate file
 		// DisplayServer.WindowSetSize(Resolution);
 		DisplayServer.WindowSetSize(new Vector2I(1152, 648));
+
+		Rupounds = new string[]{"small", "medium", "large"};
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

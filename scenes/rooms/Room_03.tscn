@@ -1,14 +1,15 @@
-[gd_scene load_steps=22 format=4 uid="uid://j68owvth68lf"]
+[gd_scene load_steps=23 format=4 uid="uid://j68owvth68lf"]
 
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="1_217hu"]
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_b1vsv"]
 [ext_resource type="Texture2D" uid="uid://b6xgp3cyjuvyk" path="res://assets/LOZ remake/Tileset/tileset_layer2.png" id="2_pw4in"]
 [ext_resource type="Texture2D" uid="uid://vwxawogfv7om" path="res://assets/LOZ remake/Tileset/TreeStump.png" id="3_hsklu"]
 [ext_resource type="Texture2D" uid="uid://cslayjffpn7sp" path="res://assets/LOZ remake/Tileset/TilesetWithoutBackgrounds.png" id="4_6oh7s"]
+[ext_resource type="Script" path="res://scenes/rooms/CurrencyUi.cs" id="4_c7sj4"]
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="5_efre6"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="6_u5818"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="7_0eao5"]
-[ext_resource type="Script" path="res://scripts/Ui.cs" id="8_pfkn5"]
+[ext_resource type="Script" path="res://scripts/HealthUi.cs" id="8_pfkn5"]
 [ext_resource type="PackedScene" uid="uid://cgwj7v4ve1pso" path="res://scenes/Moblin.tscn" id="9_7etpq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
@@ -299,6 +300,15 @@ offset_bottom = 29.0
 scale = Vector2(3, 3)
 text = "position: "
 metadata/_edit_use_anchors_ = true
+
+[node name="CurrencyCount" type="Label" parent="CanvasLayer"]
+offset_left = 6.0
+offset_top = 97.0
+offset_right = 46.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 40
+text = "HIER"
+script = ExtResource("4_c7sj4")
 
 [node name="BackgroundLayer" type="Node2D" parent="."]
 
