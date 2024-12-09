@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cy56qdgr857i"]
 
-[ext_resource type="Script" path="res://scripts/DeathScreen.cs" id="1_4748d"]
+[ext_resource type="Script" path="res://scripts/scenes/DeathScreen.cs" id="1_4748d"]
 [ext_resource type="Texture2D" uid="uid://3hjntipr8rx1" path="res://assets/FullScreens/GameOverScreen.png" id="2_ronxf"]
 [ext_resource type="FontFile" uid="uid://cxshi7a0u1wsx" path="res://assets/the-legend-of-zelda-nes.ttf" id="3_ll348"]
 

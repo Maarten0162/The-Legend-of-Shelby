@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cgwj7v4ve1pso"]
 
-[ext_resource type="Script" path="res://scripts/Moblin.cs" id="1_047tk"]
+[ext_resource type="Script" path="res://scripts/enemies/Moblin.cs" id="1_047tk"]
 [ext_resource type="Texture2D" uid="uid://4yruhrt5jvds" path="res://assets/LOZ remake/Monsters/Moblin.png" id="2_oc2x1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ht2ng"]
