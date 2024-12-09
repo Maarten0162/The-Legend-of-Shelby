@@ -43,18 +43,28 @@ public partial class PauseMenu : Control
 		unpause();
 	}
 
-	private void SettingsButtonPressed()
+	private async void SettingsButtonPressed()
 	{
-		
+		await GlobalFunc.Instance.SaveGameLocally();
+		GD.Print("make settings menu");
 	}
 
 	private void LoadButtonPressed()
 	{
-		GlobalFunc.Instance.LoadGame();
+		unpause();
+		GD.Print("loading save file");
+		//unpause();
+		//GlobalFunc.Instance.LoadGame();
+		
 	}
 
 	private void SaveButtonPressed()
 	{
+		unpause();
+		GD.Print("loading save file");
+		// await GlobalFunc.Instance.SaveGameLocally();
+		// await GlobalFunc.Instance.SaveGameToServer();
+		// unpause();
 		
 	}
 

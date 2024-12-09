@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bf3dtadjou5xe"]
+[gd_scene load_steps=4 format=3 uid="uid://bf3dtadjou5xe"]
 
 [ext_resource type="Script" path="res://scripts/DeathScreen.cs" id="1_4748d"]
 [ext_resource type="Texture2D" uid="uid://3hjntipr8rx1" path="res://assets/FullScreens/GameOverScreen.png" id="2_ronxf"]
+[ext_resource type="FontFile" uid="uid://cxshi7a0u1wsx" path="res://assets/the-legend-of-zelda-nes.ttf" id="3_ygiqn"]
 
 [node name="DeathScreen" type="Node2D"]
 script = ExtResource("1_4748d")
@@ -23,6 +24,7 @@ offset_right = -1036.0
 offset_bottom = -648.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ygiqn")
 theme_override_font_sizes/font_size = 100
 text = "Restart?"
 
@@ -32,11 +34,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1532.5
-offset_top = -560.0
-offset_right = -603.5
-offset_bottom = -423.0
+offset_left = -1819.58
+offset_top = -554.222
+offset_right = 1080.42
+offset_bottom = -417.222
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ygiqn")
 theme_override_font_sizes/font_size = 100
-text = "Yes                        No"
+text = "Yes          No"

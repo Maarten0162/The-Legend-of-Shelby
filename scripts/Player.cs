@@ -9,6 +9,7 @@ public partial class Player : CharacterBody2D
 
     Vector2 playerVelocity;
     AnimatedSprite2D animatedSprite2D;
+    [Export] public int GridSize = 32;
     [Export] int movementSpeed = 500;
     [Export] public int Health;
     private Vector2 _knockbackVelocity = Vector2.Zero;
@@ -175,18 +176,22 @@ public partial class Player : CharacterBody2D
         if (Input.IsActionPressed("D_up"))
         {
             inputVelocity = new Vector2(0, -1);
+            GlobalPosition = SnapXToGrid(GlobalPosition);
         }
         else if (Input.IsActionPressed("D_down"))
         {
             inputVelocity = new Vector2(0, 1);
+            GlobalPosition = SnapXToGrid(GlobalPosition);
         }
         else if (Input.IsActionPressed("D_left"))
         {
             inputVelocity = new Vector2(-1, 0);
+            GlobalPosition = SnapYToGrid(GlobalPosition);
         }
         else if (Input.IsActionPressed("D_right"))
         {
             inputVelocity = new Vector2(1, 0);
+            GlobalPosition = SnapYToGrid(GlobalPosition);
         }
 
         if (inputVelocity != Vector2.Zero)
@@ -316,5 +321,25 @@ public partial class Player : CharacterBody2D
         weaponCollision.Disabled = true;
         weaponSprite.Hide();
     }
+
+    private Vector2 SnapXToGrid(Vector2 position)
+{
+    // Round the position to the nearest grid point
+    return new Vector2(
+        Mathf.Round(position.X / GridSize) * GridSize,
+        position.Y // No need for player.GlobalPosition.Y
+    );
+}
+
+
+    private Vector2 SnapYToGrid(Vector2 position)
+{
+    // Round the position to the nearest grid point
+    return new Vector2(
+        position.X, // No need for player.GlobalPosition.X
+        Mathf.Round(position.Y / GridSize) * GridSize
+    );
+}
+
 
 }

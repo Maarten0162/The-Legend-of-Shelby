@@ -67,4 +67,7 @@ text = "Save and Quit"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="pressed" from="VBoxContainer/resume" to="." method="ResumeButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/settings" to="." method="SettingsButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/load" to="." method="LoadButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/save" to="." method="SaveButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/exit" to="." method="QuitButtonPressed"]

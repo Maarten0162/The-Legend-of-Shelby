@@ -154,9 +154,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hvg8a"]
-radius = 5.8
-height = 14.4
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xs4c"]
+size = Vector2(10, 12.4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43dxv"]
 size = Vector2(5, 15)
@@ -166,6 +165,7 @@ z_index = 2
 scale = Vector2(5, 5)
 collision_mask = 534
 script = ExtResource("1_n1fb5")
+GridSize = 16
 Health = 6
 
 [node name="AnimatedPlayer" type="AnimatedSprite2D" parent="."]
@@ -173,8 +173,8 @@ sprite_frames = SubResource("SpriteFrames_kp4tc")
 
 [node name="CollisionPlayer" type="CollisionShape2D" parent="."]
 z_index = 1
-position = Vector2(0, -0.2)
-shape = SubResource("CapsuleShape2D_hvg8a")
+position = Vector2(0, 0.4)
+shape = SubResource("RectangleShape2D_6xs4c")
 
 [node name="weapon" type="CharacterBody2D" parent="."]
 position = Vector2(7.8, 2)

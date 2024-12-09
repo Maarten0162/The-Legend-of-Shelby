@@ -73,7 +73,7 @@ scale = Vector2(5, 5)
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_047tk")
-Speed = 100
+Speed = 5
 Waittime = 1.0
 
 [node name="CollisionEnemy" type="CollisionShape2D" parent="."]
