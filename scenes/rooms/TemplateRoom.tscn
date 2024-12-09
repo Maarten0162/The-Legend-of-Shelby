@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="7_ta1kk"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="8_iyf0r"]
 [ext_resource type="Script" path="res://scenes/rooms/CurrencyUi.cs" id="9_f078v"]
-[ext_resource type="Script" path="res://scripts/HealthUi.cs" id="9_xg4ky"]
+[ext_resource type="Script" path="res://scripts/ui/HealthUi.cs" id="9_xg4ky"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
 texture = ExtResource("1_2di6b")

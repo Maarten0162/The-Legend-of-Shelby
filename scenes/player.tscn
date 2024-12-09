@@ -165,7 +165,6 @@ z_index = 2
 scale = Vector2(5, 5)
 collision_mask = 534
 script = ExtResource("1_n1fb5")
-Health = 6
 
 [node name="AnimatedPlayer" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kp4tc")

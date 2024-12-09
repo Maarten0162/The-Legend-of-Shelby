@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="5_efre6"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="6_u5818"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="7_0eao5"]
-[ext_resource type="Script" path="res://scripts/HealthUi.cs" id="8_pfkn5"]
+[ext_resource type="Script" path="res://scripts/ui/HealthUi.cs" id="8_pfkn5"]
 [ext_resource type="PackedScene" uid="uid://cgwj7v4ve1pso" path="res://scenes/Moblin.tscn" id="9_7etpq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
@@ -339,18 +339,28 @@ tile_set = SubResource("TileSet_x0qak")
 
 [node name="Moblin" parent="Y-Sort" instance=ExtResource("9_7etpq")]
 position = Vector2(-363, 474)
+Waittime = 0.0
+Speed = 0
 
 [node name="Moblin2" parent="Y-Sort" instance=ExtResource("9_7etpq")]
 position = Vector2(-351, -469)
+Waittime = 0.0
+Speed = 0
 
 [node name="Moblin3" parent="Y-Sort" instance=ExtResource("9_7etpq")]
 position = Vector2(294, 442)
+Waittime = 0.0
+Speed = 0
 
 [node name="Moblin4" parent="Y-Sort" instance=ExtResource("9_7etpq")]
 position = Vector2(-814, 309)
+Waittime = 0.0
+Speed = 0
 
 [node name="Moblin5" parent="Y-Sort" instance=ExtResource("9_7etpq")]
 position = Vector2(135, -409)
+Waittime = 0.0
+Speed = 0
 
 [node name="Room3west1" type="Area2D" parent="."]
 position = Vector2(-1084, 237)
