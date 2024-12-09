@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="5_njhbk"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="7_ta1kk"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="8_iyf0r"]
-[ext_resource type="Script" path="res://scripts/Ui.cs" id="9_xg4ky"]
+[ext_resource type="Script" path="res://scripts/ui/Ui.cs" id="9_xg4ky"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
 texture = ExtResource("1_2di6b")

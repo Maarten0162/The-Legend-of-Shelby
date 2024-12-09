@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ubtfd4q4ugdf" path="res://scenes/menus/pause_menu.tscn" id="8_prxh4"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="9_s5nj2"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="10_jq1rh"]
-[ext_resource type="Script" path="res://scripts/Ui.cs" id="12_u16ja"]
+[ext_resource type="Script" path="res://scripts/ui/Ui.cs" id="12_u16ja"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ipmrw"]
 texture = ExtResource("2_l2cgf")

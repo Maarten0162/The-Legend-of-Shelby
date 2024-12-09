@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="5_efre6"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="6_u5818"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="7_0eao5"]
-[ext_resource type="Script" path="res://scripts/Ui.cs" id="8_pfkn5"]
+[ext_resource type="Script" path="res://scripts/ui/Ui.cs" id="8_pfkn5"]
 [ext_resource type="PackedScene" uid="uid://cgwj7v4ve1pso" path="res://scenes/Moblin.tscn" id="9_7etpq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
