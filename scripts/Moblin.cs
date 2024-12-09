@@ -17,7 +17,6 @@ public partial class Moblin : Enemy
 			return damage;
 		}
 	}
-	public string ThisEnemy;
 	Moblin moblin;
 
 
@@ -150,9 +149,13 @@ public partial class Moblin : Enemy
 	{
 		if (isdead) return;
 		isdead = true;
+		SpawnGold();
 		GD.Print("in death");
 		QueueFree();
 
+	}
+	private void SpawnGold(){
+	AddSibling(new Pound(this.Position, 5));
 	}
 
 

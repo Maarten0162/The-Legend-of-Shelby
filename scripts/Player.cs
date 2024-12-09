@@ -39,6 +39,7 @@ public partial class Player : CharacterBody2D
         if (GlobalVar.Instance.playerHealth == null)
         {
             GlobalVar.Instance.playerHealth = Health;
+            GlobalVar.Instance.playerCurrency = 0;
         }
        
 
@@ -123,10 +124,12 @@ public partial class Player : CharacterBody2D
                         TakeDamage();
 
                     }
-                    else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 corresponds to bit 2 Dit is
+                    else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 
                     {
                         GD.Print("Collided with something on Layer 3!");
                     }
+                  
+
                 }
             }
 
