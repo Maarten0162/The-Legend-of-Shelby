@@ -49,7 +49,6 @@ text = "Exit"
 [node name="Moblin" parent="." instance=ExtResource("3_eg02t")]
 visible = false
 position = Vector2(681, 277)
-Waittime = 0.0
 Speed = 0
 
 [connection signal="pressed" from="BoxContainer/StartButton" to="." method="StartButtonPressed"]

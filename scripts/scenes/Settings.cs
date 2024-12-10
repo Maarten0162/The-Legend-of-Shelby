@@ -23,6 +23,7 @@ public partial class Settings : Control
 		Vector2I oldResolution = GlobalVar.Instance.Resolution;
 		//initialization
 		button.GrabFocus();
+		SoundFx.instance.changeMusic("TitleScreen");
 	}
 
 	public override void _Process(double delta)
@@ -36,8 +37,9 @@ public partial class Settings : Control
 
 	private void OnVolumeSliderValueChanged(float value)
     {
-		volumeLabel.Text = $"Volume: {value}%";
-		AudioServer.SetBusVolumeDb(0,value);
+		volumeLabel.Text = $"Volume: {value*20}%";
+		
+		SoundFx.instance.changeMusicVolume(value);
     }
 
 	private void ResolutionSelected(int index)

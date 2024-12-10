@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj5884nnphpe1"]
+
+[ext_resource type="Script" path="res://scripts/SoundFx.cs" id="2_ithh4"]
+[ext_resource type="AudioStream" uid="uid://ctjuinfs0fq65" path="res://assets/audio/music/TitleTheme.wav" id="2_phxbw"]
+
+[node name="SoundFX" type="Node"]
+script = ExtResource("2_ithh4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_phxbw")
+volume_db = 1.0
+autoplay = true

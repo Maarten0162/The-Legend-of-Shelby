@@ -10,6 +10,7 @@ public partial class MainMenu : Control
 	{
 		startButton = GetNode<Button>("BoxContainer/StartButton");
 		startButton.GrabFocus();
+		SoundFx.instance.changeMusic("TitleScreen");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

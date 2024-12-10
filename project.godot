@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 GlobalFunc="*res://scripts/singletons/GlobalFunc.cs"
 GlobalVar="*res://scripts/singletons/GlobalVar.cs"
 LoadSaveFromServer="*res://scripts/singletons/LoadSaveFromServer.cs"
+SoundFx="*res://scenes/sound_fx.tscn"
 
 [display]
 

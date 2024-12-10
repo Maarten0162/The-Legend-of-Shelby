@@ -11,13 +11,20 @@ public partial class Main : Node2D
 
 	Label posLabel;
 
+	PackedScene settingsScene = (PackedScene)GD.Load("res://scenes/menus/pause_menu.tscn");
+
 	public override void _Ready()
 	{
 		posLabel = GetNode<Label>("CanvasLayer/Label");
 		player = GetNode<Player>("Y-Sort/Player");
 		GlobalVar.Instance.roomPath = this.SceneFilePath;
-		
+		SoundFx.instance.changeMusic("Overworld");
 
+		Node sceneInstance = settingsScene.Instantiate();
+            
+            // Add the instance as a child of the current node
+        AddChild(sceneInstance);
+		
 
 
 

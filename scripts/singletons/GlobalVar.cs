@@ -28,6 +28,8 @@ public partial class GlobalVar : Node
    	public string username = "admin";
    	public string password = "Welkom123!";
 
+	public string MusicLocation = "TitleScreen";
+
 
 	public override void _Ready()
 	{
