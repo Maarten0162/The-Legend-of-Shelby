@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c02mlqybsyc21"]
+
+[ext_resource type="Script" path="res://scripts/player/Weapon.cs" id="1_5wf53"]
+[ext_resource type="Texture2D" uid="uid://barcu57qkn3c3" path="res://assets/weapons/sword.png" id="1_lhowg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jfw0"]
+size = Vector2(5, 15)
+
+[node name="weapon" type="Area2D"]
+collision_layer = 10
+collision_mask = 2
+script = ExtResource("1_5wf53")
+WeaponName = "Sword"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_lhowg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_3jfw0")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

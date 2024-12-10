@@ -21,8 +21,9 @@ public abstract partial class Enemy : CharacterBody2D
 	public Vector2 enemyVelocity;
 
 
-	public void Death()
+	public async void Death()
 	{
+		await GlobalFunc.Instance.WaitForSeconds(0.05f);//zonder dit krijg je die flush error
 		if (isdead) return;
 		isdead = true;
 		SpawnGold();
@@ -38,23 +39,11 @@ public abstract partial class Enemy : CharacterBody2D
 	public void CollisionCheck(double Delta)
 	{
 		var collision = MoveAndCollide(Velocity * (float)Delta);
-		if (collision != null)
-		{
-			Node collider = (Node)collision.GetCollider();
 
-			if (collider is PhysicsBody2D body)
-			{
-				int collisionLayer = (int)body.CollisionLayer;
-
-				if ((collisionLayer & (1 << 3)) != 0) // Check if it's a weapon (Layer 4)
-				{
-					TakeDamage();
-				}
-			}
-		}
 	}
 	public async Task Movement() //randomised movement
-	{
+	{	
+		if (isdead) return;
 		if (isdead || !IsInstanceValid(this)) return;
 		
 		Random rnd = new Random();
@@ -119,13 +108,14 @@ public abstract partial class Enemy : CharacterBody2D
 		}
 
 	}
-	private void TakeDamage()
+	public void TakeDamage(int damage)
 	{
 		// Health -= Player.weapon.damage;
-		Health -= 100;
+		Health -= damage;
 		if (Health <= 0)
 		{
 			Death();
+
 		}
 	}
 }

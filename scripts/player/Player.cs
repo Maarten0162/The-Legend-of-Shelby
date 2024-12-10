@@ -19,7 +19,7 @@ public partial class Player : CharacterBody2D
     public PackedScene DeathScreen = (PackedScene)ResourceLoader.Load("res://scenes/menus/death_screen.tscn");
 
 
-    CharacterBody2D weaponBody;
+    Area2D weaponBody;
     CollisionShape2D weaponCollision;
     Sprite2D weaponSprite;
 
@@ -29,32 +29,39 @@ public partial class Player : CharacterBody2D
 
 
     bool isAttacking = false;
+    bool hasSword;
+    bool hasBow;
 
     enum FacingDirection { up, down, left, right }
 
 
     //velocity fix??? miss Velocity ook naar zero zetten. 
 
-    public override void _Ready()
+    public override async void _Ready()
     {
         if (GlobalVar.Instance.playerHealth == null)
         {
             GlobalVar.Instance.playerHealth = Health;
             GlobalVar.Instance.playerCurrency = 0;
         }
-       
+
+        hasSword = true;
+
+        await giveWeapons();
 
         animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedPlayer");
         weaponCollision = GetNode<CollisionShape2D>("weapon/CollisionShape2D");
         weaponSprite = GetNode<Sprite2D>("weapon/Sprite2D");
-        weaponBody = GetNode<CharacterBody2D>("weapon/");
+        weaponBody = GetNode<Area2D>("weapon/");
 
 
 
         weaponSprite.Hide();
         weaponCollision.Disabled = true;
 
+        
 
+        
 
 
 
@@ -78,10 +85,10 @@ public partial class Player : CharacterBody2D
             if (Input.IsActionJustPressed("testload"))
             {
                 LoadSaveFromServer.Instance.StartDownload();
-                
-                   
-                    await GlobalFunc.Instance.WaitForSeconds(1);
-                
+
+
+                await GlobalFunc.Instance.WaitForSeconds(1);
+
                 GlobalPosition = GlobalFunc.Instance.LoadGame();
 
             }
@@ -129,7 +136,7 @@ public partial class Player : CharacterBody2D
                     {
                         GD.Print("Collided with something on Layer 3!");
                     }
-                  
+
 
                 }
             }
@@ -263,19 +270,19 @@ public partial class Player : CharacterBody2D
         {
             case FacingDirection.left:
                 animatedSprite2D.Play("attack_sideways");
-                await changeSwordPosition(-8f, 2f, -90);
+                await changeSwordPosition(-8f, 2f, -180);
                 break;
             case FacingDirection.right:
                 animatedSprite2D.Play("attack_sideways");
-                await changeSwordPosition(8f, 2f, 90);
+                await changeSwordPosition(8f, 2f, 0);
                 break;
             case FacingDirection.up:
                 animatedSprite2D.Play("attack_up");
-                await changeSwordPosition(0f, -12f, 0);
+                await changeSwordPosition(0f, -12f, -90);
                 break;
             case FacingDirection.down:
                 animatedSprite2D.Play("attack_down");
-                await changeSwordPosition(0f, 12f, 180);
+                await changeSwordPosition(0f, 12f, 90);
                 break;
         }
         while (animatedSprite2D.IsPlaying())
@@ -323,23 +330,40 @@ public partial class Player : CharacterBody2D
     }
 
     private Vector2 SnapXToGrid(Vector2 position)
-{
-    // Round the position to the nearest grid point
-    return new Vector2(
-        Mathf.Round(position.X / GridSize) * GridSize,
-        position.Y // No need for player.GlobalPosition.Y
-    );
-}
+    {
+        // Round the position to the nearest grid point
+        return new Vector2(
+            Mathf.Round(position.X / GridSize) * GridSize,
+            position.Y // No need for player.GlobalPosition.Y
+        );
+    }
 
 
     private Vector2 SnapYToGrid(Vector2 position)
-{
-    // Round the position to the nearest grid point
-    return new Vector2(
-        position.X, // No need for player.GlobalPosition.X
-        Mathf.Round(position.Y / GridSize) * GridSize
-    );
-}
+    {
+        // Round the position to the nearest grid point
+        return new Vector2(
+            position.X, // No need for player.GlobalPosition.X
+            Mathf.Round(position.Y / GridSize) * GridSize
+        );
+    }
 
+    async Task giveWeapons()
+    {
+        GD.Print("in giveweapons");
+        if (hasSword){
+            GD.Print("hasSword");
+            PackedScene SwordScenes = (PackedScene)GD.Load("res://scenes/weapons/sword.tscn");
+            Node sceneInstance = SwordScenes.Instantiate();
+            this.AddChild(sceneInstance);
+        }
+        if (hasBow){
+            GD.Print("hasSword");
+            PackedScene SwordScenes = (PackedScene)GD.Load("res://scenes/weapons/arrow.tscn");
+            Node sceneInstance = SwordScenes.Instantiate();
+            this.AddChild(sceneInstance);
+        }
+        
+    }
 
 }
