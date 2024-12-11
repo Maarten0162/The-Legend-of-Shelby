@@ -5,6 +5,15 @@ using System.Threading.Tasks;
 
 public partial class Moblin : Enemy
 {
+	public Moblin()
+	{
+		
+	}
+
+	public Moblin(Vector2 positon)
+	{
+		this.GlobalPosition = positon;
+	}
 	public override async void _Ready()
 	{					
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedEnemy");

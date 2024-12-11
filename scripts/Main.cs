@@ -17,6 +17,8 @@ public partial class Main : Node2D
 	ColorRect aniRect;
 	PackedScene transitionScene = (PackedScene)GD.Load("res://scenes/menus/transition.tscn");
 
+	PackedScene GuardScene = (PackedScene)GD.Load("res://scenes/Moblin.tscn");
+
 	public override async void _Ready()
 	{
 		ui = GetNode<CanvasLayer>("CanvasLayer");
@@ -30,6 +32,9 @@ public partial class Main : Node2D
             
 		// Add the instance as a child of the current node
 		AddChild(transitionSceneInstance);	
+
+
+
 		
 		aniPlayer = GetNode<AnimationPlayer>("TransitionCanvasLayer/ColorRect/AnimationPlayer");
 		aniRect = GetNode<ColorRect>("TransitionCanvasLayer/ColorRect");
@@ -48,8 +53,6 @@ public partial class Main : Node2D
         AddChild(settingsSceneInstance);
 		
 		
-
-
 
 
 
@@ -168,6 +171,8 @@ public partial class Main : Node2D
 		}
 		aniRect.Hide();
 		ui.Show();
+
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
