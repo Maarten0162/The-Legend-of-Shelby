@@ -52,15 +52,19 @@ public partial class Player : CharacterBody2D
 
         await giveWeapons();
 
+        if (hasSword) 
+        {
+            
+            weaponCollision = GetNode<CollisionShape2D>("weapon/CollisionShape2D");
+            weaponSprite = GetNode<Sprite2D>("weapon/Sprite2D");
+            weaponBody = GetNode<Area2D>("weapon/");
+
+
+
+            weaponSprite.Hide();
+            weaponCollision.Disabled = true;
+        }
         animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedPlayer");
-        weaponCollision = GetNode<CollisionShape2D>("weapon/CollisionShape2D");
-        weaponSprite = GetNode<Sprite2D>("weapon/Sprite2D");
-        weaponBody = GetNode<Area2D>("weapon/");
-
-
-
-        weaponSprite.Hide();
-        weaponCollision.Disabled = true;
 
 
 
@@ -174,7 +178,7 @@ public partial class Player : CharacterBody2D
         }
 
         // Handle attack input
-        if (Input.IsActionJustPressed("Attack"))
+        if (Input.IsActionJustPressed("Attack") && hasSword)
         {
             await Attack(facing); // Use the last known facing direction
             weaponSprite.Hide();
