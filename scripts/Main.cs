@@ -131,8 +131,7 @@ public partial class Main : Node2D
 						
 						break;
 					case "Room2east2":
-						player.GlobalPosition = GetNode<Area2D>("Room3west2").GlobalPosition;
-						player.GlobalPosition = GetNode<Area2D>("Room3west1").GlobalPosition;
+						player.GlobalPosition = GetNode<Area2D>("Room3west2").GlobalPosition;						
 						aniPlayer.Play("swipe_right");
 						
 						break;

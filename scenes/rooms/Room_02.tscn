@@ -323,12 +323,13 @@ y_sort_enabled = true
 
 [node name="Player" parent="Y-Sort" instance=ExtResource("7_8itka")]
 z_index = 0
-position = Vector2(-1088, 10.9999)
+position = Vector2(-996, -490)
 
 [node name="Camera2D3" type="Camera2D" parent="Y-Sort/Player"]
-position = Vector2(0.200001, -0.599976)
+position = Vector2(0, 0.799988)
 zoom = Vector2(1.18, 1.18)
 limit_left = -1
+limit_top = -850
 limit_right = 1500
 limit_bottom = 870
 

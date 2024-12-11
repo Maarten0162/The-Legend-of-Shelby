@@ -325,11 +325,11 @@ z_index = 0
 position = Vector2(-1309, 329)
 
 [node name="Camera2D3" type="Camera2D" parent="Y-Sort/Player"]
-position = Vector2(-2.19998, 0.400009)
+position = Vector2(-1.39998, -0.400002)
 limit_left = -1150
-limit_top = -670
-limit_right = 960
-limit_bottom = 670
+limit_top = -750
+limit_right = 1050
+limit_bottom = 750
 
 [node name="Obstacles" type="TileMapLayer" parent="Y-Sort"]
 y_sort_enabled = true
