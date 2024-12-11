@@ -7,9 +7,10 @@ public abstract partial class Enemy : CharacterBody2D
 {
 	[Export] float Waittime;
 	[Export] public int Speed;
+	[Export] public int Health = 100;
+	[Export] private int damage = 1;
 
-	private int Health;
-	private int Damage;
+
 	private bool isdead;
 
 	public Vector2 up;

@@ -18,9 +18,6 @@ public partial class RoomTransition : Area2D
 	private void _on_body_entered(Node body)
 	{	
 		GlobalVar.Instance.exit = GetNode<RoomTransition>(".").Name;
-		
-
-
 		CallDeferred(nameof(ChangeScene));
 	}
 

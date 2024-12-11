@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="5_cqyd0"]
 [ext_resource type="Script" path="res://scripts/ui/HealthUi.cs" id="6_docpa"]
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="7_8itka"]
-[ext_resource type="Script" path="res://scenes/rooms/CurrencyUi.cs" id="8_uyph7"]
+[ext_resource type="Script" path="res://scripts/ui/CurrencyUi.cs" id="8_uyph7"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="9_aecvi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6gbl"]
@@ -299,7 +299,7 @@ texture = ExtResource("5_cqyd0")
 script = ExtResource("6_docpa")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Position" type="Label" parent="CanvasLayer"]
 offset_left = 879.0
 offset_top = -2.0
 offset_right = 947.0

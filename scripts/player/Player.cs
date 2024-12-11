@@ -45,7 +45,10 @@ public partial class Player : CharacterBody2D
             GlobalVar.Instance.playerCurrency = 0;
         }
 
-        hasSword = true;
+        if (GlobalVar.Instance.HasSword)
+        {
+            hasSword = true;
+        }
 
         await giveWeapons();
 
@@ -59,9 +62,9 @@ public partial class Player : CharacterBody2D
         weaponSprite.Hide();
         weaponCollision.Disabled = true;
 
-        
 
-        
+
+
 
 
 
@@ -351,19 +354,21 @@ public partial class Player : CharacterBody2D
     async Task giveWeapons()
     {
         GD.Print("in giveweapons");
-        if (hasSword){
+        if (hasSword)
+        {
             GD.Print("hasSword");
             PackedScene SwordScenes = (PackedScene)GD.Load("res://scenes/weapons/sword.tscn");
             Node sceneInstance = SwordScenes.Instantiate();
             this.AddChild(sceneInstance);
         }
-        if (hasBow){
+        if (hasBow)
+        {
             GD.Print("hasSword");
             PackedScene SwordScenes = (PackedScene)GD.Load("res://scenes/weapons/arrow.tscn");
             Node sceneInstance = SwordScenes.Instantiate();
             this.AddChild(sceneInstance);
         }
-        
-    }
 
+    }
+ 
 }

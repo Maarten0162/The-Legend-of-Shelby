@@ -11,8 +11,7 @@ public partial class Pound : Area2D
    public Pound(Vector2 Position, string size)   
    {   
         
-        SetCollisionLayerValue(1, false);
-        SetCollisionLayerValue(5, true);
+
         TextureRect poundtexture = new();
         if(size == "small"){
              poundtexture.Texture = (Texture2D)GD.Load("res://assets/Sprites/Bronze_RuPound.png");

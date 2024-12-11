@@ -15,16 +15,16 @@ public partial class Main : Node2D
 
 	public override void _Ready()
 	{
-		posLabel = GetNode<Label>("CanvasLayer/Label");
+		posLabel = GetNode<Label>("CanvasLayer/Position");
 		player = GetNode<Player>("Y-Sort/Player");
 		GlobalVar.Instance.roomPath = this.SceneFilePath;
 		SoundFx.instance.changeMusic("Overworld");
 
 		Node sceneInstance = settingsScene.Instantiate();
-            
-            // Add the instance as a child of the current node
-        AddChild(sceneInstance);
-		
+
+		// Add the instance as a child of the current node
+		AddChild(sceneInstance);
+
 
 
 
@@ -64,10 +64,10 @@ public partial class Main : Node2D
 					case "Room2west1":
 						player.GlobalPosition = GetNode<Area2D>("Room2east2").GlobalPosition;
 						break;
-						case "Room3west1":
+					case "Room3west1":
 						player.GlobalPosition = GetNode<Area2D>("Room2east1").GlobalPosition;
 						break;
-						case "Room3west2":
+					case "Room3west2":
 						player.GlobalPosition = GetNode<Area2D>("Room2east2").GlobalPosition;
 						break;
 
@@ -93,7 +93,15 @@ public partial class Main : Node2D
 				}
 
 			}
-			else GD.Print("is niks");
+			else switch (GlobalVar.Instance.exit)
+				{
+					case "Dungeon_1":
+						player.GlobalPosition = GetNode<Area2D>("Room1Treestump").GlobalPosition;						
+						break;
+					case "Room1Treestump":
+						player.GlobalPosition = GetNode<Area2D>("Dungeon_1").GlobalPosition;
+						break;
+				}
 
 
 

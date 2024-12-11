@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class GlobalVar : Node
 {
@@ -9,10 +10,13 @@ public partial class GlobalVar : Node
 	public Vector2 playerPos{ get; set; }
 	public int? playerHealth{ get; set; }
 	public int playerCurrency{ get; set; }
+	public List<string> Keys{ get; set; }
 	public string exit{ get; set; }
 	public string entrance{ get; set; }
 	public string roomPath{ get; set; }
+	public bool Hasitemspace{ get; set; }
 	public string[] Rupounds;
+	public bool HasSword{ get; set; }
 
 
 	//settings
@@ -32,7 +36,7 @@ public partial class GlobalVar : Node
 
 
 	public override void _Ready()
-	{
+	{	Keys = new();
 		if (Instance == null)
         {
             Instance = this; 

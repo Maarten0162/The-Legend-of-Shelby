@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b6xgp3cyjuvyk" path="res://assets/LOZ remake/Tileset/tileset_layer2.png" id="2_pw4in"]
 [ext_resource type="Texture2D" uid="uid://vwxawogfv7om" path="res://assets/LOZ remake/Tileset/TreeStump.png" id="3_hsklu"]
 [ext_resource type="Texture2D" uid="uid://cslayjffpn7sp" path="res://assets/LOZ remake/Tileset/TilesetWithoutBackgrounds.png" id="4_6oh7s"]
-[ext_resource type="Script" path="res://scenes/rooms/CurrencyUi.cs" id="4_c7sj4"]
+[ext_resource type="Script" path="res://scripts/ui/CurrencyUi.cs" id="4_c7sj4"]
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="5_efre6"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="6_u5818"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="7_0eao5"]
@@ -292,7 +292,7 @@ texture = ExtResource("7_0eao5")
 script = ExtResource("8_pfkn5")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Position" type="Label" parent="CanvasLayer"]
 offset_left = 1069.0
 offset_top = 6.0
 offset_right = 1141.0

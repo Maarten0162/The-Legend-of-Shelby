@@ -68,5 +68,4 @@ public partial class Weapon : Area2D
 				}
 				else GD.Print("different layer");
 		}
-	}
-}
+	}}
