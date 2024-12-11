@@ -10,6 +10,6 @@ public partial class WeaponPickup : Node
         GetNode<Label>("../Y-Sort/Player/Label").Text = "You found a sword!";
         await GlobalFunc.Instance.WaitForSeconds(2);
          GetNode<Label>("../Y-Sort/Player/Label").Text = "";
-
+        QueueFree();
     }
 }

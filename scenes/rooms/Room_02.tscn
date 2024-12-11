@@ -363,7 +363,7 @@ position = Vector2(-703, -721)
 rotation = 1.5708
 collision_layer = 512
 script = ExtResource("9_aecvi")
-Target = "Room_02"
+Target = "Room_04"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room2west"]
 position = Vector2(-2.99978, 60)

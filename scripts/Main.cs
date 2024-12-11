@@ -69,7 +69,10 @@ public partial class Main : Node2D
 						aniPlayer.Play("swipe_up");
             			await GlobalFunc.Instance.WaitForSeconds(0.25f);
 						break;
-					
+						case "Room4north":
+						player.GlobalPosition = GetNode<Area2D>("Room5south").GlobalPosition;
+						break;
+
 
 				}
 				
@@ -83,20 +86,19 @@ public partial class Main : Node2D
 				{
 					case "Room2south":
 						player.GlobalPosition = GetNode<Area2D>("Room1north").GlobalPosition;
-						aniPlayer.Play("swipe_down");
-            			await GlobalFunc.Instance.WaitForSeconds(0.25f);
 						break;
+						
 
 				}
 			}
 			if (GlobalVar.Instance.exit.Contains("west")) // switch voor east
-			{
+			{		
 				GD.Print("in west");
 				
 				switch (GlobalVar.Instance.exit)
 				{
-					case "Room2west1":
-						player.GlobalPosition = GetNode<Area2D>("Room2east2").GlobalPosition;
+					case "Room2west":
+						player.GlobalPosition = GetNode<Area2D>("Room4east").GlobalPosition;
 						aniPlayer.Play("swipe_left");
             			await GlobalFunc.Instance.WaitForSeconds(0.25f);
 						break;
@@ -126,13 +128,17 @@ public partial class Main : Node2D
 						player.GlobalPosition = GetNode<Area2D>("Room3west1").GlobalPosition;
 						aniPlayer.Play("swipe_right");
             			await GlobalFunc.Instance.WaitForSeconds(0.25f);
-						GD.Print("in room2 east 1");
+						
 						break;
 					case "Room2east2":
 						player.GlobalPosition = GetNode<Area2D>("Room3west2").GlobalPosition;
 						player.GlobalPosition = GetNode<Area2D>("Room3west1").GlobalPosition;
 						aniPlayer.Play("swipe_right");
-						GD.Print("in room2 east 1");
+						
+						break;
+						case "Room4east":
+						player.GlobalPosition = GetNode<Area2D>("Room2west").GlobalPosition;
+						
 						break;
 
 
