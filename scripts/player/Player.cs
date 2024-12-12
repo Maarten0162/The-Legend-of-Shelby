@@ -32,7 +32,7 @@ public partial class Player : CharacterBody2D
 
 
     bool isAttacking = false;
-    bool hasSword;
+
     bool hasBow;
 
     enum FacingDirection { up, down, left, right }
@@ -53,14 +53,9 @@ public partial class Player : CharacterBody2D
             GlobalVar.Instance.playerCurrency = 0;
         }
 
-        if (GlobalVar.Instance.HasSword)
-        {
-            hasSword = true;
-        }
-
         await giveWeapons();
 
-        if (hasSword) 
+        if (GlobalVar.Instance.HasSword) 
         {
             
             weaponCollision = GetNode<CollisionShape2D>("weapon/CollisionShape2D");
@@ -88,6 +83,22 @@ public partial class Player : CharacterBody2D
         if (IsInstanceValid(this))
         {
             GlobalVar.Instance.playerPos = GlobalPosition;
+
+            //test inputs
+
+            if (Input.IsActionJustPressed("giveSword"))
+            {
+                GlobalVar.Instance.HasSword = true;
+
+            }
+
+
+
+
+
+
+
+
 
 
             // Press the "testsave" action to save game
@@ -198,7 +209,7 @@ public partial class Player : CharacterBody2D
         }
 
         // Handle attack input
-        if (Input.IsActionJustPressed("Attack") && hasSword)
+        if (Input.IsActionJustPressed("Attack") && GlobalVar.Instance.HasSword)
         {
             await Attack(facing); // Use the last known facing direction
             weaponSprite.Hide();
@@ -382,7 +393,7 @@ public partial class Player : CharacterBody2D
     async Task giveWeapons()
     {
         GD.Print("in giveweapons");
-        if (hasSword)
+        if (GlobalVar.Instance.HasSword)
         {
             GD.Print("hasSword");
             PackedScene SwordScenes = (PackedScene)GD.Load("res://scenes/weapons/sword.tscn");
