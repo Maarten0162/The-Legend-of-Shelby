@@ -82,19 +82,20 @@ public partial class Main : Node2D
 				
 
 			}
-			if (GlobalVar.Instance.exit.Contains("south"))
+			else if (GlobalVar.Instance.exit.Contains("south"))
 			{ // switch voor north
 				
 				switch (GlobalVar.Instance.exit)
 				{
 					case "Room2south":
 						player.GlobalPosition = GetNode<Area2D>("Room1north").GlobalPosition;
+						aniPlayer.Play("swipe_down");
 						break;
 						
 
 				}
 			}
-			if (GlobalVar.Instance.exit.Contains("west")) // switch voor east
+			else if (GlobalVar.Instance.exit.Contains("west")) // switch voor east
 			{		
 				GD.Print("in west");
 				
@@ -115,32 +116,25 @@ public partial class Main : Node2D
 						aniPlayer.Play("swipe_left");
             			await GlobalFunc.Instance.WaitForSeconds(0.25f);
 						break;
-
-
 				}
 
 			}
-			if (GlobalVar.Instance.exit.Contains("east")) // switch voor west
+			else if (GlobalVar.Instance.exit.Contains("east")) // switch voor west
 			{
-				aniPlayer.Play("swipe_right");
-            	await GlobalFunc.Instance.WaitForSeconds(0.25f);
 				GD.Print("in east");
 				switch (GlobalVar.Instance.exit)
 				{
 					case "Room2east1":
 						player.GlobalPosition = GetNode<Area2D>("Room3west1").GlobalPosition;
 						aniPlayer.Play("swipe_right");
-            			await GlobalFunc.Instance.WaitForSeconds(0.25f);
-						
 						break;
 					case "Room2east2":
 						player.GlobalPosition = GetNode<Area2D>("Room3west2").GlobalPosition;						
 						aniPlayer.Play("swipe_right");
-						
 						break;
-						case "Room4east":
+					case "Room4east":
 						player.GlobalPosition = GetNode<Area2D>("Room2west").GlobalPosition;
-						
+						aniPlayer.Play("swipe_right");
 						break;
 
 
@@ -148,18 +142,19 @@ public partial class Main : Node2D
 
 			}
 			else switch (GlobalVar.Instance.exit)
-				{
-					case "Dungeon_1":
-						player.GlobalPosition = GetNode<Area2D>("Room1Treestump").GlobalPosition;
-						aniPlayer.Play("swipe_up");
-            			await GlobalFunc.Instance.WaitForSeconds(0.25f);					
-						break;
-					case "Room1Treestump":
-						player.GlobalPosition = GetNode<Area2D>("Dungeon_1").GlobalPosition;
-						aniPlayer.Play("swipe_down");
-            			await GlobalFunc.Instance.WaitForSeconds(0.25f);
-						break;
-				}
+			{
+				case "Dungeon_1":
+					player.GlobalPosition = GetNode<Area2D>("Room1Treestump").GlobalPosition;
+					aniPlayer.Play("swipe_down");
+					await GlobalFunc.Instance.WaitForSeconds(0.25f);					
+					break;
+				case "Room1Treestump":
+					player.GlobalPosition = GetNode<Area2D>("Dungeon_1").GlobalPosition;
+					aniPlayer.Play("swipe_up");
+					await GlobalFunc.Instance.WaitForSeconds(0.25f);
+					break;
+			}
+			await GlobalFunc.Instance.WaitForSeconds(0.25f);
 
 
 

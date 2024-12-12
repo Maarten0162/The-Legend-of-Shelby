@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://7bwcgmnvg66u"]
+[gd_scene load_steps=22 format=4 uid="uid://ci5euaj5dbvmp"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_cnhur"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_vo87b"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="10_mxiou"]
 [ext_resource type="Script" path="res://scripts/ui/HealthUi.cs" id="11_i7slt"]
 [ext_resource type="Script" path="res://scripts/ui/CurrencyUi.cs" id="12_ok107"]
+[ext_resource type="PackedScene" uid="uid://c0x4ooswiy0gq" path="res://scenes/Boss.tscn" id="13_uolkb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
 texture = ExtResource("2_vo87b")
@@ -374,5 +375,8 @@ script = ExtResource("12_ok107")
 position = Vector2(197, 31)
 scale = Vector2(4.19857, 4.68149)
 zoom = Vector2(1.5, 1.5)
+
+[node name="hydra" parent="." instance=ExtResource("13_uolkb")]
+position = Vector2(808, 13)
 
 [connection signal="body_entered" from="Room5south" to="Room5south" method="_on_body_entered"]

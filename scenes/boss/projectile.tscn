@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://r342665scygr"]
+
+[ext_resource type="Script" path="res://scripts/Projectile.cs" id="1_4s10a"]
+[ext_resource type="Texture2D" uid="uid://ci28igt0p4of4" path="res://assets/Sprites/BossProjectile.png" id="1_lgdl6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wgsr7"]
+radius = 4.0
+height = 10.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_4s10a")
+seconds = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wgsr7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lgdl6")

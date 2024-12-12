@@ -59,31 +59,30 @@ public partial class RoomTransition : Area2D
             ui.Hide();
             if (GlobalVar.Instance.exit.Contains("north")) // switch voor zuid
 			{
-                aniPlayer.PlayBackwards("swipe_up");
+                aniPlayer.PlayBackwards("swipe_down");
             }
             else if (GlobalVar.Instance.exit.Contains("south")) // switch voor zuid
 			{
-                aniPlayer.PlayBackwards("swipe_down");
+                aniPlayer.PlayBackwards("swipe_up");
             }
             else if (GlobalVar.Instance.exit.Contains("east")) // switch voor zuid
 			{
-                aniPlayer.PlayBackwards("swipe_right");
+                aniPlayer.PlayBackwards("swipe_left");
             }
             else if (GlobalVar.Instance.exit.Contains("west")) // switch voor zuid
 			{
-                aniPlayer.PlayBackwards("swipe_left");
+                aniPlayer.PlayBackwards("swipe_right");
             }
             else switch (GlobalVar.Instance.exit)
 				{
 					case "Dungeon_1":
-						aniPlayer.PlayBackwards("swipe_down");
-            			await GlobalFunc.Instance.WaitForSeconds(0.25f);					
+						aniPlayer.PlayBackwards("swipe_up");				
 						break;
 					case "Room1Treestump":
-						aniPlayer.PlayBackwards("swipe_up");
-            			await GlobalFunc.Instance.WaitForSeconds(0.25f);
+						aniPlayer.PlayBackwards("swipe_down");
 						break;
 				}
+            await GlobalFunc.Instance.WaitForSeconds(0.25f);
         }
         else
         {
