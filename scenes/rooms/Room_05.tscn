@@ -378,5 +378,7 @@ zoom = Vector2(1.5, 1.5)
 
 [node name="hydra" parent="." instance=ExtResource("13_uolkb")]
 position = Vector2(808, 13)
+damage = 5
+projAmount = 100
 
 [connection signal="body_entered" from="Room5south" to="Room5south" method="_on_body_entered"]

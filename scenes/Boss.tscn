@@ -51,6 +51,7 @@ collision_mask = 13
 script = ExtResource("1_ca4b8")
 Waittime = 1.5
 Speed = 100
+Health = 500
 projAmount = 3
 
 [node name="CollisionEnemy" type="CollisionShape2D" parent="."]
@@ -60,3 +61,13 @@ shape = SubResource("RectangleShape2D_ht2ng")
 [node name="AnimatedEnemy" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kbqik")
 animation = &"walk_sideways"
+
+[node name="hitTimer" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="iframeTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="hitTimer" to="." method="HitTimerTimeout"]
+[connection signal="timeout" from="iframeTimer" to="." method="IframeTimerTimeout"]

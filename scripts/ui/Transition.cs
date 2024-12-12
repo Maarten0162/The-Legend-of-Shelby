@@ -20,10 +20,6 @@ public partial class Transition : ColorRect
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("Attack"))
-		{
-			swipeLeft();
-		}
 	}
 
 	public void swipeLeft()

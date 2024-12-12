@@ -171,7 +171,7 @@ public abstract partial class Enemy : CharacterBody2D
 		}
 
 	}
-	public void TakeDamage(int damage)
+	public virtual void TakeDamage(int damage)
 	{
 		// Health -= Player.weapon.damage;
 		Health -= damage;
@@ -194,15 +194,14 @@ public abstract partial class Enemy : CharacterBody2D
 				{
 					projectile.dir = new Vector2(-1, 0);
 				}
-				if (i == 1)
+				else if(i == 1)
 				{
 					projectile.dir = new Vector2(-1, 0.2f);
-				}
-
-				if (i == 2)
+				}else if (i == 2)
 				{
 					projectile.dir = new Vector2(-1, -0.2f);
-				}
+				} else projectile.dir = new Vector2(-1, 0);
+
 
 
 			}

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 public partial class Player : CharacterBody2D
 {
 
-    Timer timer;
+    Timer iframetimer;
+    Timer hittimer;
+    
     Vector2 playerVelocity;
     AnimatedSprite2D animatedSprite2D;
     [Export] public int GridSize = 32;
@@ -39,7 +41,9 @@ public partial class Player : CharacterBody2D
     //velocity fix??? miss Velocity ook naar zero zetten. 
 
     public override async void _Ready()
-    {  timer = GetNode<Timer>("Timer");
+    {  
+        iframetimer = GetNode<Timer>("iframeTimer");
+        hittimer = GetNode<Timer>("hitTimer");
  
 
         
@@ -69,6 +73,7 @@ public partial class Player : CharacterBody2D
             weaponCollision.Disabled = true;
         }
         animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedPlayer");
+        animatedSprite2D.Modulate = new Color("FFFFFF");
 
 
 
@@ -147,7 +152,7 @@ public partial class Player : CharacterBody2D
                             body.QueueFree();
                         }
                         Iframes = true;
-                        timer.Start();
+                        iframetimer.Start();
 
 
                     }
@@ -233,6 +238,10 @@ public partial class Player : CharacterBody2D
 
     public void TakeDamage()
     {
+
+        animatedSprite2D.Modulate = new Color("ff4233");
+        hittimer.Start();
+
         GlobalVar.Instance.playerHealth -= 1;
         GD.Print(GlobalVar.Instance.playerHealth);
         if (GlobalVar.Instance.playerHealth <= 0)
@@ -389,9 +398,13 @@ public partial class Player : CharacterBody2D
         }
 
     }
-    void TimerTimeout(){
+    void IframeTimerTimeout(){
         Iframes = false;
         GD.Print("iframes op false");
+    }
+
+    void HitTimerTimeout(){
+        animatedSprite2D.Modulate = new Color("FFFFFF");
     }
  
 }

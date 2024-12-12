@@ -164,6 +164,7 @@ script = ExtResource("1_n1fb5")
 GridSize = 16
 
 [node name="AnimatedPlayer" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_kp4tc")
 
 [node name="CollisionPlayer" type="CollisionShape2D" parent="."]
@@ -171,7 +172,12 @@ z_index = 1
 position = Vector2(0, 0.4)
 shape = SubResource("RectangleShape2D_6xs4c")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="iframeTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="TimerTimeout"]
+[node name="hitTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="timeout" from="iframeTimer" to="." method="IframeTimerTimeout"]
+[connection signal="timeout" from="hitTimer" to="." method="HitTimerTimeout"]
