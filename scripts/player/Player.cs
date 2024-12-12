@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public partial class Player : CharacterBody2D
 {
 
-
+    Timer timer;
     Vector2 playerVelocity;
     AnimatedSprite2D animatedSprite2D;
     [Export] public int GridSize = 32;
@@ -26,6 +26,7 @@ public partial class Player : CharacterBody2D
     Player player;
 
     FacingDirection facing;
+    bool Iframes;
 
 
     bool isAttacking = false;
@@ -38,7 +39,10 @@ public partial class Player : CharacterBody2D
     //velocity fix??? miss Velocity ook naar zero zetten. 
 
     public override async void _Ready()
-    {
+    {  timer = GetNode<Timer>("Timer");
+ 
+
+        
         if (GlobalVar.Instance.playerHealth == null)
         {
             GlobalVar.Instance.playerHealth = Health;
@@ -75,7 +79,7 @@ public partial class Player : CharacterBody2D
     }
 
     public override async void _PhysicsProcess(double delta)
-    {
+    {   
         if (IsInstanceValid(this))
         {
             GlobalVar.Instance.playerPos = GlobalPosition;
@@ -120,8 +124,9 @@ public partial class Player : CharacterBody2D
 
             Velocity = playerVelocity;
 
-
+            
             var collision = MoveAndCollide(Velocity * (float)delta);
+            if(!Iframes){
             if (collision != null)
             {
                 // Get the collider object
@@ -137,6 +142,13 @@ public partial class Player : CharacterBody2D
                     {
                         KnockBack(collision.GetPosition());
                         TakeDamage();
+                        if(body.IsInGroup("Projectile")){
+                            GD.Print("hit is een projectile");
+                            body.QueueFree();
+                        }
+                        Iframes = true;
+                        timer.Start();
+
 
                     }
                     else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 
@@ -146,7 +158,7 @@ public partial class Player : CharacterBody2D
 
 
                 }
-            }
+            }}
 
 
             if (Velocity == Vector2.Zero)
@@ -154,6 +166,9 @@ public partial class Player : CharacterBody2D
                 animatedSprite2D.Pause();
             }
         }
+        
+
+      
     }
 
 
@@ -373,6 +388,10 @@ public partial class Player : CharacterBody2D
             this.AddChild(sceneInstance);
         }
 
+    }
+    void TimerTimeout(){
+        Iframes = false;
+        GD.Print("iframes op false");
     }
  
 }

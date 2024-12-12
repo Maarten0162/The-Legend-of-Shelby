@@ -18,7 +18,7 @@ public partial class Projectile : CharacterBody2D
 	}
 
 	public override void _Ready()
-	{
+	{	AddToGroup("Projectile");
 		killProjectiles();
 		
 	}

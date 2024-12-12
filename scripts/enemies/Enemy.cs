@@ -48,7 +48,7 @@ public abstract partial class Enemy : CharacterBody2D
 		var collision = MoveAndCollide(Velocity * (float)Delta);
 
 	}
-	public async Task Movement() //randomised movement
+	public virtual async Task Movement() //randomised movement
 	{
 		if (isdead) return;
 		if (isdead || !IsInstanceValid(this)) return;

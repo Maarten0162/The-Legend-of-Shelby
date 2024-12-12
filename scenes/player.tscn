@@ -170,3 +170,8 @@ sprite_frames = SubResource("SpriteFrames_kp4tc")
 z_index = 1
 position = Vector2(0, 0.4)
 shape = SubResource("RectangleShape2D_6xs4c")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="TimerTimeout"]

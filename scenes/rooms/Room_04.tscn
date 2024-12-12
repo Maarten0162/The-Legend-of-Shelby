@@ -341,7 +341,7 @@ tile_set = SubResource("TileSet_fy7to")
 position = Vector2(-298, -47)
 
 [node name="Moblin2" parent="Y-Sort" instance=ExtResource("8_tb68l")]
-position = Vector2(482, -42)
+position = Vector2(486, -315)
 
 [node name="Room4east" type="Area2D" parent="."]
 position = Vector2(726, -44)
