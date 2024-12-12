@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0x4ooswiy0gq"]
+
+[ext_resource type="Script" path="res://scripts/enemies/Hydra.cs" id="1_ca4b8"]
+[ext_resource type="Texture2D" uid="uid://bjbejoiqc27mu" path="res://assets/Sprites/Hydra.png" id="2_m3wi2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ht2ng"]
+size = Vector2(24.4, 32.2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8pbu"]
+atlas = ExtResource("2_m3wi2")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r25lj"]
+atlas = ExtResource("2_m3wi2")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbl2r"]
+atlas = ExtResource("2_m3wi2")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf2p4"]
+atlas = ExtResource("2_m3wi2")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kbqik"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8pbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r25lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbl2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf2p4")
+}],
+"loop": true,
+"name": &"walk_sideways",
+"speed": 5.0
+}]
+
+[node name="hydra" type="CharacterBody2D"]
+z_index = 1
+position = Vector2(-1, 0)
+scale = Vector2(5, 5)
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_ca4b8")
+Waittime = 1.5
+Speed = 100
+projAmount = 3
+
+[node name="CollisionEnemy" type="CollisionShape2D" parent="."]
+position = Vector2(-1.14739e-06, 0.100001)
+shape = SubResource("RectangleShape2D_ht2ng")
+
+[node name="AnimatedEnemy" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kbqik")
+animation = &"walk_sideways"

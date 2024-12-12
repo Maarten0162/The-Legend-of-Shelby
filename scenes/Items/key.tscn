@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c508v0bg4qssn"]
+
+[ext_resource type="Script" path="res://scripts/Items/Key.cs" id="1_0qr6a"]
+[ext_resource type="Texture2D" uid="uid://bmab1v0a8iu8" path="res://assets/Sprites/Yellow_Key.png" id="1_3nkdk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wvxa"]
+size = Vector2(39, 57)
+
+[node name="Key" type="Area2D"]
+position = Vector2(162, 77)
+script = ExtResource("1_0qr6a")
+Keytype = "Green"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 7.5)
+shape = SubResource("RectangleShape2D_4wvxa")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -17.0
+offset_top = -20.0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("1_3nkdk")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
