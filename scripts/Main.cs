@@ -87,6 +87,10 @@ public partial class Main : Node2D
 						player.GlobalPosition = GetNode<Area2D>("Bossroomsouth").GlobalPosition;
 						aniPlayer.Play("swipe_up");
 						break;
+						case "Bossroomnorth":
+						player.GlobalPosition = GetNode<Area2D>("Finalroomsouth").GlobalPosition;
+						aniPlayer.Play("swipe_up");
+						break;
 
 
 				}
@@ -221,7 +225,7 @@ public partial class Main : Node2D
 	{
 		posLabel.Text = "position: " + player.GlobalPosition;
 		if(GetNode<Node2D>(".").Name == "BossRoom" && GlobalVar.Instance.KilledHydra){
-			
+
 		}
 
 
