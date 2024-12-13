@@ -681,6 +681,7 @@ script = ExtResource("6_docpa")
 metadata/_edit_use_anchors_ = true
 
 [node name="Position" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 879.0
 offset_top = -2.0
 offset_right = 947.0

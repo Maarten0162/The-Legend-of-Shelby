@@ -304,7 +304,7 @@ sources/6 = SubResource("TileSetAtlasSource_w1hje")
 sources/4 = SubResource("TileSetAtlasSource_q23vq")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_meffv"]
-size = Vector2(270.5, 174.688)
+size = Vector2(1776.63, 593.672)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5pmp"]
 size = Vector2(275.5, 87)
@@ -351,7 +351,7 @@ script = ExtResource("11_r4sqg")
 Key = "Boss"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Y-Sort/Area2D"]
-position = Vector2(145, -298)
+position = Vector2(627, 3)
 shape = SubResource("RectangleShape2D_meffv")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Y-Sort/Area2D"]
@@ -360,11 +360,11 @@ collision_layer = 4
 collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Y-Sort/Area2D/StaticBody2D"]
-position = Vector2(139.75, -292)
+position = Vector2(215, -504)
 shape = SubResource("RectangleShape2D_meffv")
 
 [node name="Sprite2D" type="Sprite2D" parent="Y-Sort/Area2D"]
-position = Vector2(136, -296)
+position = Vector2(136, -298)
 scale = Vector2(5.97667, 5.97667)
 texture = ExtResource("12_6qqci")
 
@@ -391,6 +391,7 @@ script = ExtResource("11_0ojxj")
 metadata/_edit_use_anchors_ = true
 
 [node name="Position" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 1069.0
 offset_top = 6.0
 offset_right = 1141.0

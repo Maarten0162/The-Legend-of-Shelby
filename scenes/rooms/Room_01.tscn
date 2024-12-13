@@ -255,6 +255,7 @@ script = ExtResource("12_u16ja")
 metadata/_edit_use_anchors_ = true
 
 [node name="Position" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 1069.0
 offset_top = 6.0
 offset_right = 1141.0

@@ -5,10 +5,8 @@ public partial class WeaponPickup : Node
 {
 
     private async void Obtain(Node body){
-        if (GlobalVar.Instance.GameEnd)
-		{
-            
-		}else
+         
+		
         {
             GlobalVar.Instance.HasSword = true;
             GetNode<Area2D>("weapon").Hide();

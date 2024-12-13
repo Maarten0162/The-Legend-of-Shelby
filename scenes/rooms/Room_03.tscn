@@ -570,6 +570,7 @@ script = ExtResource("8_pfkn5")
 metadata/_edit_use_anchors_ = true
 
 [node name="Position" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 23.0
 offset_top = 181.0
 offset_right = 183.0

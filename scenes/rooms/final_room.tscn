@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://bkoxoivhpenng"]
+[gd_scene load_steps=51 format=4 uid="uid://csvhphvxfokyk"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_spi11"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_mix5t"]
@@ -765,13 +765,13 @@ libraries = {
 }
 
 [node name="Finalroomsouth" type="Area2D" parent="."]
-position = Vector2(-111, 312)
+position = Vector2(-120, 309)
 rotation = 3.14159
 collision_layer = 512
 script = ExtResource("9_fmllw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Finalroomsouth"]
-position = Vector2(-1.14441e-05, -201)
+position = Vector2(9.99993, -824)
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_624qy")
 
@@ -832,7 +832,6 @@ script = ExtResource("16_tkljg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trigger"]
 position = Vector2(-107, 310)
 shape = SubResource("RectangleShape2D_4j0d8")
-disabled = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
