@@ -55,6 +55,7 @@ public partial class Hydra : Enemy
             if (Health <= 0)
             {
                 animatedSprite2D.Modulate = new Color("FFFFFF");
+				GlobalVar.Instance.KilledHydra = true;
                 Death();
             }
         }

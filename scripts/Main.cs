@@ -220,6 +220,9 @@ public partial class Main : Node2D
 	public override void _Process(double delta)
 	{
 		posLabel.Text = "position: " + player.GlobalPosition;
+		if(GetNode<Node2D>(".").Name == "BossRoom" && GlobalVar.Instance.KilledHydra){
+			
+		}
 
 
 	}
