@@ -1,24 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4ikcpsfh768l"]
 
-[ext_resource type="Script" path="res://scripts/player/Weapon.cs" id="1_36naa"]
-[ext_resource type="Texture2D" uid="uid://barcu57qkn3c3" path="res://assets/weapons/sword.png" id="2_674wb"]
+[ext_resource type="Script" path="res://scripts/Projectile.cs" id="1_5atec"]
+[ext_resource type="Texture2D" uid="uid://vo5wddgrwmqs" path="res://assets/LOZ remake/Monsters/Projectile4.png" id="2_twixw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jfw0"]
-size = Vector2(5, 15)
+size = Vector2(5.5, 16)
 
-[node name="weapon" type="Area2D"]
-collision_layer = 10
+[node name="weapon" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+collision_layer = 128
 collision_mask = 2
-script = ExtResource("1_36naa")
-WeaponName = "Arrow"
+script = ExtResource("1_5atec")
+seconds = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
-texture = ExtResource("2_674wb")
+texture = ExtResource("2_twixw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
+position = Vector2(-8.9407e-07, 0.250001)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_3jfw0")
-
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

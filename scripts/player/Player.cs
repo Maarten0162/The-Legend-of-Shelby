@@ -8,7 +8,7 @@ public partial class Player : CharacterBody2D
 
     Timer iframetimer;
     Timer hittimer;
-    
+
     Vector2 playerVelocity;
     AnimatedSprite2D animatedSprite2D;
     [Export] public int GridSize = 32;
@@ -19,6 +19,7 @@ public partial class Player : CharacterBody2D
     [Export] public float KnockbackStrength = 200; // Adjust strength
     [Export] public float KnockbackDuration = 0.2f; // Duration in seconds
     public PackedScene DeathScreen = (PackedScene)ResourceLoader.Load("res://scenes/menus/death_screen.tscn");
+    private PackedScene projScene = (PackedScene)GD.Load("res://scenes/weapons/arrow.tscn");
 
 
     Area2D weaponBody;
@@ -41,12 +42,12 @@ public partial class Player : CharacterBody2D
     //velocity fix??? miss Velocity ook naar zero zetten. 
 
     public override async void _Ready()
-    {  
+    {
         iframetimer = GetNode<Timer>("iframeTimer");
         hittimer = GetNode<Timer>("hitTimer");
- 
 
-        
+
+
         if (GlobalVar.Instance.playerHealth == null)
         {
             GlobalVar.Instance.playerHealth = Health;
@@ -55,9 +56,9 @@ public partial class Player : CharacterBody2D
 
         await giveWeapons();
 
-        if (GlobalVar.Instance.HasSword) 
+        if (GlobalVar.Instance.HasSword)
         {
-            
+
             weaponCollision = GetNode<CollisionShape2D>("weapon/CollisionShape2D");
             weaponSprite = GetNode<Sprite2D>("weapon/Sprite2D");
             weaponBody = GetNode<Area2D>("weapon/");
@@ -79,7 +80,7 @@ public partial class Player : CharacterBody2D
     }
 
     public override async void _PhysicsProcess(double delta)
-    {   
+    {
         if (IsInstanceValid(this))
         {
             GlobalVar.Instance.playerPos = GlobalPosition;
@@ -89,6 +90,12 @@ public partial class Player : CharacterBody2D
             if (Input.IsActionJustPressed("giveSword"))
             {
                 GlobalVar.Instance.HasSword = true;
+
+            }
+
+            if (Input.IsActionJustPressed("giveBow"))
+            {
+                GlobalVar.Instance.HasBow = true;
 
             }
 
@@ -140,41 +147,44 @@ public partial class Player : CharacterBody2D
 
             Velocity = playerVelocity;
 
-            
+
             var collision = MoveAndCollide(Velocity * (float)delta);
-            if(!Iframes){
-            if (collision != null)
+            if (!Iframes)
             {
-                // Get the collider object
-                Node collider = (Node)collision.GetCollider();
-
-                if (collider is PhysicsBody2D body)
+                if (collision != null)
                 {
-                    // Retrieve the collider's layer
-                    int collisionLayer = (int)body.CollisionLayer;
+                    // Get the collider object
+                    Node collider = (Node)collision.GetCollider();
 
-
-                    if ((collisionLayer & (1 << 1)) != 0) // Layer 2 corresponds to bit 1 Dit is een Enemy
+                    if (collider is PhysicsBody2D body)
                     {
-                        KnockBack(collision.GetPosition());
-                        TakeDamage();
-                        if(body.IsInGroup("Projectile")){
-                            GD.Print("hit is een projectile");
-                            body.QueueFree();
+                        // Retrieve the collider's layer
+                        int collisionLayer = (int)body.CollisionLayer;
+
+
+                        if ((collisionLayer & (1 << 1)) != 0) // Layer 2 corresponds to bit 1 Dit is een Enemy
+                        {
+                            KnockBack(collision.GetPosition());
+                            TakeDamage();
+                            if (body.IsInGroup("Projectile"))
+                            {
+                                GD.Print("hit is een projectile");
+                                body.QueueFree();
+                            }
+                            Iframes = true;
+                            iframetimer.Start();
+
+
                         }
-                        Iframes = true;
-                        iframetimer.Start();
+                        else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 
+                        {
+                            GD.Print("Collided with something on Layer 3!");
+                        }
 
 
                     }
-                    else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 
-                    {
-                        GD.Print("Collided with something on Layer 3!");
-                    }
-
-
                 }
-            }}
+            }
 
 
             if (Velocity == Vector2.Zero)
@@ -182,9 +192,9 @@ public partial class Player : CharacterBody2D
                 animatedSprite2D.Pause();
             }
         }
-        
 
-      
+
+
     }
 
 
@@ -214,6 +224,16 @@ public partial class Player : CharacterBody2D
             await Attack(facing); // Use the last known facing direction
             weaponSprite.Hide();
             return;
+        }
+
+        if (Input.IsActionJustPressed("BowAttack") && GlobalVar.Instance.HasBow)
+        {
+            await AttackBow(); // Use the last known facing direction
+            return;
+        }
+        else if (Input.IsActionJustPressed("BowAttack") && !GlobalVar.Instance.HasBow)
+        {
+            GD.Print("nono bow");
         }
 
         // Handle movement input
@@ -360,6 +380,52 @@ public partial class Player : CharacterBody2D
         GD.Print("in Attack");
     }
 
+    async Task AttackBow()
+    {
+        isAttacking = true;
+
+        shootProjectile();
+        while (animatedSprite2D.IsPlaying())
+        {
+            await Task.Delay(100); // This checks every 50ms if the animation is still playing
+        }
+
+        // Stop movement
+        playerVelocity = Vector2.Zero;
+        Velocity = Vector2.Zero;
+        while (animatedSprite2D.IsPlaying())
+        {
+            await Task.Delay(50); // This checks every 50ms if the animation is still playing
+        }
+
+        if (facing == FacingDirection.left)
+        {
+            animatedSprite2D.FlipH = true;
+            animatedSprite2D.Play("move_sideways");
+        }
+        else if (facing == FacingDirection.up)
+        {
+            animatedSprite2D.FlipH = false;
+            animatedSprite2D.Play("move_up");
+        }
+        else if (facing == FacingDirection.right)
+        {
+            animatedSprite2D.FlipH = false;
+            animatedSprite2D.Play("move_sideways");
+        }
+        else if (facing == FacingDirection.down)
+        {
+            animatedSprite2D.FlipH = false;
+            animatedSprite2D.Play("move_down");
+        }
+
+
+        animatedSprite2D.Frame = 0;
+        animatedSprite2D.Pause();
+        isAttacking = false;
+        GD.Print("in Attack");
+    }
+
     async Task changeSwordPosition(float x, float y, float Rotation)
     {
         weaponBody.Position = new Vector2(x, y);
@@ -400,22 +466,60 @@ public partial class Player : CharacterBody2D
             Node sceneInstance = SwordScenes.Instantiate();
             this.AddChild(sceneInstance);
         }
-        if (hasBow)
-        {
-            GD.Print("hasSword");
-            PackedScene SwordScenes = (PackedScene)GD.Load("res://scenes/weapons/arrow.tscn");
-            Node sceneInstance = SwordScenes.Instantiate();
-            this.AddChild(sceneInstance);
-        }
 
     }
-    void IframeTimerTimeout(){
+    void IframeTimerTimeout()
+    {
         Iframes = false;
         GD.Print("iframes op false");
     }
 
-    void HitTimerTimeout(){
+    void HitTimerTimeout()
+    {
         animatedSprite2D.Modulate = new Color("FFFFFF");
     }
- 
+
+    public async Task shootProjectile()
+{
+    GD.Print("shoot proj");
+    Node projSceneInstance = projScene.Instantiate();
+
+    if (projSceneInstance is Projectile projectile)
+    {
+        GD.Print("proj is proj");
+
+        // Set direction, position, and rotation based on facing
+        switch (facing)
+        {
+            case FacingDirection.up:
+                projectile.dir = new Vector2(0, -1);
+                projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
+                projectile.Rotation = Mathf.DegToRad(-90);
+                break;
+            case FacingDirection.down:
+                projectile.dir = new Vector2(0, 1);
+                projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
+                projectile.Rotation = Mathf.DegToRad(90);
+                break;
+            case FacingDirection.left:
+                projectile.dir = new Vector2(-1, 0);
+                projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
+                projectile.Rotation = Mathf.DegToRad(180);
+                break;
+            case FacingDirection.right:
+                projectile.dir = new Vector2(1, 0);
+                projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
+                projectile.Rotation = Mathf.DegToRad(0);
+                break;
+        }
+
+        GD.Print($"Projectile GlobalPosition: {projectile.GlobalPosition},player GlobalPosition: {GlobalPosition} Facing: {facing}");
+
+        // Add to the scene tree
+        GetParent().AddChild(projSceneInstance); // Add to player's parent for correct global positioning
+    }
 }
+
+
+}
+

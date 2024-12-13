@@ -17,6 +17,7 @@ public partial class GlobalVar : Node
 	public bool Hasitemspace{ get; set; }
 	public string[] Rupounds;
 	public bool HasSword{ get; set; }
+	public bool HasBow{ get; set; }
 	public bool HasGreenKey{ get; set; }
 	public bool OpenendGreenDoor{ get; set; }
 	public bool HasRedKey{ get; set; }

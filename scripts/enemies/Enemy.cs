@@ -46,6 +46,20 @@ public abstract partial class Enemy : CharacterBody2D
 	public void CollisionCheck(double Delta)
 	{
 		var collision = MoveAndCollide(Velocity * (float)Delta);
+		if (collision != null)
+		{
+			Node collider = (Node)collision.GetCollider();
+
+			if (collider is PhysicsBody2D body)
+			{
+				int collisionLayer = (int)body.CollisionLayer;
+
+				if ((collisionLayer & (1 << 7)) != 0) // Check if it's a weapon (Layer 4)
+				{
+					TakeDamage(100);
+				}
+			}
+		}
 
 	}
 	public virtual async Task Movement() //randomised movement
@@ -205,7 +219,7 @@ public abstract partial class Enemy : CharacterBody2D
 
 
 			}
-			AddSibling(projSceneInstance);
+			AddChild(projSceneInstance);
 		}
 
 	}

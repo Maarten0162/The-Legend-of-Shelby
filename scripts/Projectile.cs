@@ -6,11 +6,11 @@ public partial class Projectile : CharacterBody2D
 {
 	public const float Speed = 300.0f;
 	[Export] int seconds;
-	
+
 	public Vector2 dir;
 	public Projectile(Vector2 direction)
 	{
-		dir = direction;	
+		dir = direction;
 	}
 
 	public Projectile()
@@ -18,23 +18,26 @@ public partial class Projectile : CharacterBody2D
 	}
 
 	public override void _Ready()
-	{	AddToGroup("Projectile");
+	{
+		AddToGroup("Projectile");
+
+		// Ensure this line does not overwrite what is already set			
+
 		killProjectiles();
-		
 	}
+
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Velocity = dir * 800;
 		MoveAndSlide();
 	}
-	
+
 	private async void killProjectiles()
 	{
 		GD.Print("in kilproj");
 		for (int i = 1; i < seconds; i++)
 		{
-			GD.Print("in loop");
 			await GlobalFunc.Instance.WaitForSeconds(1);
 		}
 		GD.Print("kill proj");
