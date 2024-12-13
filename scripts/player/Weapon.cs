@@ -56,7 +56,11 @@ public partial class Weapon : Area2D
 	public void OnBodyEntered(Node body) 
 	{
 		GD.Print("entererd body");
-		if (body is Enemy colider)
+
+		if (GlobalVar.Instance.GameEnd)
+		{
+
+		}else if (body is Enemy colider)
 		{
 			GD.Print("enemy colider");
 			int collisionLayer = (int)colider.CollisionLayer;

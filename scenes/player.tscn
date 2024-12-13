@@ -166,6 +166,7 @@ GridSize = 16
 [node name="AnimatedPlayer" type="AnimatedSprite2D" parent="."]
 position = Vector2(-0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_kp4tc")
+animation = &"move_up"
 
 [node name="CollisionPlayer" type="CollisionShape2D" parent="."]
 z_index = 1

@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://scripts/ui/CurrencyUi.cs" id="9_f078v"]
 [ext_resource type="Script" path="res://scripts/ui/HealthUi.cs" id="9_xg4ky"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i80jm"]
 texture = ExtResource("1_2di6b")
 0:0/0 = 0
 1:0/0 = 0
@@ -61,7 +61,7 @@ texture = ExtResource("1_2di6b")
 5:4/0 = 0
 6:4/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bcwgn"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1yph"]
 texture = ExtResource("2_a5ycx")
 0:0/0 = 0
 1:0/0 = 0
@@ -69,7 +69,7 @@ texture = ExtResource("2_a5ycx")
 2:0/0 = 0
 3:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtukm"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4uvl2"]
 texture = ExtResource("3_bcvub")
 0:0/0 = 0
 1:0/0 = 0
@@ -81,7 +81,7 @@ texture = ExtResource("3_bcvub")
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ih81m"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_idvup"]
 texture = ExtResource("4_wpemh")
 0:0/0 = 0
 1:0/0 = 0
@@ -130,7 +130,7 @@ texture = ExtResource("4_wpemh")
 5:4/0 = 0
 6:4/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r7ays"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_em6on"]
 texture = ExtResource("5_ap5wb")
 0:0/0 = 0
 1:0/0 = 0
@@ -240,7 +240,7 @@ texture = ExtResource("5_ap5wb")
 1:16/0 = 0
 2:16/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w1hje"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qf1bj"]
 texture = ExtResource("6_xikgt")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -283,15 +283,15 @@ texture = ExtResource("6_xikgt")
 [sub_resource type="TileSet" id="TileSet_fy7to"]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_1m36e")
-sources/1 = SubResource("TileSetAtlasSource_bcwgn")
-sources/2 = SubResource("TileSetAtlasSource_vtukm")
-sources/3 = SubResource("TileSetAtlasSource_ih81m")
-sources/5 = SubResource("TileSetAtlasSource_r7ays")
-sources/6 = SubResource("TileSetAtlasSource_w1hje")
+sources/0 = SubResource("TileSetAtlasSource_i80jm")
+sources/1 = SubResource("TileSetAtlasSource_x1yph")
+sources/2 = SubResource("TileSetAtlasSource_4uvl2")
+sources/3 = SubResource("TileSetAtlasSource_idvup")
+sources/5 = SubResource("TileSetAtlasSource_em6on")
+sources/6 = SubResource("TileSetAtlasSource_qf1bj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5pmp"]
-size = Vector2(107, 12)
+size = Vector2(398, 151)
 
 [node name="TemplateRoom" type="Node2D"]
 script = ExtResource("1_n1j4d")
@@ -353,6 +353,7 @@ offset_bottom = 120.0
 theme_override_font_sizes/font_size = 40
 text = "HIER"
 script = ExtResource("9_f078v")
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D3" type="Camera2D" parent="."]
 position = Vector2(217, -52)

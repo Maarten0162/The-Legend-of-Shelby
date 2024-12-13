@@ -23,6 +23,8 @@ public partial class GlobalVar : Node
 	public bool HasRedKey{ get; set; }
 	public bool OpenendRedDoor{ get; set; }
 
+	public bool GameEnd{ get; set; }
+
 
 	//settings
 	public int Volume{ get; set; }
