@@ -180,6 +180,27 @@ public partial class Player : CharacterBody2D
                         {
                             GD.Print("Collided with something on Layer 3!");
                         }
+                        else if ((collisionLayer & (1 << 9)) != 0)
+                        {
+                            // Adjust path to get the block node correctly
+                            var block = GetNodeOrNull<Push>("../CharacterBody2D"); // Adjust the path if necessary
+
+                            // Make sure the block exists
+                            if (block != null)
+                            {
+                                // Check if the velocity is non-zero before applying push
+                                if (Velocity.LengthSquared() > 0.01f) // Only push if the velocity is significant
+                                {
+                                    // Normalize velocity and apply push to the block
+                                    block.Pushh(Velocity.Normalized());
+                                }
+                            }
+                            else
+                            {
+                                GD.Print("Block not found!");
+                            }
+                        }
+
 
 
                     }
@@ -480,45 +501,45 @@ public partial class Player : CharacterBody2D
     }
 
     public async Task shootProjectile()
-{
-    GD.Print("shoot proj");
-    Node projSceneInstance = projScene.Instantiate();
-
-    if (projSceneInstance is Projectile projectile)
     {
-        GD.Print("proj is proj");
+        GD.Print("shoot proj");
+        Node projSceneInstance = projScene.Instantiate();
 
-        // Set direction, position, and rotation based on facing
-        switch (facing)
+        if (projSceneInstance is Projectile projectile)
         {
-            case FacingDirection.up:
-                projectile.dir = new Vector2(0, -1);
-                projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
-                projectile.Rotation = Mathf.DegToRad(-90);
-                break;
-            case FacingDirection.down:
-                projectile.dir = new Vector2(0, 1);
-                projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
-                projectile.Rotation = Mathf.DegToRad(90);
-                break;
-            case FacingDirection.left:
-                projectile.dir = new Vector2(-1, 0);
-                projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
-                projectile.Rotation = Mathf.DegToRad(180);
-                break;
-            case FacingDirection.right:
-                projectile.dir = new Vector2(1, 0);
-                projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
-                projectile.Rotation = Mathf.DegToRad(0);
-                break;
+            GD.Print("proj is proj");
+
+            // Set direction, position, and rotation based on facing
+            switch (facing)
+            {
+                case FacingDirection.up:
+                    projectile.dir = new Vector2(0, -1);
+                    projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
+                    projectile.Rotation = Mathf.DegToRad(-90);
+                    break;
+                case FacingDirection.down:
+                    projectile.dir = new Vector2(0, 1);
+                    projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
+                    projectile.Rotation = Mathf.DegToRad(90);
+                    break;
+                case FacingDirection.left:
+                    projectile.dir = new Vector2(-1, 0);
+                    projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
+                    projectile.Rotation = Mathf.DegToRad(180);
+                    break;
+                case FacingDirection.right:
+                    projectile.dir = new Vector2(1, 0);
+                    projectile.GlobalPosition = GlobalPosition - new Vector2(643, 487);
+                    projectile.Rotation = Mathf.DegToRad(0);
+                    break;
+            }
+
+            GD.Print($"Projectile GlobalPosition: {projectile.GlobalPosition},player GlobalPosition: {GlobalPosition} Facing: {facing}");
+
+            // Add to the scene tree
+            GetParent().AddChild(projSceneInstance); // Add to player's parent for correct global positioning
         }
-
-        GD.Print($"Projectile GlobalPosition: {projectile.GlobalPosition},player GlobalPosition: {GlobalPosition} Facing: {facing}");
-
-        // Add to the scene tree
-        GetParent().AddChild(projSceneInstance); // Add to player's parent for correct global positioning
     }
-}
 
 
 }

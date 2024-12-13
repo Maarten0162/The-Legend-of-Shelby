@@ -327,7 +327,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Y-Sort" instance=ExtResource("8_tklkw")]
 z_index = 0
-position = Vector2(-2, 2)
+position = Vector2(490, -151)
 
 [node name="Camera2D3" type="Camera2D" parent="Y-Sort/Player"]
 position = Vector2(0.599976, 2.4)
