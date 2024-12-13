@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://choca707wkgh4"]
+[gd_scene load_steps=26 format=4 uid="uid://choca707wkgh4"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_3s8gk"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_wqdt8"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dq2r0aoq4ggfv" path="res://assets/Sprites/Green_Key.png" id="14_2xa0b"]
 [ext_resource type="Texture2D" uid="uid://deinxrmnlmydg" path="res://assets/Sprites/Red_Key.png" id="15_27jf1"]
 [ext_resource type="Texture2D" uid="uid://bmab1v0a8iu8" path="res://assets/Sprites/Yellow_Key.png" id="16_g56q4"]
+[ext_resource type="PackedScene" uid="uid://d14b6vr76mny4" path="res://scenes/Shop.tscn" id="17_7s0fk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
 texture = ExtResource("2_wqdt8")
@@ -362,10 +363,10 @@ text = "HIER"
 script = ExtResource("12_njgma")
 
 [node name="Keys" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = 1.0
-offset_top = 140.0
-offset_right = 41.0
-offset_bottom = 180.0
+offset_left = 15.0
+offset_top = 160.0
+offset_right = 55.0
+offset_bottom = 200.0
 scale = Vector2(4.67655, 1.87062)
 script = ExtResource("13_bjo1u")
 
@@ -388,5 +389,8 @@ texture = ExtResource("16_g56q4")
 position = Vector2(217, -52)
 scale = Vector2(4.19857, 4.68149)
 zoom = Vector2(1.5, 1.5)
+
+[node name="Shop" parent="." instance=ExtResource("17_7s0fk")]
+position = Vector2(197, -78)
 
 [connection signal="body_entered" from="Room6south" to="Room6south" method="_on_body_entered"]
