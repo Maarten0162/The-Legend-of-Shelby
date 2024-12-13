@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://csvhphvxfokyk"]
+[gd_scene load_steps=51 format=4 uid="uid://bkoxoivhpenng"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_spi11"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_mix5t"]
@@ -497,6 +497,42 @@ tracks/3/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Y-Sort/CharacterBody2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Y-Sort/Player:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Area2D/weapon:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_enbxk"]
 resource_name = "ani_end"
@@ -537,6 +573,42 @@ tracks/2/keys = {
 "update": 0,
 "values": [1.0, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Y-Sort/CharacterBody2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Y-Sort/Player:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area2D/weapon:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mpeaq"]
 _data = {
@@ -548,7 +620,7 @@ _data = {
 size = Vector2(398, 151)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iadoo"]
-size = Vector2(145, 145)
+size = Vector2(116, 145)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j0d8"]
 size = Vector2(253, 75)
@@ -662,6 +734,7 @@ tile_map_data = PackedByteArray("AAD///v/BgACAAAAAAD///z/BgACAAEAAAABAPv/BgACAAA
 tile_set = SubResource("TileSet_ee0r5")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Y-Sort"]
+visible = false
 position = Vector2(-110, 308)
 scale = Vector2(5, 5)
 
@@ -669,7 +742,8 @@ scale = Vector2(5, 5)
 position = Vector2(-0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_wcxo8")
 animation = &"move_up"
-frame_progress = 0.0880541
+autoplay = "move_up"
+frame_progress = 0.190825
 speed_scale = 0.0
 
 [node name="CollisionPlayer" type="CollisionShape2D" parent="Y-Sort/CharacterBody2D"]
@@ -743,10 +817,11 @@ position = Vector2(370, -9)
 script = ExtResource("16_tkljg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(33.5, 62.5)
+position = Vector2(48, 62.5)
 shape = SubResource("RectangleShape2D_iadoo")
 
 [node name="weapon" parent="Area2D" instance=ExtResource("14_s84ur")]
+visible = false
 position = Vector2(31, 53)
 rotation = 1.5708
 scale = Vector2(6, 6)
@@ -757,6 +832,7 @@ script = ExtResource("16_tkljg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trigger"]
 position = Vector2(-107, 310)
 shape = SubResource("RectangleShape2D_4j0d8")
+disabled = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
