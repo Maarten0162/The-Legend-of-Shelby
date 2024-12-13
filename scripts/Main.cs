@@ -69,10 +69,17 @@ public partial class Main : Node2D
 				{
 					case "Room1north":
 						player.GlobalPosition = GetNode<Area2D>("Room2south").GlobalPosition;
+						if(GlobalVar.Instance.OpenendGreenDoor){
+							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
+						}
 						aniPlayer.Play("swipe_up");
 						break;
 						case "Room4north":
 						player.GlobalPosition = GetNode<Area2D>("Room5south").GlobalPosition;
+						aniPlayer.Play("swipe_up");
+						break;
+						case "Room2north":
+						player.GlobalPosition = GetNode<Area2D>("Room6south").GlobalPosition;
 						aniPlayer.Play("swipe_up");
 						break;
 
@@ -89,10 +96,20 @@ public partial class Main : Node2D
 				{
 					case "Room2south":
 						player.GlobalPosition = GetNode<Area2D>("Room1north").GlobalPosition;
+						if(GlobalVar.Instance.OpenendRedDoor){
+							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
+						}
 						aniPlayer.Play("swipe_down");
 						break;
 						case "Room5south":
 						player.GlobalPosition = GetNode<Area2D>("Room4north").GlobalPosition;
+						aniPlayer.Play("swipe_down");
+						break;
+						case "Room6south":
+						player.GlobalPosition = GetNode<Area2D>("Room2north").GlobalPosition;
+						if(GlobalVar.Instance.OpenendGreenDoor){
+							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
+						}
 						aniPlayer.Play("swipe_down");
 						break;
 						
@@ -112,10 +129,16 @@ public partial class Main : Node2D
 						break;
 					case "Room3west1":
 						player.GlobalPosition = GetNode<Area2D>("Room2east1").GlobalPosition;
+						if(GlobalVar.Instance.OpenendGreenDoor){
+							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
+						}
 						aniPlayer.Play("swipe_left");
 						break;
 					case "Room3west2":
 						player.GlobalPosition = GetNode<Area2D>("Room2east2").GlobalPosition;
+						if(GlobalVar.Instance.OpenendGreenDoor){
+							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
+						}
 						aniPlayer.Play("swipe_left");
 						break;
 				}
@@ -137,6 +160,9 @@ public partial class Main : Node2D
 						break;
 					case "Room4east":
 						player.GlobalPosition = GetNode<Area2D>("Room2west").GlobalPosition;
+						if(GlobalVar.Instance.OpenendGreenDoor){
+							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
+						}
 						aniPlayer.Play("swipe_right");
 						break;
 
@@ -149,6 +175,9 @@ public partial class Main : Node2D
 			{
 				case "Dungeon_1":
 					player.GlobalPosition = GetNode<Area2D>("Room1Treestump").GlobalPosition;
+					if(GlobalVar.Instance.OpenendRedDoor){
+							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
+						}
 					aniPlayer.Play("swipe_down");
 					break;
 				case "Room1Treestump":

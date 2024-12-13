@@ -17,6 +17,10 @@ public partial class GlobalVar : Node
 	public bool Hasitemspace{ get; set; }
 	public string[] Rupounds;
 	public bool HasSword{ get; set; }
+	public bool HasGreenKey{ get; set; }
+	public bool OpenendGreenDoor{ get; set; }
+	public bool HasRedKey{ get; set; }
+	public bool OpenendRedDoor{ get; set; }
 
 
 	//settings
@@ -37,10 +41,15 @@ public partial class GlobalVar : Node
 
 	public override void _Ready()
 	{	Keys = new();
+
 		if (Instance == null)
         {
             Instance = this; 
         }
+		HasGreenKey = false;
+		OpenendGreenDoor = false;
+		HasRedKey = false;
+		OpenendRedDoor = false;
 
 		Volume = 100;
 		// Resolution = new Vector2I(1920, 1080);//settings get saved with the otherstuff, make a separate file
