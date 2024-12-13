@@ -23,6 +23,7 @@ public partial class GlobalVar : Node
 	public bool HasRedKey{ get; set; }
 	public bool OpenendRedDoor{ get; set; }
 	public bool KilledHydra{ get; set; }
+	public bool OpenendHydraDoor{ get; set; }
 
 
 	//settings
@@ -53,6 +54,7 @@ public partial class GlobalVar : Node
 		HasRedKey = false;
 		OpenendRedDoor = false;
 		KilledHydra = false;
+		OpenendHydraDoor = false;
 		Volume = 100;
 		// Resolution = new Vector2I(1920, 1080);//settings get saved with the otherstuff, make a separate file
 		// DisplayServer.WindowSetSize(Resolution);
