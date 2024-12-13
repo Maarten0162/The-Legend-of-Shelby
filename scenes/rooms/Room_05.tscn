@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://ci5euaj5dbvmp"]
+[gd_scene load_steps=25 format=4 uid="uid://ci5euaj5dbvmp"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_cnhur"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_vo87b"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://scripts/ui/HealthUi.cs" id="11_i7slt"]
 [ext_resource type="Script" path="res://scripts/ui/CurrencyUi.cs" id="12_ok107"]
 [ext_resource type="Script" path="res://scripts/ui/KeyUi.cs" id="13_2n3q2"]
-[ext_resource type="PackedScene" uid="uid://c0x4ooswiy0gq" path="res://scenes/Boss.tscn" id="13_uolkb"]
 [ext_resource type="Texture2D" uid="uid://dq2r0aoq4ggfv" path="res://assets/Sprites/Green_Key.png" id="14_ww8tj"]
 [ext_resource type="Texture2D" uid="uid://deinxrmnlmydg" path="res://assets/Sprites/Red_Key.png" id="15_ou1wo"]
 [ext_resource type="Texture2D" uid="uid://bmab1v0a8iu8" path="res://assets/Sprites/Yellow_Key.png" id="16_f1v4a"]
@@ -403,8 +402,15 @@ position = Vector2(197, 31)
 scale = Vector2(4.19857, 4.68149)
 zoom = Vector2(1.5, 1.5)
 
-[node name="hydra" parent="." instance=ExtResource("13_uolkb")]
-position = Vector2(808, 13)
-Health = 300
+[node name="Room5north" type="Area2D" parent="."]
+position = Vector2(48, -157)
+collision_layer = 512
+script = ExtResource("9_6my4b")
+Target = "Boss Room"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room5north"]
+position = Vector2(-5.00003, -92)
+shape = SubResource("RectangleShape2D_a5pmp")
 
 [connection signal="body_entered" from="Room5south" to="Room5south" method="_on_body_entered"]
+[connection signal="body_entered" from="Room5north" to="Room5north" method="_on_body_entered"]

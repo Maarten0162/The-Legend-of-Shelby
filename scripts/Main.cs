@@ -26,101 +26,108 @@ public partial class Main : Node2D
 		player = GetNode<Player>("Y-Sort/Player");
 		GlobalVar.Instance.roomPath = this.SceneFilePath;
 		SoundFx.instance.changeMusic("Overworld");
-		
+
 
 		Node transitionSceneInstance = transitionScene.Instantiate();
-            
+
 		// Add the instance as a child of the current node
-		AddChild(transitionSceneInstance);	
+		AddChild(transitionSceneInstance);
 
 
 
-		
+
 		aniPlayer = GetNode<AnimationPlayer>("TransitionCanvasLayer/ColorRect/AnimationPlayer");
 		aniRect = GetNode<ColorRect>("TransitionCanvasLayer/ColorRect");
-		
+
 		aniRect.Show();
-	
 
 
 
 
 
-		
+
+
 		Node settingsSceneInstance = settingsScene.Instantiate();
-            
-            // Add the instance as a child of the current node
-        AddChild(settingsSceneInstance);
-		
-		
+
+		// Add the instance as a child of the current node
+		AddChild(settingsSceneInstance);
+
+
 
 
 
 		if (GlobalVar.Instance.exit != null)
 		{
-			
+
 			if (GlobalVar.Instance.exit.Contains("north")) // switch voor zuid
 			{
-				
-				
+
+
 
 				GD.Print("in north");
 				switch (GlobalVar.Instance.exit)
 				{
 					case "Room1north":
 						player.GlobalPosition = GetNode<Area2D>("Room2south").GlobalPosition;
-						if(GlobalVar.Instance.OpenendGreenDoor){
+						if (GlobalVar.Instance.OpenendGreenDoor)
+						{
 							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
 						}
 						aniPlayer.Play("swipe_up");
 						break;
-						case "Room4north":
+					case "Room4north":
 						player.GlobalPosition = GetNode<Area2D>("Room5south").GlobalPosition;
 						aniPlayer.Play("swipe_up");
 						break;
-						case "Room2north":
+					case "Room2north":
 						player.GlobalPosition = GetNode<Area2D>("Room6south").GlobalPosition;
+						aniPlayer.Play("swipe_up");
+						break;
+					case "Room5north":
+						player.GlobalPosition = GetNode<Area2D>("Bossroomsouth").GlobalPosition;
 						aniPlayer.Play("swipe_up");
 						break;
 
 
 				}
 				await GlobalFunc.Instance.WaitForSeconds(0.25f);
-				
+
 
 			}
 			else if (GlobalVar.Instance.exit.Contains("south"))
 			{ // switch voor north
-				
+
 				switch (GlobalVar.Instance.exit)
 				{
 					case "Room2south":
 						player.GlobalPosition = GetNode<Area2D>("Room1north").GlobalPosition;
-						if(GlobalVar.Instance.OpenendRedDoor){
+						if (GlobalVar.Instance.OpenendRedDoor)
+						{
 							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
 						}
 						aniPlayer.Play("swipe_down");
 						break;
-						case "Room5south":
+					case "Room5south":
 						player.GlobalPosition = GetNode<Area2D>("Room4north").GlobalPosition;
 						aniPlayer.Play("swipe_down");
 						break;
-						case "Room6south":
+					case "Room6south":
 						player.GlobalPosition = GetNode<Area2D>("Room2north").GlobalPosition;
-						if(GlobalVar.Instance.OpenendGreenDoor){
+						if (GlobalVar.Instance.OpenendGreenDoor)
+						{
 							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
 						}
 						aniPlayer.Play("swipe_down");
 						break;
-						
+
 
 				}
 				await GlobalFunc.Instance.WaitForSeconds(0.25f);
 			}
 			else if (GlobalVar.Instance.exit.Contains("west")) // switch voor east
-			{		
+			{
 				GD.Print("in west");
-				
+
 				switch (GlobalVar.Instance.exit)
 				{
 					case "Room2west":
@@ -129,14 +136,16 @@ public partial class Main : Node2D
 						break;
 					case "Room3west1":
 						player.GlobalPosition = GetNode<Area2D>("Room2east1").GlobalPosition;
-						if(GlobalVar.Instance.OpenendGreenDoor){
+						if (GlobalVar.Instance.OpenendGreenDoor)
+						{
 							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
 						}
 						aniPlayer.Play("swipe_left");
 						break;
 					case "Room3west2":
 						player.GlobalPosition = GetNode<Area2D>("Room2east2").GlobalPosition;
-						if(GlobalVar.Instance.OpenendGreenDoor){
+						if (GlobalVar.Instance.OpenendGreenDoor)
+						{
 							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
 						}
 						aniPlayer.Play("swipe_left");
@@ -155,12 +164,13 @@ public partial class Main : Node2D
 						aniPlayer.Play("swipe_right");
 						break;
 					case "Room2east2":
-						player.GlobalPosition = GetNode<Area2D>("Room3west2").GlobalPosition;						
+						player.GlobalPosition = GetNode<Area2D>("Room3west2").GlobalPosition;
 						aniPlayer.Play("swipe_right");
 						break;
 					case "Room4east":
 						player.GlobalPosition = GetNode<Area2D>("Room2west").GlobalPosition;
-						if(GlobalVar.Instance.OpenendGreenDoor){
+						if (GlobalVar.Instance.OpenendGreenDoor)
+						{
 							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
 						}
 						aniPlayer.Play("swipe_right");
@@ -172,21 +182,26 @@ public partial class Main : Node2D
 
 			}
 			else switch (GlobalVar.Instance.exit)
-			{
-				case "Dungeon_1":
-					player.GlobalPosition = GetNode<Area2D>("Room1Treestump").GlobalPosition;
-					if(GlobalVar.Instance.OpenendRedDoor){
+				{
+					case "Dungeon_1":
+						player.GlobalPosition = GetNode<Area2D>("Room1Treestump").GlobalPosition;
+						if (GlobalVar.Instance.OpenendRedDoor)
+						{
 							GetNode<Area2D>("Y-Sort/Area2D").QueueFree();
 						}
-					aniPlayer.Play("swipe_down");
-					break;
-				case "Room1Treestump":
-					player.GlobalPosition = GetNode<Area2D>("Dungeon_1").GlobalPosition;
-					aniPlayer.Play("swipe_up");
-					break;
-			}
+						aniPlayer.Play("swipe_down");
+						break;
+					case "Room1Treestump":
+						player.GlobalPosition = GetNode<Area2D>("Dungeon_1").GlobalPosition;
+						aniPlayer.Play("swipe_up");
+						break;
+					case "Bossroomsouth":
+						player.GlobalPosition = GetNode<Area2D>("room5north").GlobalPosition;
+						aniPlayer.Play("swipe_down");
+						break;
+				}
 			await GlobalFunc.Instance.WaitForSeconds(0.25f);
-			
+
 
 
 
@@ -198,13 +213,16 @@ public partial class Main : Node2D
 		aniRect.Hide();
 		ui.Show();
 
-		
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		posLabel.Text = "position: " + player.GlobalPosition;
+		if(GetNode<Node2D>(".").Name == "BossRoom" && GlobalVar.Instance.KilledHydra){
+			
+		}
 
 
 	}

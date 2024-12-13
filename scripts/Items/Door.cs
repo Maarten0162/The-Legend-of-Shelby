@@ -13,5 +13,9 @@ public partial class Door : Node
              GlobalVar.Instance.OpenendRedDoor = true;
             QueueFree();
         }
+        if(GlobalVar.Instance.KilledHydra && Key == "Boss"){
+             GlobalVar.Instance.OpenendHydraDoor = true;
+            QueueFree();
+        }
     }
 }
