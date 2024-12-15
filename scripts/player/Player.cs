@@ -176,33 +176,7 @@ public partial class Player : CharacterBody2D
 
 
                         }
-                        else if ((collisionLayer & (1 << 2)) != 0) // Layer 3 
-                        {
-                            GD.Print("Collided with something on Layer 3!");
-                        }
-                        else if ((collisionLayer & (1 << 9)) != 0)
-                        {
-                            // Adjust path to get the block node correctly
-                            var block = GetNodeOrNull<Push>("../CharacterBody2D"); // Adjust the path if necessary
-
-                            // Make sure the block exists
-                            if (block != null)
-                            {
-                                // Check if the velocity is non-zero before applying push
-                                if (Velocity.LengthSquared() > 0.01f) // Only push if the velocity is significant
-                                {
-                                    // Normalize velocity and apply push to the block
-                                    block.Pushh(Velocity.Normalized());
-                                }
-                            }
-                            else
-                            {
-                                GD.Print("Block not found!");
-                            }
-                        }
-
-
-
+                       
                     }
                 }
             }

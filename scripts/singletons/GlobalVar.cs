@@ -24,6 +24,7 @@ public partial class GlobalVar : Node
 	public bool OpenendRedDoor{ get; set; }
 	public bool KilledHydra{ get; set; }
 	public bool OpenendHydraDoor{ get; set; }
+	public bool PuzzleSolved{ get; set; }
 
 	public bool GameEnd{ get; set; }
 
