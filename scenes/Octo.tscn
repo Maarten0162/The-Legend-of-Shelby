@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://c3me4c08gnnua"]
+
+[ext_resource type="Script" path="res://scripts/enemies/Moblin.cs" id="1_0be4p"]
+[ext_resource type="Texture2D" uid="uid://cbvhji5p8bao7" path="res://assets/LOZ remake/Monsters/Octorok_Blue.png" id="2_6kvio"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ht2ng"]
+size = Vector2(14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk623"]
+atlas = ExtResource("2_6kvio")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xr24"]
+atlas = ExtResource("2_6kvio")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r67ou"]
+atlas = ExtResource("2_6kvio")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac3rd"]
+atlas = ExtResource("2_6kvio")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eooeh"]
+atlas = ExtResource("2_6kvio")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esiw2"]
+atlas = ExtResource("2_6kvio")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kbqik"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk623")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xr24")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r67ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac3rd")
+}],
+"loop": true,
+"name": &"walk_sideways",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eooeh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esiw2")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[node name="Octorock" type="CharacterBody2D"]
+z_index = 1
+position = Vector2(-1, 0)
+scale = Vector2(5, 5)
+collision_layer = 2
+collision_mask = 141
+script = ExtResource("1_0be4p")
+Waittime = 1.0
+Speed = 100
+
+[node name="CollisionEnemy" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ht2ng")
+
+[node name="AnimatedEnemy" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kbqik")
+animation = &"walk_sideways"

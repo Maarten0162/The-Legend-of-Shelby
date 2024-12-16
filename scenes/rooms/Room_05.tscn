@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://ci5euaj5dbvmp"]
+[gd_scene load_steps=33 format=4 uid="uid://ci5euaj5dbvmp"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_cnhur"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_vo87b"]
@@ -6,13 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://vwxawogfv7om" path="res://assets/LOZ remake/Tileset/TreeStump.png" id="4_qlgpq"]
 [ext_resource type="Texture2D" uid="uid://cslayjffpn7sp" path="res://assets/LOZ remake/Tileset/TilesetWithoutBackgrounds.png" id="5_jn46o"]
 [ext_resource type="Texture2D" uid="uid://dgarn36l35ruo" path="res://assets/LOZ remake/Tileset/tileset-world.png" id="6_87vtf"]
+[ext_resource type="Texture2D" uid="uid://w2dv2fe67vfh" path="res://assets/LOZ remake/Tileset/Openend Boss Door.png" id="6_drnjg"]
 [ext_resource type="Texture2D" uid="uid://bk8a6jfaao5lf" path="res://assets/LOZ remake/Tileset/dungeon-tileset.png" id="7_5p878"]
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="8_ws2c2"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="9_6my4b"]
-[ext_resource type="PackedScene" path="res://scenes/block.tscn" id="10_0rayt"]
+[ext_resource type="PackedScene" uid="uid://br05sfeb1oh15" path="res://scenes/block.tscn" id="10_0rayt"]
 [ext_resource type="Script" path="res://scripts/puzzle.cs" id="10_8dc38"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="10_mxiou"]
+[ext_resource type="Script" path="res://scripts/Items/Door.cs" id="10_pydq3"]
 [ext_resource type="Script" path="res://scripts/ui/HealthUi.cs" id="11_i7slt"]
+[ext_resource type="Texture2D" uid="uid://bku2ur7qafbfi" path="res://assets/LOZ remake/Tileset/Locked Boss Door.png" id="11_v8v7v"]
 [ext_resource type="Script" path="res://scripts/ui/CurrencyUi.cs" id="12_ok107"]
 [ext_resource type="Script" path="res://scripts/ui/KeyUi.cs" id="13_2n3q2"]
 [ext_resource type="Texture2D" uid="uid://dq2r0aoq4ggfv" path="res://assets/Sprites/Green_Key.png" id="14_ww8tj"]
@@ -135,6 +138,10 @@ texture = ExtResource("5_jn46o")
 4:4/0 = 0
 5:4/0 = 0
 6:4/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xrq11"]
+texture = ExtResource("6_drnjg")
+0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r7ays"]
 texture = ExtResource("6_87vtf")
@@ -308,12 +315,16 @@ sources/2 = SubResource("TileSetAtlasSource_vtukm")
 sources/3 = SubResource("TileSetAtlasSource_ih81m")
 sources/5 = SubResource("TileSetAtlasSource_r7ays")
 sources/6 = SubResource("TileSetAtlasSource_w1hje")
+sources/4 = SubResource("TileSetAtlasSource_xrq11")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkufy"]
+size = Vector2(480.5, 635.344)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5pmp"]
 size = Vector2(107, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qetox"]
-size = Vector2(14.5, 21.344)
+size = Vector2(39.5, 48.344)
 
 [node name="Room_05" type="Node2D"]
 script = ExtResource("1_cnhur")
@@ -340,6 +351,32 @@ tile_set = SubResource("TileSet_fy7to")
 
 [node name="RigidBody2D" parent="Y-Sort" instance=ExtResource("10_0rayt")]
 position = Vector2(396, 132)
+collision_layer = 1835008
+
+[node name="Area2D" type="Area2D" parent="Y-Sort"]
+position = Vector2(9, -220)
+collision_layer = 512
+script = ExtResource("10_pydq3")
+Key = "Puzzle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Y-Sort/Area2D"]
+position = Vector2(116, 255)
+shape = SubResource("RectangleShape2D_wkufy")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Y-Sort/Area2D"]
+position = Vector2(17, -5)
+scale = Vector2(0.7167, 0.556552)
+collision_layer = 4
+collision_mask = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Y-Sort/Area2D/StaticBody2D"]
+position = Vector2(25.1151, -233.581)
+shape = SubResource("RectangleShape2D_wkufy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Y-Sort/Area2D"]
+position = Vector2(37, -4)
+scale = Vector2(5.97667, 5.97667)
+texture = ExtResource("11_v8v7v")
 
 [node name="Room5south" type="Area2D" parent="."]
 position = Vector2(656, 341)
@@ -425,12 +462,14 @@ shape = SubResource("RectangleShape2D_a5pmp")
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(402, -295)
 collision_layer = 512
+collision_mask = 1835009
 script = ExtResource("10_8dc38")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-143.25, 374.328)
+position = Vector2(-130.75, 387.828)
 shape = SubResource("RectangleShape2D_qetox")
 
+[connection signal="body_entered" from="Y-Sort/Area2D" to="Y-Sort/Area2D" method="OnBodyEntered"]
 [connection signal="body_entered" from="Room5south" to="Room5south" method="_on_body_entered"]
 [connection signal="body_entered" from="Room5north" to="Room5north" method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="OnBodyEntered"]

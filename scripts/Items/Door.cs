@@ -17,5 +17,8 @@ public partial class Door : Node
              GlobalVar.Instance.OpenendHydraDoor = true;
             QueueFree();
         }
+        if(GlobalVar.Instance.PuzzleSolved && Key == "Puzzle"){
+             GlobalVar.Instance.Openendpuzzledoor = true;
+            QueueFree();
     }
-}
+}}

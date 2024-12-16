@@ -81,4 +81,4 @@ shape = SubResource("RectangleShape2D_ht2ng")
 
 [node name="AnimatedEnemy" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kbqik")
-animation = &"walk_down"
+animation = &"walk_sideways"

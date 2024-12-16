@@ -427,5 +427,8 @@ Target = "Room_05"
 position = Vector2(2, -85.5)
 shape = SubResource("RectangleShape2D_a5pmp")
 
+[node name="Moblin" parent="." instance=ExtResource("8_tb68l")]
+position = Vector2(115, 43)
+
 [connection signal="body_entered" from="Room4east" to="Room4east" method="_on_body_entered"]
 [connection signal="body_entered" from="Room4north" to="Room4north" method="_on_body_entered"]

@@ -25,6 +25,7 @@ public partial class GlobalVar : Node
 	public bool KilledHydra{ get; set; }
 	public bool OpenendHydraDoor{ get; set; }
 	public bool PuzzleSolved{ get; set; }
+		public bool Openendpuzzledoor { get; set; }
 
 	public bool GameEnd{ get; set; }
 
@@ -61,6 +62,8 @@ public partial class GlobalVar : Node
 		OpenendRedDoor = false;
 		KilledHydra = false;
 		OpenendHydraDoor = false;
+		PuzzleSolved = false;
+		Openendpuzzledoor = false;
 		HealthUpgrade = false;
 		Volume = 100;
 		// Resolution = new Vector2I(1920, 1080);//settings get saved with the otherstuff, make a separate file

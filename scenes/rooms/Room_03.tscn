@@ -647,12 +647,6 @@ position = Vector2(-351, -469)
 [node name="Moblin3" parent="Y-Sort" instance=ExtResource("9_7etpq")]
 position = Vector2(294, 442)
 
-[node name="Moblin4" parent="Y-Sort" instance=ExtResource("9_7etpq")]
-position = Vector2(-814, 309)
-
-[node name="Moblin5" parent="Y-Sort" instance=ExtResource("9_7etpq")]
-position = Vector2(135, -409)
-
 [node name="Room3west1" type="Area2D" parent="."]
 position = Vector2(-1084, 237)
 collision_layer = 512
