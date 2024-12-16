@@ -28,12 +28,18 @@ SoundFx="*res://scenes/sound_fx.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
 [dotnet]
 
 project/assembly_name="The-Legend-of-Shelby"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/guusv/OneDrive/Documents/GitHub/The-Legend-of-Shelby/Movie/Gameplau.avi"
+movie_writer/disable_vsync=true
 
 [gui]
 

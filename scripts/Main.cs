@@ -222,7 +222,7 @@ public partial class Main : Node2D
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{
+	{	
 		posLabel.Text = "position: " + player.GlobalPosition;
 		if(GetNode<Node2D>(".").Name == "BossRoom" && GlobalVar.Instance.KilledHydra){
 

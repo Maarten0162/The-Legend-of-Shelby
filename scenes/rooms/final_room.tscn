@@ -779,6 +779,7 @@ shape = SubResource("RectangleShape2D_624qy")
 visible = false
 
 [node name="HealthUI" type="TextureRect" parent="CanvasLayer"]
+visible = false
 offset_left = 4.0
 offset_top = -1.99994
 offset_right = 106.0
@@ -799,6 +800,7 @@ text = "position: "
 metadata/_edit_use_anchors_ = true
 
 [node name="CurrencyCount" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 6.0
 offset_top = 97.0
 offset_right = 46.0

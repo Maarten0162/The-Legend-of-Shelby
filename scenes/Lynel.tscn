@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://y4auh1hhvd0a"]
+[gd_scene load_steps=11 format=3 uid="uid://b4166hbakwwwo"]
 
 [ext_resource type="Script" path="res://scripts/enemies/Lynel.cs" id="1_0ckuc"]
 [ext_resource type="Texture2D" uid="uid://ya8td50t8gqg" path="res://assets/LOZ remake/Monsters/Lynel_2.png" id="2_0iqk2"]

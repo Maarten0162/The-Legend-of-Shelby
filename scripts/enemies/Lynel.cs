@@ -10,6 +10,7 @@ public partial class Lynel : Enemy
 
     Timer hittimer;
     Timer iframetimer;
+    CollisionShape2D hitbox;
 
     public Lynel()
     {
@@ -21,7 +22,7 @@ public partial class Lynel : Enemy
         this.GlobalPosition = positon;
     }
     public override async void _Ready()
-    {
+    {   hitbox = GetNode<CollisionShape2D>("CollisionEnemy");
         iframetimer = GetNode<Timer>("iframeTimer");
         hittimer = GetNode<Timer>("hitTimer");
         animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedEnemy");
@@ -57,7 +58,7 @@ public partial class Lynel : Enemy
             if (Health <= 0)
             {
                 animatedSprite2D.Modulate = new Color("FFFFFF");
-				GlobalVar.Instance.KilledHydra = true;
+				
                 Death();
             }
         }
@@ -120,6 +121,15 @@ public partial class Lynel : Enemy
 		GlobalVar.Instance.HealthUpgrade = true;
         GlobalVar.Instance.playerHealth = 8;
 		GD.Print("in death");
+       this.Hide();
+       hitbox.Disabled = true;
+       
+          
+            GetNode<Label>("../Player/Label").Text = "You gained a heart container!";
+            await GlobalFunc.Instance.WaitForSeconds(2);
+            GetNode<Label>("../Y-Sort/Player/Label").Text = "";
+            await GlobalFunc.Instance.WaitForSeconds(0.05f);
+            QueueFree();
 		QueueFree();
 
 	}

@@ -16,6 +16,6 @@ public partial class CurrencyUi : Label
 	}
 	private void UpdateCurrency()
 	{
-		Text = "Pounds: " + GlobalVar.Instance.playerCurrency;
+		Text = "Rupees: " + GlobalVar.Instance.playerCurrency;
 	}
 }

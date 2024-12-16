@@ -22,9 +22,9 @@ public partial class Player : CharacterBody2D
     private PackedScene projScene = (PackedScene)GD.Load("res://scenes/weapons/arrow.tscn");
 
 
-    Area2D weaponBody;
-    CollisionShape2D weaponCollision;
-    Sprite2D weaponSprite;
+    public Area2D weaponBody;
+    public CollisionShape2D weaponCollision;
+    public Sprite2D weaponSprite;
 
     Player player;
 

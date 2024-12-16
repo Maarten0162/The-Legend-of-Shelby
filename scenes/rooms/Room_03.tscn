@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://j68owvth68lf"]
+[gd_scene load_steps=40 format=4 uid="uid://j68owvth68lf"]
 
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="1_217hu"]
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_b1vsv"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://bk8a6jfaao5lf" path="res://assets/LOZ remake/Tileset/dungeon-tileset.png" id="10_1f1qb"]
 [ext_resource type="Texture2D" uid="uid://cp72ipqr531px" path="res://assets/Sprites/Pot_nobackground.png" id="11_83jfi"]
 [ext_resource type="Script" path="res://scripts/Items/Pot.cs" id="15_wo181"]
+[ext_resource type="PackedScene" uid="uid://b4166hbakwwwo" path="res://scenes/Lynel.tscn" id="20_3matl"]
+[ext_resource type="PackedScene" uid="uid://c3me4c08gnnua" path="res://scenes/Octo.tscn" id="21_7sked"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m36e"]
 texture = ExtResource("1_217hu")
@@ -632,6 +634,15 @@ limit_top = -750
 limit_right = 1050
 limit_bottom = 750
 
+[node name="Label" type="Label" parent="Y-Sort/Player"]
+z_index = 5
+offset_left = -26.4
+offset_top = -13.6
+offset_right = 13.6
+offset_bottom = 2.4
+scale = Vector2(0.2, 0.2)
+horizontal_alignment = 1
+
 [node name="Obstacles" type="TileMapLayer" parent="Y-Sort"]
 y_sort_enabled = true
 scale = Vector2(6, 6)
@@ -646,6 +657,12 @@ position = Vector2(-351, -469)
 
 [node name="Moblin3" parent="Y-Sort" instance=ExtResource("9_7etpq")]
 position = Vector2(294, 442)
+
+[node name="Lynel" parent="Y-Sort" instance=ExtResource("20_3matl")]
+position = Vector2(832, 345)
+Waittime = 0.75
+Speed = 200
+Health = 300
 
 [node name="Room3west1" type="Area2D" parent="."]
 position = Vector2(-1084, 237)
@@ -699,6 +716,29 @@ shape = SubResource("RectangleShape2D_1bq0x")
 
 [node name="Node2D" type="Node2D" parent="Area2D"]
 position = Vector2(33, 44)
+
+[node name="Moblin" parent="." instance=ExtResource("9_7etpq")]
+position = Vector2(-632, 227)
+Waittime = 1.1
+
+[node name="Moblin2" parent="." instance=ExtResource("9_7etpq")]
+position = Vector2(-738, 481)
+Waittime = 1.3
+
+[node name="Octorock" parent="." instance=ExtResource("21_7sked")]
+position = Vector2(-727, -554)
+Waittime = 0.75
+
+[node name="Octorock2" parent="." instance=ExtResource("21_7sked")]
+position = Vector2(-722, -201)
+Waittime = 0.75
+
+[node name="Octorock3" parent="." instance=ExtResource("21_7sked")]
+position = Vector2(-128, -567)
+
+[node name="Octorock4" parent="." instance=ExtResource("21_7sked")]
+position = Vector2(764, -461)
+Waittime = 0.75
 
 [connection signal="body_entered" from="Room3west1" to="Room3west1" method="_on_body_entered"]
 [connection signal="body_entered" from="Room3west2" to="Room3west2" method="_on_body_entered"]

@@ -20,7 +20,7 @@ public partial class Shop : Node
             GlobalVar.Instance.playerHealth += 2;
             if (GlobalVar.Instance.HealthUpgrade && GlobalVar.Instance.playerHealth > 8)
             {
-                GlobalVar.Instance.playerHealth = 6;
+                GlobalVar.Instance.playerHealth = 8;
             }
             else if (!GlobalVar.Instance.HealthUpgrade && GlobalVar.Instance.playerHealth > 6)
             {
@@ -39,14 +39,14 @@ public partial class Shop : Node
             GlobalVar.Instance.playerHealth += 2;
             if (GlobalVar.Instance.HealthUpgrade && GlobalVar.Instance.playerHealth > 8)
             {
-                GlobalVar.Instance.playerHealth = 6;
+                GlobalVar.Instance.playerHealth = 8;
             }
             else if (!GlobalVar.Instance.HealthUpgrade && GlobalVar.Instance.playerHealth > 6)
             {
                 GlobalVar.Instance.playerHealth = 6;
             }
             GlobalVar.Instance.playerCurrency -= 5;
-            GetNode<Area2D>("Item2").QueueFree(); ;
+            GetNode<Area2D>("Item3").QueueFree(); ;
         }
 
     }
