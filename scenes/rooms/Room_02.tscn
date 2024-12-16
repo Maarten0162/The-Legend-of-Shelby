@@ -22,9 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://deinxrmnlmydg" path="res://assets/Sprites/Red_Key.png" id="17_l0k81"]
 [ext_resource type="Texture2D" uid="uid://bmab1v0a8iu8" path="res://assets/Sprites/Yellow_Key.png" id="18_xv880"]
 [ext_resource type="Script" path="res://scripts/Items/Door.cs" id="21_ahap6"]
-[ext_resource type="PackedScene" uid="uid://c3me4c08gnnua" path="res://scenes/Octo.tscn" id="23_ngout"]
+[ext_resource type="PackedScene" path="res://scenes/Octo.tscn" id="23_ngout"]
 [ext_resource type="Texture2D" uid="uid://bfljkx32vjqm5" path="res://assets/LOZ remake/Tileset/Locked Cave.png" id="23_sqyr7"]
-[ext_resource type="PackedScene" uid="uid://b4166hbakwwwo" path="res://scenes/Lynel.tscn" id="25_yymn7"]
+[ext_resource type="PackedScene" uid="uid://y4auh1hhvd0a" path="res://scenes/Lynel.tscn" id="25_yymn7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6gbl"]
 texture = ExtResource("1_pyjq4")
@@ -851,6 +851,9 @@ position = Vector2(449, -527)
 
 [node name="Lynel" parent="." instance=ExtResource("25_yymn7")]
 position = Vector2(5, -123)
+Waittime = 1.0
+Speed = 200
+Health = 300
 
 [connection signal="body_entered" from="Y-Sort/Area2D" to="Y-Sort/Area2D" method="OnBodyEntered"]
 [connection signal="body_entered" from="Room2south" to="Room2south" method="_on_body_entered"]

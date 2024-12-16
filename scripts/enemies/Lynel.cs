@@ -1,9 +1,12 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class Lynel : Enemy
 {
-     bool iframes;
+
+
+    bool iframes;
 
     Timer hittimer;
     Timer iframetimer;
@@ -24,6 +27,8 @@ public partial class Lynel : Enemy
         animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedEnemy");
         left = new Vector2(-1 * Speed, 0);
         right = new Vector2(1 * Speed, 0);
+        up = new Vector2(0, 1 * Speed);
+        down = new Vector2(0, -1 * Speed);
 
         enemyVelocity = Vector2.Zero;
 
@@ -68,6 +73,57 @@ public partial class Lynel : Enemy
     {
         animatedSprite2D.Modulate = new Color("FFFFFF");
     }
+
+    public override async Task Movement() //randomised movement
+	{
+		if (isdead) return;
+		if (isdead || !IsInstanceValid(this)) return;
+
+		Random rnd = new Random();
+		int whatway = rnd.Next(0, 4);
+
+		switch (whatway)
+		{
+			case 0:
+				enemyVelocity = up;
+				break;
+			case 1:
+				enemyVelocity = down;
+				break;
+			case 2:
+				enemyVelocity = left;
+				break;
+			case 3:
+				enemyVelocity = right;
+				break;
+		}
+		Sprite(true);
+		Velocity = enemyVelocity;
+
+		await GlobalFunc.Instance.WaitForSeconds(Waittime);
+		if (isdead || !IsInstanceValid(this)) return;
+		Velocity = Vector2.Zero;
+		animatedSprite2D.Pause();
+		await GlobalFunc.Instance.WaitForSeconds(0.5f);
+		if (isdead || !IsInstanceValid(this)) return;
+
+		await Movement();
+
+
+
+	}
+    public override async void Death()
+	{
+		await GlobalFunc.Instance.WaitForSeconds(0.05f);//zonder dit krijg je die flush error
+		if (isdead) return;
+		isdead = true;
+		GlobalVar.Instance.HealthUpgrade = true;
+        GlobalVar.Instance.playerHealth = 8;
+		GD.Print("in death");
+		QueueFree();
+
+	}
+
 
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 public abstract partial class Enemy : CharacterBody2D
 {
-	[Export] float Waittime;
+	[Export] public float Waittime;
 	[Export] public int Speed;
 	[Export] public int Health = 100;
 	[Export] private int damage = 1;
@@ -14,7 +14,7 @@ public abstract partial class Enemy : CharacterBody2D
 	[Export] int projAmount;
 
 
-	private bool isdead;
+	public bool isdead;
 	private int turnAmount = 0;
 
 	public Vector2 up;
@@ -27,7 +27,7 @@ public abstract partial class Enemy : CharacterBody2D
 	private PackedScene projScene = (PackedScene)GD.Load("res://scenes/boss/projectile.tscn");
 
 
-	public async void Death()
+	public virtual async void Death()
 	{
 		await GlobalFunc.Instance.WaitForSeconds(0.05f);//zonder dit krijg je die flush error
 		if (isdead) return;
@@ -74,9 +74,11 @@ public abstract partial class Enemy : CharacterBody2D
 		{
 			case 0:
 				enemyVelocity = up;
+				GD.Print("move up");
 				break;
 			case 1:
 				enemyVelocity = down;
+				GD.Print($"move down{down}");
 				break;
 			case 2:
 				enemyVelocity = left;
