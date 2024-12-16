@@ -213,6 +213,7 @@ public partial class Player : CharacterBody2D
             return;
         }
 
+
         // Handle attack input
         if (Input.IsActionJustPressed("Attack") && GlobalVar.Instance.HasSword)
         {

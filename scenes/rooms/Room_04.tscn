@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="7_6660t"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="8_rqhum"]
 [ext_resource type="PackedScene" uid="uid://cgwj7v4ve1pso" path="res://scenes/Moblin.tscn" id="8_tb68l"]
-[ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="9_ip3fl"]
 [ext_resource type="Script" path="res://scripts/ui/HealthUi.cs" id="10_oacb3"]
 [ext_resource type="Script" path="res://scripts/ui/CurrencyUi.cs" id="11_gmwn8"]
+[ext_resource type="Texture2D" uid="uid://6hu7vl1xka1p" path="res://assets/Hearts/hearthsUpgrade/extraHeart8Hearts.png" id="11_y3ybk"]
 [ext_resource type="Script" path="res://scripts/ui/KeyUi.cs" id="14_jir4e"]
 [ext_resource type="Texture2D" uid="uid://dq2r0aoq4ggfv" path="res://assets/Sprites/Green_Key.png" id="15_j86t0"]
 [ext_resource type="Texture2D" uid="uid://deinxrmnlmydg" path="res://assets/Sprites/Red_Key.png" id="16_bo0i0"]
@@ -363,10 +363,10 @@ shape = SubResource("RectangleShape2D_a5pmp")
 [node name="HealthUI" type="TextureRect" parent="CanvasLayer"]
 offset_left = 4.0
 offset_top = -1.99994
-offset_right = 106.0
+offset_right = 131.5
 offset_bottom = 78.0001
 scale = Vector2(2.10867, 0.878613)
-texture = ExtResource("9_ip3fl")
+texture = ExtResource("11_y3ybk")
 script = ExtResource("10_oacb3")
 metadata/_edit_use_anchors_ = true
 

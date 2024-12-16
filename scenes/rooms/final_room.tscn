@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://csvhphvxfokyk"]
+[gd_scene load_steps=51 format=4 uid="uid://bkoxoivhpenng"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_spi11"]
 [ext_resource type="Texture2D" uid="uid://blp2prkqmve11" path="res://assets/LOZ remake/Tileset/Tileset.png" id="2_mix5t"]

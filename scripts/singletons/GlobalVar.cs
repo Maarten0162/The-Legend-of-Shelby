@@ -28,6 +28,8 @@ public partial class GlobalVar : Node
 
 	public bool GameEnd{ get; set; }
 
+	public bool HealthUpgrade{ get; set; }
+
 
 	//settings
 	public int Volume{ get; set; }
@@ -43,6 +45,7 @@ public partial class GlobalVar : Node
    	public string password = "Welkom123!";
 
 	public string MusicLocation = "TitleScreen";
+	
 
 
 	public override void _Ready()
@@ -58,6 +61,7 @@ public partial class GlobalVar : Node
 		OpenendRedDoor = false;
 		KilledHydra = false;
 		OpenendHydraDoor = false;
+		HealthUpgrade = false;
 		Volume = 100;
 		// Resolution = new Vector2I(1920, 1080);//settings get saved with the otherstuff, make a separate file
 		// DisplayServer.WindowSetSize(Resolution);

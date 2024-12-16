@@ -327,7 +327,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Y-Sort" instance=ExtResource("8_tklkw")]
 z_index = 0
-position = Vector2(490, -151)
+position = Vector2(-2, 2)
 
 [node name="Camera2D3" type="Camera2D" parent="Y-Sort/Player"]
 position = Vector2(0.599976, 2.4)
@@ -351,7 +351,7 @@ script = ExtResource("11_r4sqg")
 Key = "Boss"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Y-Sort/Area2D"]
-position = Vector2(627, 3)
+position = Vector2(-433, -13)
 shape = SubResource("RectangleShape2D_meffv")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Y-Sort/Area2D"]

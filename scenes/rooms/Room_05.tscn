@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bk8a6jfaao5lf" path="res://assets/LOZ remake/Tileset/dungeon-tileset.png" id="7_5p878"]
 [ext_resource type="PackedScene" uid="uid://chv7r8rh0ei5o" path="res://scenes/player.tscn" id="8_ws2c2"]
 [ext_resource type="Script" path="res://scripts/RoomTransition.cs" id="9_6my4b"]
-[ext_resource type="PackedScene" uid="uid://br05sfeb1oh15" path="res://scenes/block.tscn" id="10_0rayt"]
+[ext_resource type="PackedScene" path="res://scenes/block.tscn" id="10_0rayt"]
 [ext_resource type="Script" path="res://scripts/puzzle.cs" id="10_8dc38"]
 [ext_resource type="Texture2D" uid="uid://bx803bb883joc" path="res://assets/Hearts/PNG/basic/Full Health.png" id="10_mxiou"]
 [ext_resource type="Script" path="res://scripts/ui/HealthUi.cs" id="11_i7slt"]
